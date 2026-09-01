@@ -1,0 +1,24 @@
+{
+  "name": "Water Treatment Doctor – English + हिंदी",
+  "short_name": "WT Doctor",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#075f63",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "description": "Water treatment operation, design, chemicals and troubleshooting in English + हिंदी."
+}

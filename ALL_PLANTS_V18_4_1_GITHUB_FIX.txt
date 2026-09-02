@@ -1,0 +1,15 @@
+Water Treatment Doctor V18.4.1 GitHub Fix
+- Fixed catalogue button overlap with bottom navigation and safe-area insets.
+- Fixed Home bottom-nav button so it returns to the top/home area.
+- Replaced huge inline Base64 logo with local logo.jpg.
+- Removed obsolete app-overview-v18.png and app-overview-v18-3.png.
+- Removed upload keystore and plaintext credentials from repository package.
+- Added .gitignore for signing/private build files.
+- GitHub Actions now reads signing data from GitHub Secrets.
+- Updated versionCode to 24 and versionName to 18.4.1.
+
+Required GitHub Actions secrets:
+UPLOAD_KEYSTORE_BASE64
+KEYSTORE_PASSWORD
+KEY_ALIAS
+KEY_PASSWORD

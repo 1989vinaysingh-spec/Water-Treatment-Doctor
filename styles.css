@@ -544,3 +544,72 @@ main{max-width:1160px;margin:auto;padding:12px}
 .ref-plant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ref-plant-grid button{background:#fff;border:1px solid #d8e5ef;border-radius:11px;padding:10px 5px;min-height:86px;box-shadow:0 4px 12px #174b7310;color:#163b5c}.ref-plant-grid span{display:block;font-size:22px}.ref-plant-grid b{display:block;font-size:12px;margin-top:3px}.ref-plant-grid small{display:block;font-size:9px;color:#6d8497;margin-top:2px}
 .ref-feature-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:12px}.ref-feature-row button{border:0;border-radius:11px;min-height:78px;padding:7px 4px;color:#fff;font-weight:800;box-shadow:0 5px 14px #173a5e26}.ref-feature-row button:nth-child(1){background:linear-gradient(135deg,#2f78c4,#21549b)}.ref-feature-row button:nth-child(2){background:linear-gradient(135deg,#36b36f,#208b50)}.ref-feature-row button:nth-child(3){background:linear-gradient(135deg,#8256cf,#6339ad)}.ref-feature-row button:nth-child(4){background:linear-gradient(135deg,#ff982a,#e46913)}.ref-feature-row button:nth-child(5){background:linear-gradient(135deg,#3992d2,#2673a9)}.ref-feature-row span{display:block;font-size:22px;margin-bottom:4px}.ref-feature-row b{display:block;font-size:9px;line-height:1.15}
 @media(max-width:420px){.reference-home{padding:10px}.ref-home-title h3{font-size:17px}.ref-feature-row{gap:5px}.ref-feature-row button{min-height:70px;padding:5px 2px}.ref-feature-row span{font-size:19px}.ref-feature-row b{font-size:8px}}
+/* V18.4 Mobile Layout Fix */
+@media (max-width:700px){
+
+  html,body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  .topbar{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    gap:8px !important;
+    padding:10px !important;
+  }
+
+  .topbar .brand{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .topbar h1,
+  .topbar h2{
+    font-size:22px !important;
+    line-height:1.15 !important;
+    word-break:normal !important;
+  }
+
+  .topbar select,
+  .topbar button{
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+
+  main{
+    width:100% !important;
+    max-width:100% !important;
+    padding:8px !important;
+    overflow-x:hidden !important;
+  }
+
+  .reference-home{
+    width:100% !important;
+    padding:10px !important;
+  }
+
+  .ref-plant-grid,
+  .ref-feature-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .card{
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  #fixedCatalogueBtn{
+    right:12px !important;
+    bottom:88px !important;
+    max-width:210px !important;
+  }
+
+  .mobile-bottom-nav{
+    width:100% !important;
+    left:0 !important;
+    right:0 !important;
+  }
+}

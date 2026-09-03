@@ -678,3 +678,88 @@ main{max-width:1160px;margin:auto;padding:12px}
     max-width:190px !important;
   }
 }
+/* V18.4.2 FINAL MOBILE OVERLAP FIX */
+
+:root{
+  --wtd-bottom-nav-height:72px;
+}
+
+/* Bottom nav ke liye proper space */
+body{
+  padding-bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 28px)!important;
+}
+
+/* Catalogue button ko bottom navigation se upar rakhein */
+#fixedCatalogueBtn{
+  position:fixed!important;
+  right:12px!important;
+  bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 18px)!important;
+  z-index:1200!important;
+  max-width:210px!important;
+  white-space:nowrap!important;
+}
+
+/* Plant detail me top sticky Back button hata kar normal flow me rakhein */
+.plant-detail-head{
+  position:relative!important;
+  top:auto!important;
+  z-index:1!important;
+  background:#fff!important;
+  padding:0 0 14px!important;
+  margin-bottom:14px!important;
+}
+
+/* Heading/button collision fix */
+.plant-detail{
+  scroll-margin-top:90px!important;
+  overflow:visible!important;
+}
+
+.plant-detail h2{
+  margin-top:8px!important;
+  clear:both!important;
+}
+
+/* Back button mobile friendly */
+.plant-detail-head .back-btn,
+.bottom-back{
+  width:100%!important;
+  display:block!important;
+  position:relative!important;
+}
+
+/* Bottom nav always visible but content ko cover na kare */
+.mobile-bottom-nav{
+  min-height:var(--wtd-bottom-nav-height)!important;
+  z-index:1000!important;
+}
+
+/* Home identity card visibility fix */
+.brand-hero{
+  overflow:hidden!important;
+}
+
+.brand-hero h2,
+.brand-hero h3,
+.brand-hero p{
+  opacity:1!important;
+  visibility:visible!important;
+}
+
+/* Small mobile screens */
+@media(max-width:420px){
+  #fixedCatalogueBtn{
+    right:10px!important;
+    bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 14px)!important;
+    padding:9px 12px!important;
+    font-size:11px!important;
+  }
+
+  .plant-detail{
+    padding:12px!important;
+  }
+
+  .plant-detail-head{
+    margin-bottom:10px!important;
+  }
+}

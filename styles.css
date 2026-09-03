@@ -531,7 +531,7 @@ main{max-width:1160px;margin:auto;padding:12px}
 .calc-tabs{background:#f1f7fb;border-radius:12px;padding:6px}.tab{border-radius:9px!important}.tab.active{background:#0b67b2!important;color:#fff!important}.calc-panel{padding:16px}.calc-panel input,.calc-panel select,label input,label select,textarea{border:1px solid #cbdde9!important;border-radius:10px!important;background:#fbfdff!important}
 .result{border-radius:12px!important;background:#f2f8fc!important;border:1px solid #d8e7f1!important}
 .pill{border-radius:999px}.app-showcase-card{padding:14px}.app-showcase-preview{border-radius:16px;overflow:hidden;border:1px solid #d8e5ef!important;background:#f7fbfd}.app-showcase-preview img{width:100%;height:auto;display:block}.app-showcase-preview span{background:#073a67;color:#fff;padding:9px 12px;display:block}
-#fixedCatalogueBtn{background:linear-gradient(135deg,#0b67b2,#08487d)!important;color:#fff!important;bottom:110px!important;right:12px!important;padding:10px 13px!important;font-size:12px!important}
+#fixedCatalogueBtn{background:linear-gradient(135deg,#0b67b2,#08487d)!important;color:#fff!important;bottom:88px!important;right:12px!important;padding:10px 13px!important;font-size:12px!important}
 .mobile-bottom-nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:1000!important;background:linear-gradient(135deg,#062f57,#073b69)!important;border-top:1px solid #ffffff22!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;padding:7px 6px calc(7px + env(safe-area-inset-bottom))!important;box-shadow:0 -8px 24px #07335d33!important}.bottom-nav-item{background:transparent!important;border:0!important;color:#d9ecfb!important;display:flex!important;flex-direction:column!important;gap:2px!important;align-items:center!important;justify-content:center!important;font-size:10px!important;min-height:48px!important}.bottom-nav-item span{font-size:19px!important}.bottom-nav-item.active{color:#29b6f6!important}.bottom-nav-item b{font-size:10px!important}
 .modal-box{border-radius:18px!important}.app-overview-modal-box{background:#071f37!important;padding:8px!important}.app-overview-full{border-radius:13px!important}
 @media(max-width:700px){main{padding:8px}.brand-hero.card{border-radius:0;margin-left:-8px;margin-right:-8px}.hero.card{min-height:135px}.premium-feature-strip{grid-template-columns:repeat(4,1fr);gap:6px}.feature-chip{min-height:90px;padding:8px 4px!important}.feature-chip span{font-size:23px}.feature-chip b{font-size:11px}.feature-chip small{font-size:9px}.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.modules{grid-template-columns:repeat(3,minmax(0,1fr))}.module{font-size:12px;min-height:92px;padding:10px 6px!important}.section-tabs{top:64px}.app-showcase-card{padding:8px}}
@@ -544,222 +544,71 @@ main{max-width:1160px;margin:auto;padding:12px}
 .ref-plant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ref-plant-grid button{background:#fff;border:1px solid #d8e5ef;border-radius:11px;padding:10px 5px;min-height:86px;box-shadow:0 4px 12px #174b7310;color:#163b5c}.ref-plant-grid span{display:block;font-size:22px}.ref-plant-grid b{display:block;font-size:12px;margin-top:3px}.ref-plant-grid small{display:block;font-size:9px;color:#6d8497;margin-top:2px}
 .ref-feature-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:12px}.ref-feature-row button{border:0;border-radius:11px;min-height:78px;padding:7px 4px;color:#fff;font-weight:800;box-shadow:0 5px 14px #173a5e26}.ref-feature-row button:nth-child(1){background:linear-gradient(135deg,#2f78c4,#21549b)}.ref-feature-row button:nth-child(2){background:linear-gradient(135deg,#36b36f,#208b50)}.ref-feature-row button:nth-child(3){background:linear-gradient(135deg,#8256cf,#6339ad)}.ref-feature-row button:nth-child(4){background:linear-gradient(135deg,#ff982a,#e46913)}.ref-feature-row button:nth-child(5){background:linear-gradient(135deg,#3992d2,#2673a9)}.ref-feature-row span{display:block;font-size:22px;margin-bottom:4px}.ref-feature-row b{display:block;font-size:9px;line-height:1.15}
 @media(max-width:420px){.reference-home{padding:10px}.ref-home-title h3{font-size:17px}.ref-feature-row{gap:5px}.ref-feature-row button{min-height:70px;padding:5px 2px}.ref-feature-row span{font-size:19px}.ref-feature-row b{font-size:8px}}
-/* V18.4 Mobile Layout Fix */
-@media (max-width:700px){
 
-  html,body{
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden;
-  }
-
-  .topbar{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    align-items:center !important;
-    gap:8px !important;
-    padding:10px !important;
-  }
-
-  .topbar .brand{
-    width:100% !important;
-    min-width:0 !important;
-  }
-
-  .topbar h1,
-  .topbar h2{
-    font-size:22px !important;
-    line-height:1.15 !important;
-    word-break:normal !important;
-  }
-
-  .topbar select,
-  .topbar button{
-    max-width:100% !important;
-    min-width:0 !important;
-  }
-
-  main{
-    width:100% !important;
-    max-width:100% !important;
-    padding:8px !important;
-    overflow-x:hidden !important;
-  }
-
-  .reference-home{
-    width:100% !important;
-    padding:10px !important;
-  }
-
-  .ref-plant-grid,
-  .ref-feature-row{
-    grid-template-columns:1fr !important;
-  }
-
-  .card{
-    width:100% !important;
-    max-width:100% !important;
-  }
-
-  #fixedCatalogueBtn{
-    right:12px !important;
-    bottom:88px !important;
-    max-width:210px !important;
-  }
-
-  .mobile-bottom-nav{
-    width:100% !important;
-    left:0 !important;
-    right:0 !important;
-  }
-}
-/* FINAL FORCE FIX - MOBILE HEADER */
-@media (max-width:700px){
-
-  header.topbar{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    width:100% !important;
-    padding:12px !important;
-    gap:10px !important;
-  }
-
-  header.topbar .brand-logo{
-    width:72px !important;
-    height:72px !important;
-    min-width:72px !important;
-    max-width:72px !important;
-    align-self:flex-start !important;
-  }
-
-  header.topbar > div:not(.top-actions){
-    width:100% !important;
-    max-width:100% !important;
-  }
-
-  header.topbar h1{
-    width:100% !important;
-    max-width:100% !important;
-    font-size:26px !important;
-    line-height:1.15 !important;
-    margin:6px 0 !important;
-  }
-
-  header.topbar .eyebrow,
-  header.topbar .subtitle{
-    width:100% !important;
-    max-width:100% !important;
-  }
-
-  header.topbar .top-actions{
-    position:static !important;
-    width:100% !important;
-    max-width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    gap:8px !important;
-    margin:0 !important;
-  }
-
-  header.topbar .top-actions select,
-  header.topbar .top-actions button{
-    position:static !important;
-    width:100% !important;
-    max-width:100% !important;
-    min-width:0 !important;
-    margin:0 !important;
-    transform:none !important;
-  }
-
-  #fixedCatalogueBtn{
-    right:10px !important;
-    bottom:92px !important;
-    max-width:190px !important;
-  }
-}
-/* V18.4.2 FINAL MOBILE OVERLAP FIX */
-
-:root{
-  --wtd-bottom-nav-height:72px;
-}
-
-/* Bottom nav ke liye proper space */
-body{
-  padding-bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 28px)!important;
-}
-
-/* Catalogue button ko bottom navigation se upar rakhein */
+/* V18.4.1 mobile navigation + catalogue overlap fix */
+:root{--wtd-bottom-nav-height:64px}
+body{padding-bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 18px)!important}
 #fixedCatalogueBtn{
   position:fixed!important;
   right:12px!important;
-  bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 18px)!important;
-  z-index:1200!important;
-  max-width:210px!important;
-  white-space:nowrap!important;
+  bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 14px)!important;
+  z-index:1100!important;
+  border:0!important;
+  border-radius:999px!important;
+  padding:10px 13px!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  cursor:pointer!important;
+  background:linear-gradient(135deg,#0b67b2,#08487d)!important;
+  color:#fff!important;
+  box-shadow:0 8px 22px rgba(6,47,87,.28)!important;
+  max-width:calc(100vw - 24px)!important;
 }
-
-/* Plant detail me top sticky Back button hata kar normal flow me rakhein */
-.plant-detail-head{
-  position:relative!important;
-  top:auto!important;
-  z-index:1!important;
-  background:#fff!important;
-  padding:0 0 14px!important;
-  margin-bottom:14px!important;
-}
-
-/* Heading/button collision fix */
-.plant-detail{
-  scroll-margin-top:90px!important;
-  overflow:visible!important;
-}
-
-.plant-detail h2{
-  margin-top:8px!important;
-  clear:both!important;
-}
-
-/* Back button mobile friendly */
-.plant-detail-head .back-btn,
-.bottom-back{
-  width:100%!important;
-  display:block!important;
-  position:relative!important;
-}
-
-/* Bottom nav always visible but content ko cover na kare */
 .mobile-bottom-nav{
   min-height:var(--wtd-bottom-nav-height)!important;
   z-index:1000!important;
 }
-
-/* Home identity card visibility fix */
-.brand-hero{
-  overflow:hidden!important;
+@media(max-width:390px){
+  #fixedCatalogueBtn{right:8px!important;padding:9px 11px!important;font-size:11px!important}
 }
 
-.brand-hero h2,
-.brand-hero h3,
-.brand-hero p{
-  opacity:1!important;
-  visibility:visible!important;
+/* V18.4.2 drawing + catalogue mobile overlap hard fix */
+:root{--wtd-bottom-nav-safe:calc(72px + env(safe-area-inset-bottom))}
+body{padding-bottom:calc(var(--wtd-bottom-nav-safe) + 70px)!important}
+main{padding-bottom:calc(var(--wtd-bottom-nav-safe) + 78px)!important}
+
+/* Keep process drawings readable on phones: scroll the drawing, never squeeze/overlay it. */
+.plant-drawing-card,.drawing-tile{min-width:0;overflow:hidden}
+.plant-drawing-card .plant-drawing,
+.drawing-tile img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.plant-drawing-card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:620px){
+  .plant-drawing-card .plant-drawing{width:760px;max-width:none;min-width:760px}
+  .drawing-tile{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .drawing-tile img{width:760px;max-width:none;min-width:760px}
+  .drawing-view img{min-width:760px;width:760px;max-width:none}
+}
+@media(max-width:390px){
+  .plant-drawing-card .plant-drawing,.drawing-tile img,.drawing-view img{width:700px;min-width:700px}
 }
 
-/* Small mobile screens */
-@media(max-width:420px){
-  #fixedCatalogueBtn{
-    right:10px!important;
-    bottom:calc(var(--wtd-bottom-nav-height) + env(safe-area-inset-bottom) + 14px)!important;
-    padding:9px 12px!important;
-    font-size:11px!important;
-  }
-
-  .plant-detail{
-    padding:12px!important;
-  }
-
-  .plant-detail-head{
-    margin-bottom:10px!important;
-  }
+/* Catalogue button always stays above the real bottom navigation + Android safe area. */
+#fixedCatalogueBtn{
+  bottom:calc(var(--wtd-bottom-nav-safe) + 14px)!important;
+  z-index:1200!important;
+  white-space:nowrap!important;
 }
+.mobile-bottom-nav{min-height:var(--wtd-bottom-nav-safe)!important;z-index:1100!important}
+
+/* Modal content gets its own safe scrolling area and cannot sit behind bottom navigation. */
+.modal{padding-bottom:calc(var(--wtd-bottom-nav-safe) + 16px)!important}
+.catalogue-modal-box{margin:8px auto calc(var(--wtd-bottom-nav-safe) + 8px)!important;max-height:calc(100dvh - var(--wtd-bottom-nav-safe) - 24px);overflow:auto}
+.catalogue-full-view{max-height:none!important;overflow:visible!important}
+.catalogue-full-view img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+body:has(#catalogueModal.show) #fixedCatalogueBtn{display:none!important}

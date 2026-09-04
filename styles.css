@@ -612,3 +612,105 @@ main{padding-bottom:calc(var(--wtd-bottom-nav-safe) + 78px)!important}
 .catalogue-full-view{max-height:none!important;overflow:visible!important}
 .catalogue-full-view img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
 body:has(#catalogueModal.show) #fixedCatalogueBtn{display:none!important}
+
+
+/* V18.4.3 plant page navigation: selected plant opens as an in-app page */
+#plants.detail-view > h3,
+#plants.detail-view > .modules{display:none!important}
+#plants.detail-view #plantDetail{display:block!important;margin:0;border:0;border-radius:0;box-shadow:none;padding:14px 12px 90px;background:#fff}
+#plants.detail-view .plant-detail-head{top:0;padding-top:8px}
+body.plant-page-open .section-tabs{display:none!important}
+body.plant-page-open main{padding-top:8px}
+body.plant-page-open #plants{margin-top:0}
+@media(max-width:700px){
+  body.plant-page-open .topbar,
+  body.plant-page-open .v7-dashboard,
+  body.plant-page-open .home-feature-strip,
+  body.plant-page-open .quick-grid{display:none!important}
+  #plants.detail-view #plantDetail{min-height:100vh}
+}
+
+
+/* V18.4.4 definitive Android/mobile layout fixes */
+:root{--wtd-nav-h:66px}
+html,body{max-width:100%;overflow-x:hidden}
+body{padding-bottom:calc(var(--wtd-nav-h) + 18px)!important}
+main{padding-bottom:calc(var(--wtd-nav-h) + 28px)!important}
+
+/* Top bar: never let logo/title/language controls collide on a phone. */
+@media(max-width:700px){
+  .topbar{
+    display:grid!important;
+    grid-template-columns:58px minmax(0,1fr)!important;
+    grid-template-areas:"logo brand" "actions actions"!important;
+    align-items:start!important;
+    gap:8px 10px!important;
+    padding:10px 12px!important;
+    position:sticky!important;
+    top:0!important;
+  }
+  .topbar>.brand-logo{grid-area:logo!important;width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;margin:0!important}
+  .topbar>div:not(.top-actions){grid-area:brand!important;min-width:0!important}
+  .topbar h1{font-size:21px!important;line-height:1.15!important;margin:2px 0 4px!important;overflow-wrap:anywhere}
+  .topbar .eyebrow{font-size:11px!important;line-height:1.25!important}
+  .topbar .subtitle{font-size:11px!important;line-height:1.35!important;max-width:none!important}
+  .top-actions{grid-area:actions!important;display:flex!important;align-items:center!important;gap:7px!important;width:100%!important;min-width:0!important}
+  .lang-switch{flex:1 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;height:42px!important;padding:7px 9px!important;font-size:13px!important}
+  #langBtn{display:none!important}
+  #installBtn{flex:0 0 auto!important;max-width:110px!important}
+  .lite-banner{position:relative!important;z-index:1!important;font-size:12px!important;line-height:1.35!important;padding:10px 12px!important;text-align:center!important}
+}
+
+/* Bottom navigation: reserve real content space and never cover the last card/text. */
+.mobile-bottom-nav{
+  height:var(--wtd-nav-h)!important;
+  min-height:var(--wtd-nav-h)!important;
+  padding:6px 5px!important;
+  z-index:1300!important;
+}
+.bottom-nav-item{min-height:52px!important}
+@media(max-width:700px){
+  /* Floating catalogue button was the main source of content overlap. Catalogue remains available in the app. */
+  #fixedCatalogueBtn{display:none!important}
+  .card:last-of-type,footer{margin-bottom:24px!important}
+}
+
+/* Drawings: use raster fallback files and fit them inside the card on phones. */
+.plant-drawing-card,.drawing-tile,.drawing-view{overflow:auto!important;-webkit-overflow-scrolling:touch;max-width:100%!important}
+.plant-drawing-card .plant-drawing,.drawing-tile img,.drawing-view img,#drawingImage{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  background:#fff!important;
+}
+@media(max-width:700px){
+  .all-drawing-grid{grid-template-columns:1fr!important}
+  .drawing-tile{padding:10px!important}
+  .plant-drawing-card{padding:10px!important}
+}
+
+/* Plant opens as a true in-app detail page, not as a scrolled block below the list. */
+#plants.detail-view>h3,#plants.detail-view>.modules{display:none!important}
+#plants.detail-view #plantDetail{display:block!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:10px 10px calc(var(--wtd-nav-h) + 28px)!important;background:#fff!important}
+#plants.detail-view .plant-detail-head{position:sticky!important;top:0!important;z-index:50!important;background:#fff!important;padding:8px 0 10px!important}
+body.plant-page-open .section-tabs{display:none!important}
+body.plant-page-open main{padding-top:0!important}
+body.plant-page-open #plants{margin-top:0!important}
+@media(max-width:700px){
+  body.plant-page-open .topbar,
+  body.plant-page-open .lite-banner,
+  body.plant-page-open .v7-dashboard,
+  body.plant-page-open .home-feature-strip,
+  body.plant-page-open .quick-grid,
+  body.plant-page-open .reference-home{display:none!important}
+  #plants.detail-view #plantDetail{min-height:calc(100vh - var(--wtd-nav-h))!important}
+}
+
+/* Modals also finish above the app bottom navigation. */
+.modal{padding:10px 10px calc(var(--wtd-nav-h) + 14px)!important}
+.modal-box,.modal-content{margin:8px auto!important;max-height:calc(100dvh - var(--wtd-nav-h) - 28px)!important;overflow:auto!important}
+.catalogue-full-view{overflow:visible!important;max-height:none!important}

@@ -481,7 +481,7 @@ nav.bottom{
   <div id="appOverviewModal" class="modal" onclick="if(event.target===this) closeAppOverview()">
     <div class="modal-box app-overview-modal-box">
       <button class="close" type="button" onclick="closeAppOverview()" aria-label="Close">×</button>
-      <img class="app-overview-full" src="app-overview-v18-4-4.png" alt="Water Treatment Doctor full app overview" />
+      <img class="app-overview-full" src="app-overview-v18-4.png" alt="Water Treatment Doctor full app overview" />
     </div>
   </div>
 
@@ -1067,7 +1067,7 @@ nav.bottom{
   </div>
 
   <button class="catalogue-preview" onclick="openCatalogue()" aria-label="Open catalogue">
-    <img loading="eager" decoding="async" src="catalogue-v16.jpg" alt="Water Treatment Doctor Product and Service Catalogue" />
+    <img loading="eager" decoding="async" src="catalogue-v18-4-4.jpg" alt="Water Treatment Doctor Product and Service Catalogue" />
     <span>Tap to View Full Catalogue / पूरा कैटलॉग देखने के लिए टैप करें</span>
   </button>
 
@@ -1081,7 +1081,7 @@ nav.bottom{
     <button class="close" onclick="closeCatalogue()">×</button>
     <h3>Water Treatment Doctor Catalogue / कैटलॉग</h3>
     <div class="catalogue-full-view">
-      <img loading="eager" decoding="async" src="catalogue-v16.jpg" alt="Full Water Treatment Doctor catalogue" />
+      <img loading="eager" decoding="async" src="catalogue-v18-4-4.jpg" alt="Full Water Treatment Doctor catalogue" />
     </div>
   </div>
 </div>
@@ -1100,7 +1100,7 @@ nav.bottom{
 </main><footer style="text-align:center;padding:24px 12px;color:#64748b;font-size:13px">Water Treatment Doctor • Developer: Vinay Kumar Singh</footer>
 
 <div class="modal" id="moduleModal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeModal" aria-label="Close">×</button><div id="modalContent"></div></div></div>
-<footer>Water Treatment Doctor • Version 17.0.0 Complete Plant Automatic Sizing</footer>
+<footer>Water Treatment Doctor • Version 18.4.4 • Complete Plant Automatic Sizing</footer>
 <script>
 const modules = {
  STP:{name:'Sewage Treatment Plant',process:'Screening → Grit/O&G removal → Equalization → Biological treatment (MBBR/SBR/ASP/MBR) → Secondary separation → Tertiary filtration → Disinfection → Reuse/Discharge → Sludge handling',design:['Confirm average/peak flow, BOD, COD, TSS, TKN/ammonia and required outlet quality.','Size equalization and biological stages from hydraulic and organic loading; verify oxygen demand and sludge age.','Verify clarifier/MBR loading, tertiary filters, disinfection contact and sludge handling capacity.'],operation:['START-UP: inspect tanks, screens, pumps, blowers, valves, instruments and chemical levels; fill biological tank gradually and establish healthy biomass/seed.','NORMAL: keep flow reasonably even; observe aeration/mixing, settling and return/waste sludge. Typical activated-sludge DO is commonly controlled around 1.5–3 mg/L, but process-specific targets govern.','Monitor pH, DO, MLSS/MLVSS, SVI/sludge blanket, BOD/COD/TSS, ammonia where nitrification is required, treated-water turbidity and disinfectant residual.','SHUTDOWN: stop feed in a controlled manner, maintain mixing/aeration as required to protect biomass, isolate equipment safely and record abnormalities.','ROUTINE: clean screens, remove scum, backwash tertiary filters, inspect diffusers/blowers, calibrate probes and manage sludge dewatering.'],chemicals:[['Sodium hypochlorite','NaOCl; commercial bleach is an aqueous solution','Disinfection / oxidation','Dose by chlorine demand and required residual/contact time; verify residual at outlet.'],['Alum','Al₂(SO₄)₃·xH₂O','Coagulation / phosphorus or TSS polishing','Dose is site-specific; establish by jar test and alkalinity/pH response.'],['Ferric chloride','FeCl₃ (commercial aqueous solution)','Coagulation / phosphorus removal','Jar-test; monitor pH/alkalinity and sludge production.'],['PAC','Polyaluminium chloride; basic aluminium chloride polymer','Coagulation','Product composition varies; dose by jar test/vendor active content.'],['Polymer','Anionic/cationic/nonionic polyelectrolyte','Flocculation / sludge dewatering','Use very low optimized dose; make-down/aging per supplier instructions.'],['Urea / nutrient N','CO(NH₂)₂','Nutrient supplementation only when deficient','Use only from nutrient balance; excessive addition increases nitrogen load.'],['DAP / phosphate nutrient','(NH₄)₂HPO₄','N/P supplementation only when deficient','Use only after BOD:N:P/nutrient assessment.'],['Lime / caustic','Ca(OH)₂ / NaOH','pH and alkalinity correction','Control from measured pH/alkalinity; avoid uncontrolled addition.']],trouble:['Odour/septicity: check long detention, dead zones, low DO and sludge accumulation.','High outlet TSS: inspect clarifier blanket, SVI/filamentous growth, hydraulic overload and sludge wasting.','Poor BOD/ammonia removal: check DO, pH/alkalinity, temperature, toxicity, nutrient balance and biomass age.','Foam: identify young sludge, surfactants or filamentous organisms before corrective action.']},
@@ -1318,7 +1318,7 @@ function openModule(key,m){
   const detail=document.getElementById('plantDetail');
   if(!box||!detail) return;
   box.innerHTML=`<span class="pill">${key}</span><h2>${m.name}</h2>
-  ${drawing?`<div class="plant-drawing-card"><h4>Process Drawing / प्रोसेस ड्रॉइंग</h4><img class="plant-drawing" src="${drawing}" alt="${key} process flow drawing" loading="lazy"><button class="mini" type="button" onclick="openDrawing('${key}','${drawing}')">Full Drawing / पूरी ड्रॉइंग</button><p class="muted">Conceptual process flow. Final construction PFD/P&amp;ID, pipe sizes, instruments and equipment ratings must follow project-specific engineering.</p></div>`:''}
+  ${drawing?`<div class="plant-drawing-card"><h4>Process Drawing / प्रोसेस ड्रॉइंग</h4><img class="plant-drawing" src="${drawing}" alt="${key} process flow drawing" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${key.toLowerCase()}.svg'"><button class="mini" type="button" onclick="openDrawing('${key}','${drawing}')">Full Drawing / पूरी ड्रॉइंग</button><p class="muted">Conceptual process flow. Final construction PFD/P&amp;ID, pipe sizes, instruments and equipment ratings must follow project-specific engineering.</p></div>`:''}
   <h4>Process Flow / प्रोसेस फ्लो</h4><p>${m.process}</p>
   <div class="parameter-design-card">
     <h4>Design by Inlet & Outlet Parameters / इनलेट-आउटलेट पैरामीटर से डिजाइन</h4>
@@ -1474,9 +1474,9 @@ function closeAppOverview(){
 // ---- V7 dashboard/search helpers ----
 function goSection(id){
   const btn=document.querySelector(`.section-tab[data-section="${id}"]`);
-  if(btn){ btn.click();
+  if(btn) btn.click();
 }
-  function openNoScrollPanel(target){
+function openNoScrollPanel(target){
   const el = target.startsWith('.')
     ? document.querySelector(target)
     : document.getElementById(target);
@@ -1951,7 +1951,7 @@ document.addEventListener('click',e=>{
   <button type="button" class="bottom-nav-item" data-go="plants" onclick="openPlantsPage();setBottomNav(this)"><span>🏭</span><b>Plants</b></button>
   <button type="button" class="bottom-nav-item" data-go="calculators" onclick="goSection('calculators');setBottomNav(this)"><span>🧮</span><b>Calculator</b></button>
   <button type="button" class="bottom-nav-item" onclick="openNoScrollPanel('fieldReference');setBottomNav(this)"><span>📋</span><b>Field Ref.</b></button>
-  <button type="button" class="bottom-nav-item" onclick="openNoScrollPanel('.v7-dashboard');setBottomNav(this)"><span>☰</span><b>More</b></button>
+  <button type="button" class="bottom-nav-item" onclick="openCatalogue();setBottomNav(this)"><span>📖</span><b>Catalogue</b></button>
 </nav>
 <script>
 function goHome(){
@@ -2031,4 +2031,4 @@ function previewDiagMedia(event){
 </script>
 
 </body>
-</html
+</html>

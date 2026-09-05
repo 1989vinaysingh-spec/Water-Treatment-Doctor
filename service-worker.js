@@ -1,7 +1,7 @@
-const CACHE='wtd-v18-4-4-r2';
+const CACHE='wtd-v18.5.0-verified';
 const ASSETS=[
   './','./index.html','./styles.css','./complete-bilingual.js','./bilingual.js',
-  './manifest.webmanifest','./logo.jpg','./catalogue-v18-4-4.jpg','./icon-192.png','./icon-512.png',
+  './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png',
   './privacy-policy.html',
   './drawings/stp.png','./drawings/etp.png','./drawings/cetp.png','./drawings/ctp.png',
   './drawings/ro.png','./drawings/wtp.png','./drawings/wsp.png','./drawings/zld.png',

@@ -1,0 +1,12 @@
+Water Treatment Doctor V18.5.0 — Verified Release
+
+Checks completed:
+- Catalogue removed from user-facing navigation and offline cache.
+- Visible/runtime version set to V18.5.0.
+- Plant detail navigation avoids forced scrollIntoView.
+- 22 process drawing PNG files included.
+- Smart Design supports capacity, inlet/outlet quality inputs, preliminary tank sizing, equipment/BOQ and P&ID schematic.
+- Chemical Dosing calculates active kg/day, product kg/day, L/day, L/hr, mL/min and 30-day estimate using dose, strength, density, run hours and safety factor.
+- AI backend remains secret-key/server based; API key is not embedded in the app.
+
+Engineering note: Smart Design/P&ID outputs are preliminary aids. Verify hydraulic profile, detailed water analysis, structural/electrical design, line sizing, instruments/interlocks and OEM/vendor data before construction.

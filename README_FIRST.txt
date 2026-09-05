@@ -1,4 +1,5 @@
-Water Treatment Doctor V18.4.4 — Layout, Drawing & Navigation Fixed
-Developer: Vinay Kumar Singh
-Includes STP, ETP, CETP, CTP, RO, WTP, WSP and ZLD.
-Extract this ZIP and select this folder as the HTTP Server site folder. index.html must be directly inside the selected folder.
+Water Treatment Doctor V18.5.0 — VERIFIED RELEASE
+
+Final mobile build includes functional plant navigation, calculators, Smart Design, Chemical Dosing, 22 plant drawings, P&ID preview, SOP, Field Reference and AI-backend readiness. Catalogue has been removed from the user interface.
+
+Smart Design and P&ID are preliminary engineering aids and require final engineering/OEM verification before execution.

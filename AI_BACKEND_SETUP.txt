@@ -1,0 +1,22 @@
+WATER TREATMENT DOCTOR V18.5.0 — TRUE AI VISUAL ANALYSIS SETUP
+
+Included:
+- ai-backend/server.mjs — secure server-side OpenAI vision proxy
+- ai-backend/package.json — Node 20 start config
+- ai-backend/render.yaml — Render deployment blueprint
+- ai-backend/.env.example — environment variables example
+- App sends compressed image or 3 video frames to /api/analyze
+- App includes Test AI Connection button
+
+IMPORTANT SECURITY RULE:
+Never put OPENAI_API_KEY inside index.html, JavaScript, APK, or GitHub public source. Keep it only as a secret environment variable on the backend host.
+
+DEPLOY (example: Render):
+1. Push this project to GitHub.
+2. Create a Render Web Service from this repository and set Root Directory to ai-backend (or use the included render.yaml blueprint).
+3. Add secret environment variable OPENAI_API_KEY.
+4. Optional: OPENAI_MODEL=gpt-5.6-luna.
+5. Deploy. Open https://YOUR-SERVICE/api/health and confirm {"ok":true,...}.
+6. In Water Treatment Doctor > AI Vision, enter https://YOUR-SERVICE (without /api/analyze), tap Test AI Connection, then analyze a photo/video.
+
+The app extracts three representative JPEG frames from video locally, so the backend receives images rather than a raw video file.

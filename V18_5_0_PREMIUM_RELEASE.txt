@@ -1,0 +1,6 @@
+Water Treatment Doctor V18.5.0 Premium Release
+- Fast non-blocking premium splash screen with Water Treatment Doctor branding
+- Clutter-free home: redundant bilingual info card hidden; language selector retained
+- Water-blue visual polish, smooth touch feedback and fixed easy navigation
+- Existing V18.4.9 verified Smart Design, 22 plants, Chemical Dosing, drawings, calculators and AI backend integration preserved
+- Splash automatically exits after load with a 1.4 s safety fallback; it does not wait on drawings or AI

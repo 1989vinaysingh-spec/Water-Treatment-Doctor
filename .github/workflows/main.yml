@@ -68,8 +68,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 1
-                  versionName "1.0"
+                  versionCode 18404
+                  versionName "18.4.4"
               }
           }
           EOF

@@ -1,0 +1,13 @@
+{
+  "name": "water-treatment-doctor-ai-backend",
+  "version": "18.4.9",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs"
+  }
+}

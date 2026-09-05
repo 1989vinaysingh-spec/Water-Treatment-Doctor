@@ -504,7 +504,7 @@ nav.bottom{
       <button class="quick-card" onclick="goSection('analysis')"><b>💧 Water Analysis</b><span>Quick screening of key parameters</span></button>
       <button class="quick-card" onclick="goSection('logs')"><b>📋 Daily Log</b><span>Save plant readings on this phone</span></button>
     
-<button class="quick-card" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})"><b>📖 Catalogue / कैटलॉग</b><span>Equipment • Chemicals • Consumables • Services</span></button>
+<button class="quick-card" onclick="openCatalogue()"><b>📖 Catalogue / कैटलॉग</b><span>Equipment • Chemicals • Consumables • Services</span></button>
 <button class="quick-card" onclick="document.getElementById('chemicalCalculator').scrollIntoView({behavior:'smooth'})"><b>🧪 Chemical Quantity</b><span>kg/day • L/day • plant-wise chemicals</span></button>
 <button class="quick-card" onclick="document.getElementById('mediaDiagnosis').scrollIntoView({behavior:'smooth'})"><b>📷 Photo/Video Diagnosis</b><span>Upload media + get guided troubleshooting</span></button>
 <button class="quick-card" onclick="document.getElementById('troubleshooting').scrollIntoView({behavior:'smooth'})"><b>🛠️ Troubleshooting / समस्या समाधान</b><span>Problem → Cause → Corrective Action</span></button>
@@ -689,7 +689,7 @@ nav.bottom{
     <label>Plant / प्लांट
       <select id="chemPlant" onchange="loadPlantChemicals()">
         <option value="">Select / चुनें</option>
-        <option>STP</option><option>ETP</option><option>CTP</option>
+        <option>STP</option><option>ETP</option><option>CETP</option><option>CTP</option>
         <option>RO</option><option>WTP</option><option>WSP</option><option>ZLD</option>
       </select>
     </label>
@@ -700,7 +700,7 @@ nav.bottom{
       </select>
     </label>
 
-    <label>Plant Flow / प्लांट फ्लो (m³/day)
+    <label>Plant Flow / Capacity / प्लांट फ्लो (KLD = m³/day)
       <input id="chemFlow" type="number" min="0" step="0.01" placeholder="Example: 100">
     </label>
 
@@ -757,12 +757,26 @@ nav.bottom{
       </select>
     </label>
   </div>
-<label class="upload-box" for="diagMedia">
-    <input id="diagMedia" type="file" accept="image/*,video/*" onchange="previewDiagMedia(event)">
-    <span class="upload-icon">📷🎥</span>
-    <b>Upload Photo or Video / फोटो या वीडियो अपलोड करें</b>
-    <small>Camera capture is supported on many Android browsers.</small>
-  </label>
+<div class="diag-media-picker">
+    <label class="upload-box" for="diagMedia">
+      <input id="diagMedia" type="file" accept="image/*,video/*" onchange="previewDiagMedia(event)">
+      <span class="upload-icon">📁</span>
+      <b>Choose Photo or Video / फोटो या वीडियो चुनें</b>
+      <small>Gallery / Files</small>
+    </label>
+    <label class="upload-box compact-upload" for="diagCamera">
+      <input id="diagCamera" type="file" accept="image/*" capture="environment" onchange="previewDiagMedia(event)">
+      <span class="upload-icon">📷</span>
+      <b>Take Photo / फोटो लें</b>
+      <small>Android rear camera</small>
+    </label>
+    <label class="upload-box compact-upload" for="diagVideoCapture">
+      <input id="diagVideoCapture" type="file" accept="video/*" capture="environment" onchange="previewDiagMedia(event)">
+      <span class="upload-icon">🎥</span>
+      <b>Record Video / वीडियो रिकॉर्ड करें</b>
+      <small>Android camera</small>
+    </label>
+  </div>
 
   <div id="diagPreviewWrap" class="diag-preview-wrap" hidden>
     <img id="diagImagePreview" alt="Uploaded plant image" hidden>
@@ -1456,7 +1470,10 @@ function printReport(){
   if(!w) return alert('Allow pop-ups to create the report.');
   const safeProject=escapeHtml(project);
   const report=`<!doctype html><html><head><meta charset="utf-8"><title>${safeProject} - Design Report</title><style>
-  body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;line-height:1.5;color:#17202a;padding:0 18px}h1{border-bottom:2px solid #0b4d80;padding-bottom:10px;color:#083b66}.box{border:1px solid #cbd5e1;border-radius:12px;padding:18px;margin:18px 0}small{color:#555}button{padding:10px 16px;border:0;border-radius:8px;background:#0b5ea8;color:white;font-weight:700}@media print{button{display:none}}</style></head><body><h1>Water Treatment Doctor — Preliminary Design Report</h1><div class="box">${d}</div><div class="box"><h3>Budgetary Cost / Quotation</h3>${c}</div><p><small>Engineering note: This report is a preliminary aid, not a construction-ready design. Confirm process guarantees, hydraulic profile, structural design, electrical loads, statutory requirements and vendor selections before execution.</small></p><button onclick="window.print()">Print / Save as PDF</button></body></html>`;
+  body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;line-height:1.5;color:#17202a;padding:0 18px}h1{border-bottom:2px solid #0b4d80;padding-bottom:10px;color:#083b66}.box{border:1px solid #cbd5e1;border-radius:12px;padding:18px;margin:18px 0}small{color:#555}button{padding:10px 16px;border:0;border-radius:8px;background:#0b5ea8;color:white;font-weight:700}@media print{button{display:none}}</style></head><body><h1>Water Treatment Doctor — Preliminary Design Report</h1><div class="box">${d}</div><div class="box"><h3>Budgetary Cost / Quotation</h3>${c}</div><p><small>Engineering note: This report is a preliminary aid, not a construction-ready design. Confirm process guarantees, hydraulic profile, structural design, electrical loads, statutory requirements and vendor selections before execution.</small></p><button onclick="window.print()">Print / Save as PDF</button>
+
+
+</body></html>`;
   w.document.open();
   w.document.write(report);
   w.document.close();
@@ -1514,11 +1531,15 @@ document.getElementById('globalSearch')?.addEventListener('keydown',e=>{if(e.key
 
 function openDrawing(code,src){
   document.getElementById('drawingTitle').textContent=code+' Drawing / ड्रॉइंग';
-  document.getElementById('drawingImage').src=src;
+  const img=document.getElementById('drawingImage');
+  img.onerror=()=>{ img.onerror=null; img.src=String(code).toLowerCase()+'.svg'; };
+  img.src=src;
   document.getElementById('drawingModal').classList.add('show');
+  document.body.classList.add('wtd-modal-open');
 }
 function closeDrawing(){
   document.getElementById('drawingModal').classList.remove('show');
+  document.body.classList.remove('wtd-modal-open');
 }
 function setLang(lang){
   document.documentElement.dataset.lang=lang;
@@ -1687,7 +1708,7 @@ function runMediaDiagnosis(){
 function clearMediaDiagnosis(){
   document.getElementById('diagPlant').value='';
   document.getElementById('diagSymptom').innerHTML='<option value="">Select plant first / पहले प्लांट चुनें</option>';
-  document.getElementById('diagMedia').value='';
+  ['diagMedia','diagCamera','diagVideoCapture'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('diagPreviewWrap').hidden=true;
   document.getElementById('diagImagePreview').hidden=true;
   const v=document.getElementById('diagVideoPreview'); v.hidden=true; v.removeAttribute('src'); v.load();
@@ -1937,9 +1958,11 @@ function calculateChemicalUse(){
 
 function openCatalogue(){
   document.getElementById('catalogueModal')?.classList.add('show');
+  document.body.classList.add('wtd-modal-open');
 }
 function closeCatalogue(){
   document.getElementById('catalogueModal')?.classList.remove('show');
+  document.body.classList.remove('wtd-modal-open');
 }
 document.addEventListener('click',e=>{
   if(e.target && e.target.id==='catalogueModal') closeCatalogue();
@@ -1985,12 +2008,11 @@ function closeAppOverview(){ document.getElementById('appOverviewModal')?.classL
 
 <script>
 function openPlantByCode(code){
+  const key=String(code||'').trim().toUpperCase();
+  const plant=modules && modules[key];
+  if(!plant) return;
   goSection('plants');
-  setTimeout(()=>{
-    const cards=[...document.querySelectorAll('.module')];
-    const card=cards.find(x=>x.textContent.trim().toUpperCase().startsWith(code.toUpperCase()) || x.textContent.toUpperCase().includes(code.toUpperCase()));
-    if(card){ card.click(); }
-  },120);
+  openModule(key,plant);
 }
 </script>
 
@@ -2028,6 +2050,133 @@ function previewDiagMedia(event){
     file.name + ' • ' +
     (file.size / 1024 / 1024).toFixed(2) + ' MB';
 }
+</script>
+
+
+<script>
+/* ===== V18.4.4 CONSOLIDATED RELIABILITY PATCH ===== */
+let wtdSelectedDiagFile = null;
+let wtdDiagObjectUrl = null;
+
+function getSelectedDiagFile(){
+  return wtdSelectedDiagFile || document.getElementById('diagMedia')?.files?.[0] || document.getElementById('diagCamera')?.files?.[0] || document.getElementById('diagVideoCapture')?.files?.[0] || null;
+}
+
+function previewDiagMedia(event){
+  const input=event?.target;
+  const file=input?.files?.[0] || null;
+  const wrap=document.getElementById('diagPreviewWrap');
+  const img=document.getElementById('diagImagePreview');
+  const video=document.getElementById('diagVideoPreview');
+  const info=document.getElementById('diagFileInfo');
+  if(!wrap||!img||!video||!info) return;
+  if(!file){ wrap.hidden=true; return; }
+  wtdSelectedDiagFile=file;
+  ['diagMedia','diagCamera','diagVideoCapture'].forEach(id=>{const el=document.getElementById(id); if(el && el!==input) el.value='';});
+  if(wtdDiagObjectUrl) URL.revokeObjectURL(wtdDiagObjectUrl);
+  wtdDiagObjectUrl=URL.createObjectURL(file);
+  wrap.hidden=false; img.hidden=true; video.hidden=true;
+  img.removeAttribute('src'); video.removeAttribute('src');
+  if(file.type.startsWith('image/')){ img.src=wtdDiagObjectUrl; img.hidden=false; }
+  else if(file.type.startsWith('video/')){ video.src=wtdDiagObjectUrl; video.hidden=false; video.load(); }
+  info.textContent=`${file.name || 'Camera media'} • ${(file.size/1024/1024).toFixed(2)} MB • ${file.type || 'media'}`;
+}
+
+function runMediaDiagnosis(){
+  const plant=document.getElementById('diagPlant')?.value||'';
+  const symptom=document.getElementById('diagSymptom')?.value||'';
+  const file=getSelectedDiagFile();
+  const box=document.getElementById('diagResult');
+  if(!box) return;
+  if(!plant || !symptom){ box.hidden=false; box.innerHTML='<b>Please select plant and symptom. / कृपया प्लांट और समस्या चुनें।</b>'; return; }
+  const d=mediaDiagDB?.[plant]?.[symptom];
+  if(!d){ box.hidden=false; box.innerHTML='<b>No guided rule found for this selection. / इस चयन के लिए guided rule उपलब्ध नहीं है।</b>'; return; }
+  box.hidden=false;
+  box.innerHTML=`<h4>${escapeHtml(plant)} — ${escapeHtml(symptom)}</h4>
+    <p><b>Media / मीडिया:</b> ${file ? escapeHtml(file.name || 'Camera capture') : 'No media selected — guided diagnosis only / मीडिया नहीं चुना — केवल guided diagnosis'}</p>
+    <p><b>Possible Cause / संभावित कारण:</b><br>${d.cause}</p>
+    <p><b>Corrective Action / सुधारात्मक कार्य:</b><br>${d.action}</p>
+    <p><b>Next Check / अगली जांच:</b><br>Record actual readings (flow, pressure, pH, DO, TDS/conductivity, temperature, DP and alarms as applicable) before changing operating conditions. / ऑपरेटिंग कंडीशन बदलने से पहले वास्तविक रीडिंग दर्ज करें।</p>`;
+}
+
+function clearMediaDiagnosis(){
+  const plant=document.getElementById('diagPlant'); if(plant) plant.value='';
+  const symptom=document.getElementById('diagSymptom'); if(symptom) symptom.innerHTML='<option value="">Select plant first / पहले प्लांट चुनें</option>';
+  ['diagMedia','diagCamera','diagVideoCapture'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  wtdSelectedDiagFile=null;
+  if(wtdDiagObjectUrl){URL.revokeObjectURL(wtdDiagObjectUrl);wtdDiagObjectUrl=null;}
+  const wrap=document.getElementById('diagPreviewWrap'); if(wrap) wrap.hidden=true;
+  const img=document.getElementById('diagImagePreview'); if(img){img.hidden=true;img.removeAttribute('src')}
+  const v=document.getElementById('diagVideoPreview'); if(v){v.hidden=true;v.removeAttribute('src');v.load()}
+  const r=document.getElementById('diagResult'); if(r) r.hidden=true;
+  const ar=document.getElementById('aiVisionResult'); if(ar) ar.hidden=true;
+}
+
+function updateAIStatus(){
+  const url=(document.getElementById('aiBackendUrl')?.value||'').trim();
+  const s=document.getElementById('aiStatus'); if(!s) return;
+  if(url){s.textContent='AI backend configured / AI बैकएंड सेट';s.classList.add('ok')}
+  else{s.textContent='Offline guided ready / ऑफलाइन गाइडेड तैयार';s.classList.remove('ok')}
+}
+
+async function runAIVisionDiagnosis(){
+  const backend=(document.getElementById('aiBackendUrl')?.value||'').trim().replace(/\/+$/,'');
+  const plant=document.getElementById('diagPlant')?.value||'';
+  const symptom=document.getElementById('diagSymptom')?.value||'';
+  const note=document.getElementById('aiOperatorNote')?.value||'';
+  const file=getSelectedDiagFile();
+  const result=document.getElementById('aiVisionResult');
+  const progress=document.getElementById('aiProgress');
+  if(!result) return;
+  if(!file){result.hidden=false;result.innerHTML='<b>Upload/take a photo or video first. / पहले फोटो या वीडियो चुनें या कैमरा से लें।</b>';return;}
+  if(!backend){
+    const d=mediaDiagDB?.[plant]?.[symptom];
+    result.hidden=false;
+    result.innerHTML=`<h4>Offline Guided Assessment / ऑफलाइन गाइडेड आकलन</h4><p><b>Selected media:</b> ${escapeHtml(file.name||'Camera capture')}</p>${d?`<p><b>Possible cause:</b><br>${d.cause}</p><p><b>Corrective action:</b><br>${d.action}</p>`:'<p>Select plant and visible symptom for guided troubleshooting.</p>'}${note?`<p><b>Operator note:</b> ${escapeHtml(note)}</p>`:''}<p class="muted">True automatic visual interpretation requires an online AI backend. Camera/gallery capture and offline guided diagnosis work without it.</p>`;
+    return;
+  }
+  if(progress) progress.hidden=false; result.hidden=true;
+  try{
+    let images=[];
+    if(file.type.startsWith('image/')) images=[await imageFileToDataUrl(file)];
+    else if(file.type.startsWith('video/')) images=await videoFileToFrames(file,3);
+    else throw new Error('Unsupported media type');
+    const resp=await fetch(backend+'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plant,symptom,operator_note:note,media_type:file.type.startsWith('video/')?'video_frames':'image',images})});
+    const data=await resp.json().catch(()=>({})); if(!resp.ok) throw new Error(data.error||`Server error ${resp.status}`); renderAIResult(data);
+  }catch(err){result.hidden=false;result.innerHTML=`<b>AI analysis failed / AI विश्लेषण नहीं हो सका</b><br>${escapeHtml(err.message||String(err))}<br><span class="muted">Camera/gallery and guided offline troubleshooting are still available.</span>`}
+  finally{if(progress) progress.hidden=true}
+}
+
+const wtdEquipmentByPlant={
+ STP:[['Raw sewage/equalization pump','Peak transfer flow','2 (1W+1S)'],['Air blower','Biological oxygen/mixing duty','2 (1W+1S)'],['Sludge/RAS pump','Sludge return/transfer','2 (1W+1S)'],['Filter feed/backwash pump','Tertiary filtration duty','2 (1W+1S)'],['Dosing pumps','Chemical-specific duty','1W+1S per critical chemical']],
+ ETP:[['Transfer/equalization pump','Peak transfer flow','2 (1W+1S)'],['Agitator/flash mixer','Mixing duty','1 per tank + standby strategy'],['Chemical dosing pumps','pH/coagulant/polymer duty','1W+1S per critical chemical'],['Sludge pump','Clarifier/sludge transfer','2 (1W+1S)'],['Air blower (if biological)','Oxygen/mixing duty','2 (1W+1S)']],
+ CETP:[['Inlet/equalization pumps','Peak combined flow','2 (1W+1S)'],['Equalization mixers','Homogenization duty','N+1 philosophy'],['Chemical dosing systems','Neutralization/coagulation','1W+1S per critical chemical'],['Biological blowers','Oxygen/mixing duty','N+1'],['Sludge pumps/dewatering feed','Sludge handling','2 (1W+1S)']],
+ WTP:[['Raw-water pump','Peak process flow','2 (1W+1S)'],['Dosing pumps','Coagulant/pH/disinfection','1W+1S per critical chemical'],['Filter feed/backwash pump','Filter service/backwash','2 (1W+1S)'],['Treated-water pump','Distribution duty','2 (1W+1S)']],
+ RO:[['Feed pump','Pretreatment/RO feed flow','2 (1W+1S)'],['High-pressure pump','RO feed flow at design pressure','1W+1S or OEM redundancy'],['Dosing pumps','Antiscalant/SMBS/pH','1W+1S per critical chemical'],['CIP pump','Membrane cleaning circulation','1'],['Cartridge/pressure vessels','OEM membrane projection','As projected']],
+ ZLD:[['Transfer pumps','Section transfer duty','2 (1W+1S)'],['RO high-pressure pumps','Membrane concentration duty','OEM redundancy'],['MEE/MVR circulation','Thermal recirculation duty','OEM N+1 where critical'],['Vacuum/condensate pumps','Evaporation duty','OEM redundancy'],['ATFD/crystallizer drive','Solids concentration duty','OEM selected']],
+ WSP:[['Transfer/distribution pump','Peak demand + TDH','2 (1W+1S)'],['Booster pump set','Pressure zone duty','N+1'],['Disinfection dosing pump','Residual control','1W+1S']],
+ CTP:[['Transfer pump','Peak process flow','2 (1W+1S)'],['Dosing pumps','Coagulant/disinfection','1W+1S per critical chemical'],['Filter/backwash pump','Filter duty','2 (1W+1S)']]
+};
+
+const wtdBaseCalcCompletePlant=window.calcCompletePlant;
+window.calcCompletePlant=function(key){
+  wtdBaseCalcCompletePlant(key);
+  const box=document.getElementById(`pdAuto-${key}`); if(!box || box.textContent.includes('Enter valid')) return;
+  const q=pdNum(`pdQ-${key}`), peak=pdNum(`pdPeak-${key}`); if(!(q>0&&peak>=1)) return;
+  const eq=wtdEquipmentByPlant[key]||[[`${key} feed/transfer pump`,'Design process flow','2 (1W+1S)'],['Chemical dosing pumps','Process-specific chemical duty','1W+1S per critical chemical'],['Control panel & instruments','Flow/level/pressure/quality monitoring','1 lot']];
+  const qh=(q/24), peakQh=(q*peak/24);
+  const rows=eq.map((r,i)=>`<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+  box.insertAdjacentHTML('beforeend',`<div class="equipment-boq"><h4>Preliminary Equipment & BOQ / प्रारंभिक इक्विपमेंट और BOQ</h4><p>Average hydraulic flow ≈ <b>${qh.toFixed(2)} m³/hr</b>; peak hydraulic flow ≈ <b>${peakQh.toFixed(2)} m³/hr</b>. Pump head, motor kW, blower pressure/airflow, membrane area, filter diameter and thermal equipment ratings require hydraulic/OEM calculations.</p><div class="table-wrap"><table><thead><tr><th>#</th><th>Equipment</th><th>Duty basis</th><th>Qty / redundancy</th></tr></thead><tbody>${rows}</tbody></table></div></div>`);
+};
+
+// Keep drawing and catalogue modals above fixed navigation and lock page behind them.
+const _openCatalogue=window.openCatalogue;
+window.openCatalogue=function(){_openCatalogue();document.body.classList.add('wtd-modal-open')};
+const _closeCatalogue=window.closeCatalogue;
+window.closeCatalogue=function(){_closeCatalogue();document.body.classList.remove('wtd-modal-open')};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawing?.();closeCatalogue?.();document.getElementById('appOverviewModal')?.classList.remove('show');document.body.classList.remove('wtd-modal-open')}});
+document.addEventListener('DOMContentLoaded',updateAIStatus);
+/* ===== END CONSOLIDATED PATCH ===== */
 </script>
 
 </body>

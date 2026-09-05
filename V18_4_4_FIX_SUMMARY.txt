@@ -1,0 +1,14 @@
+Water Treatment Doctor V18.4.4 - Reliability Fix Pass
+
+Applied in this package:
+1. Plant home buttons now open plant details directly by plant code; no simulated card search/click delay.
+2. Selected plant continues to use the in-app detail-page layout rather than opening below the plant grid.
+3. Verified all 22 referenced process drawing PNG files are present.
+4. Drawing modal now locks background scrolling and falls back to the plant SVG if a PNG cannot load.
+5. Catalogue modal locks background scrolling; bottom navigation is hidden while a modal is open to avoid overlap/tap interception.
+6. Android media diagnosis now has separate Gallery/File, Take Photo (rear camera) and Record Video actions.
+7. Clear Diagnosis resets all three media inputs.
+8. Added missing service-worker.js for PWA install/offline caching of core app assets and all drawings.
+9. Existing V18.4.4 mobile top/bottom overlap, catalogue, drawing fit, chemical calculator and plant sizing code retained.
+
+Engineering note: automatic plant sizing remains preliminary/reference engineering and requires project-specific validation before construction.

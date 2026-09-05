@@ -1,0 +1,51 @@
+Water Treatment Doctor V18.4.4 — Consolidated Reliability Fix
+
+Applied to: latest user-supplied Water_Treatment_Doctor_V18_4_4_RELIABILITY_FIXED.zip
+
+1. Plant navigation
+- Plant cards open a dedicated in-app detail view instead of jumping/long-scrolling down the home page.
+- Back/close behavior retained.
+
+2. Process drawings
+- 22/22 mapped PNG process drawings verified present.
+- Full Drawing modal uses image fit/scroll-safe mobile layout and SVG fallback where available.
+
+3. Android photo/video diagnosis
+- Fixed camera/video bug: Camera and Record Video inputs are now the actual selected media used by diagnosis/AI functions, not only the Gallery input.
+- Shared preview/clear handling added for gallery, photo capture and video capture.
+
+4. AI Vision status
+- Without an external AI backend, app now clearly reports Offline Guided Ready instead of a misleading hard failure state.
+- Camera/gallery + guided troubleshooting work offline.
+- True automatic visual interpretation still requires a configured online /api/analyze backend.
+
+5. Chemical calculator
+- Flow label clarified as KLD = m3/day.
+- CETP added to plant selection.
+- Quantity formula remains based on plant flow, approved dose, product strength and density.
+
+6. Complete plant design / BOQ
+- Existing automatic major-tank sizing retained.
+- Added preliminary equipment/BOQ output with duty basis and duty/standby philosophy for core plant types.
+- Shows average and peak hydraulic flow references.
+- Final pump head/kW, blower duty, membrane sizing and OEM thermal equipment still require project-specific engineering inputs.
+
+7. Calculator mobile layout
+- Calculator tabs forced to horizontal, non-wrapping, swipe-scroll mobile layout; vertical/broken tab text prevented.
+
+8. Catalogue
+- Home Catalogue quick card now opens full catalogue modal directly.
+- Catalogue modal made mobile-safe and bottom-navigation-safe.
+
+9. Bottom navigation / overlap
+- Safe-area and content bottom spacing tightened.
+- Label sizing/overflow protected on narrow Android screens.
+- Bottom nav hides while full-screen drawing/catalogue modal is open.
+
+10. Cache reliability
+- Service worker cache revision bumped to wtd-v18-4-4-r2 so updated files replace older cached copies.
+
+Validation
+- All inline JavaScript blocks passed node --check.
+- All 22 mapped drawing files exist.
+- Local HTML asset reference check completed.

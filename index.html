@@ -4,27 +4,373 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#075f63" />
-  <link rel="manifest" href="manifest.webmanifest?v=16.3.5" />
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png?v=16.3.5" />
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=16.3.5" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=16.3.5" />
+  <link rel="manifest" href="manifest.webmanifest?v=18.4.4" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png?v=18.4.4" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=18.4.4" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=18.4.4" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="application-name" content="Water Treatment Doctor" />
 
-  <meta name="description" content="Water Treatment Doctor V18.4 Reference Layout - plant diagrams, design calculators, field reference, SOP, chemicals, maintenance and troubleshooting." />
+  <meta name="description" content="Water Treatment Doctor V18.4.4 Reference Layout - plant diagrams, design calculators, field reference, SOP, chemicals, maintenance and troubleshooting." />
   <title>Water Treatment Doctor V18.4.4</title>
-<link rel="stylesheet" href="styles.css?v=18.4.2" />
+<link rel="stylesheet" href="styles.css?v=18.4.4" />
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<style>
+<style>|
+ | /* ===== V18.4.4 COMPLETE MOBILE LAYOUT FIX ===== */
+
+html{
+  scroll-padding-top:20px;
+}
+
+body{
+  margin:0;
+  overflow-x:hidden;
+  padding-bottom:110px !important;
+}
+
+.topbar{
+  padding-top:max(16px,env(safe-area-inset-top)) !important;
+  position:relative;
+  z-index:10;
+}
+
+.eyebrow{
+  position:relative;
+  z-index:2;
+}
+
+main{
+  padding-bottom:120px !important;
+}
+
+section,
+.card,
+.hero,
+.brand-hero{
+  box-sizing:border-box;
+  max-width:100%;
+}
+
+.brand-hero h2,
+.brand-hero h3{
+  color:#ffffff !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+.plant-drawing-card{
+  width:100% !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+
+.plant-drawing-card img,
+.plant-drawing-card svg{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+}
+
+.bottom-nav,
+.bottomNav,
+nav.bottom{
+  position:fixed !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  z-index:9999 !important;
+  padding-bottom:env(safe-area-inset-bottom) !important;
+}
+
+@media(max-width:480px){
+  body{
+    padding-bottom:120px !important;
+  }
+
+  main{
+    padding-bottom:130px !important;
+  }
+
+  .topbar{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+
+  .card,
+  .hero,
+  .brand-hero,
+  .plant-drawing-card{
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  h1,h2,h3,p{
+    overflow-wrap:anywhere;
+  }
+}
 .brand-logo{display:block!important;visibility:visible!important;opacity:1!important;min-width:44px!important;min-height:44px!important}
 .brand-hero img{display:block!important;visibility:visible!important;opacity:1!important}
 @media(max-width:480px){.topbar{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;align-items:start!important}.brand-logo{width:48px!important;height:48px!important}.top-actions{grid-column:1/-1!important;width:100%!important}}
 
 .complete-sizing-controls{margin:14px 0;padding:12px;border:1px solid #cbd5e1;border-radius:14px;background:#f8fafc}.multi-tank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}.multi-tank-card{border:1px solid #cbd5e1;border-radius:14px;padding:12px;background:#fff}.multi-tank-card h5{margin:0 0 8px;font-size:16px}.multi-tank-card .tank-auto-svg{width:100%;height:auto;max-height:230px}.multi-summary{padding:12px;border-radius:12px;background:#eef6ff;margin:12px 0}.basis-chip{display:inline-block;padding:3px 8px;border-radius:999px;background:#e2e8f0;font-size:12px;margin:2px}.warn-text{font-size:12px;color:#64748b}.parameter-design-card .button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+|/* ===== V18.4.4 FINAL MOBILE LAYOUT FIX ===== */
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0 !important;
+  padding:0 0 120px 0 !important;
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+main{
+  width:100%;
+  max-width:100%;
+  margin:0 auto;
+  padding-left:12px !important;
+  padding-right:12px !important;
+  padding-bottom:130px !important;
+}
+
+/* TOP HEADER FIX */
+.topbar,
+header{
+  width:100%;
+  max-width:100%;
+  position:relative;
+  z-index:20;
+  box-sizing:border-box;
+}
+
+.topbar{
+  padding-top:max(14px, env(safe-area-inset-top)) !important;
+}
+
+/* ALL SECTIONS */
+section,
+.card,
+.hero,
+.brand-hero{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+section{
+  scroll-margin-top:20px;
+}
+
+/* TEXT OVERFLOW FIX */
+h1,h2,h3,h4,h5,h6,
+p,span,div,
+li,td,th{
+  max-width:100%;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+/* BUTTONS */
+button,
+.btn,
+a.button{
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+/* IMAGES */
+img{
+  max-width:100% !important;
+  height:auto !important;
+}
+
+/* PLANT DRAWING FIX */
+.plant-drawing-card,
+.drawing-card,
+.diagram-card,
+.process-drawing{
+  width:100% !important;
+  max-width:100% !important;
+  overflow-x:auto !important;
+  overflow-y:hidden;
+  box-sizing:border-box;
+  -webkit-overflow-scrolling:touch;
+}
+
+.plant-drawing-card img,
+.plant-drawing-card svg,
+.drawing-card img,
+.drawing-card svg,
+.diagram-card img,
+.diagram-card svg,
+.process-drawing img,
+.process-drawing svg{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  margin:0 auto !important;
+}
+
+/* SVG DRAWING SAFETY */
+svg{
+  max-width:100% !important;
+  height:auto;
+}
+
+/* TABLE FIX */
+table{
+  width:100%;
+  max-width:100%;
+  border-collapse:collapse;
+}
+
+.table-wrap,
+.table-responsive{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* INPUT / CALCULATOR FIX */
+input,
+select,
+textarea{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+/* CATALOGUE / FOOTER OVERLAP FIX */
+.catalogue,
+.catalog,
+.footer,
+footer{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+footer{
+  position:relative !important;
+  bottom:auto !important;
+  margin-top:20px;
+}
+
+/* FIXED BOTTOM NAV SAFETY */
+.bottom-nav,
+.bottomnav,
+.mobile-nav,
+nav.bottom{
+  max-width:100%;
+  left:0;
+  right:0;
+  z-index:50;
+  padding-bottom:max(8px, env(safe-area-inset-bottom));
+}
+
+/* CARDS SPACING */
+.card{
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+/* BRAND HEADING VISIBILITY */
+.brand-hero h1,
+.brand-hero h2,
+.brand-hero h3,
+.hero h1,
+.hero h2,
+.hero h3{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+  body{
+    font-size:15px;
+  }
+
+  main{
+    padding-left:10px !important;
+    padding-right:10px !important;
+    padding-bottom:130px !important;
+  }
+
+  .topbar,
+  header{
+    max-width:100vw !important;
+  }
+
+  .card,
+  section,
+  .hero,
+  .brand-hero{
+    max-width:100% !important;
+  }
+
+  .plant-drawing-card,
+  .drawing-card,
+  .diagram-card{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  h1{
+    font-size:clamp(24px,7vw,34px);
+  }
+
+  h2{
+    font-size:clamp(20px,6vw,28px);
+  }
+
+  h3{
+    font-size:clamp(17px,5vw,23px);
+  }
+}
+
+/* VERY SMALL MOBILE */
+@media (max-width:420px){
+
+  main{
+    padding-left:8px !important;
+    padding-right:8px !important;
+  }
+
+  .card,
+  section{
+    border-radius:12px;
+  }
+}
+
+/* ===== END V18.4.4 FINAL MOBILE LAYOUT FIX ===== */
 </style>
 
 <style id="dualLangStyle">
@@ -75,7 +421,7 @@
 
   <section class="hero card">
     <div>
-      <span class="pill">Version 18.4 • Reference Layout</span>
+      <span class="pill">Version 18.4.4 • Reference Layout</span>
       <h2 data-i18n="heroTitle">Smart field companion for water treatment professionals</h2>
       <p data-i18n="heroText">Plant design aids, operating logs, water analysis and practical troubleshooting in one mobile app.</p>
     </div>
@@ -135,7 +481,7 @@
   <div id="appOverviewModal" class="modal" onclick="if(event.target===this) closeAppOverview()">
     <div class="modal-box app-overview-modal-box">
       <button class="close" type="button" onclick="closeAppOverview()" aria-label="Close">×</button>
-      <img class="app-overview-full" src="app-overview-v18-4.png" alt="Water Treatment Doctor full app overview" />
+      <img class="app-overview-full" src="app-overview-v18-4-4.png" alt="Water Treatment Doctor full app overview" />
     </div>
   </div>
 
@@ -411,9 +757,8 @@
       </select>
     </label>
   </div>
-
-  <label class="upload-box">
-    <input id="diagMedia" type="file" accept="image/*,video/*" capture="environment" onchange="previewDiagMedia(event)">
+<label class="upload-box" for="diagMedia">
+    <input id="diagMedia" type="file" accept="image/*,video/*" onchange="previewDiagMedia(event)">
     <span class="upload-icon">📷🎥</span>
     <b>Upload Photo or Video / फोटो या वीडियो अपलोड करें</b>
     <small>Camera capture is supported on many Android browsers.</small>
@@ -1129,7 +1474,22 @@ function closeAppOverview(){
 // ---- V7 dashboard/search helpers ----
 function goSection(id){
   const btn=document.querySelector(`.section-tab[data-section="${id}"]`);
-  if(btn){ btn.click(); window.scrollTo({top:document.querySelector('.section-tabs').offsetTop-70,behavior:'smooth'}); }
+  if(btn){ btn.click();
+}
+  function openNoScrollPanel(target){
+  const el = target.startsWith('.')
+    ? document.querySelector(target)
+    : document.getElementById(target);
+
+  if(!el) return;
+
+  const oldY = window.scrollY;
+  el.hidden = false;
+  el.classList.add('no-scroll-open');
+
+  requestAnimationFrame(()=>{
+    window.scrollTo(0, oldY);
+  });
 }
 function runGlobalSearch(){
   const q=(document.getElementById('globalSearch')?.value||'').trim().toLowerCase();
@@ -1590,8 +1950,8 @@ document.addEventListener('click',e=>{
   <button type="button" class="bottom-nav-item active" data-go="home" onclick="goHome();setBottomNav(this)"><span>🏠</span><b>Home</b></button>
   <button type="button" class="bottom-nav-item" data-go="plants" onclick="openPlantsPage();setBottomNav(this)"><span>🏭</span><b>Plants</b></button>
   <button type="button" class="bottom-nav-item" data-go="calculators" onclick="goSection('calculators');setBottomNav(this)"><span>🧮</span><b>Calculator</b></button>
-  <button type="button" class="bottom-nav-item" onclick="document.getElementById('fieldReference')?.scrollIntoView({behavior:'smooth'});setBottomNav(this)"><span>📋</span><b>Field Ref.</b></button>
-  <button type="button" class="bottom-nav-item" onclick="document.querySelector('.v7-dashboard')?.scrollIntoView({behavior:'smooth'});setBottomNav(this)"><span>☰</span><b>More</b></button>
+  <button type="button" class="bottom-nav-item" onclick="openNoScrollPanel('fieldReference');setBottomNav(this)"><span>📋</span><b>Field Ref.</b></button>
+  <button type="button" class="bottom-nav-item" onclick="openNoScrollPanel('.v7-dashboard');setBottomNav(this)"><span>☰</span><b>More</b></button>
 </nav>
 <script>
 function goHome(){
@@ -1600,7 +1960,7 @@ function goHome(){
   if(detail) detail.hidden=true;
   document.body.classList.remove('plant-page-open');
   document.getElementById('plants')?.classList.remove('detail-view');
-  setTimeout(()=>window.scrollTo({top:0,behavior:'auto'}),40);
+  
 }
 function openPlantsPage(){
   const detail=document.getElementById('plantDetail');
@@ -1609,14 +1969,14 @@ function openPlantsPage(){
   document.getElementById('plants')?.classList.remove('detail-view');
   const btn=document.querySelector('.section-tab[data-section="plants"]');
   if(btn) btn.click();
-  window.scrollTo({top:0,behavior:'auto'});
+  
 }
 
 function setBottomNav(el){document.querySelectorAll('.bottom-nav-item').forEach(x=>x.classList.remove('active'));el?.classList.add('active');}
 </script>
 
-<script src="complete-bilingual.js?v=16.6.0"></script>
-<script src="bilingual.js?v=16.6.0"></script>
+<script src="complete-bilingual.js?v=18.4.4"></script>
+<script src="bilingual.js?v=18.4.4"></script>
 
 <script>
 function openAppOverview(){ document.getElementById('appOverviewModal')?.classList.add('show'); document.body.style.overflow='hidden'; }
@@ -1633,5 +1993,42 @@ function openPlantByCode(code){
   },120);
 }
 </script>
+
+<script>
+function previewDiagMedia(event){
+  const input = event.target;
+  const file = input.files && input.files[0];
+
+  const wrap = document.getElementById('diagPreviewWrap');
+  const img = document.getElementById('diagImagePreview');
+  const video = document.getElementById('diagVideoPreview');
+  const info = document.getElementById('diagFileInfo');
+
+  if(!file){
+    wrap.hidden = true;
+    return;
+  }
+
+  const url = URL.createObjectURL(file);
+
+  wrap.hidden = false;
+  img.hidden = true;
+  video.hidden = true;
+
+  if(file.type.startsWith('image/')){
+    img.src = url;
+    img.hidden = false;
+  } else if(file.type.startsWith('video/')){
+    video.src = url;
+    video.hidden = false;
+    video.load();
+  }
+
+  info.textContent =
+    file.name + ' • ' +
+    (file.size / 1024 / 1024).toFixed(2) + ' MB';
+}
+</script>
+
 </body>
-</html>
+</html

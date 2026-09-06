@@ -28,12 +28,7 @@ jobs:
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/xml
-          
-          cat > gradle.properties <<'EOF'
-          android.useAndroidX=true
-          android.enableJetifier=true
-          EOF
-          
+
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {
@@ -209,7 +204,7 @@ jobs:
                               try {
                                   File imageFile = File.createTempFile("wtd_photo_", ".jpg", getCacheDir());
                                   cameraOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           imageFile
                                   );
@@ -228,7 +223,7 @@ jobs:
                               try {
                                   File videoFile = File.createTempFile("wtd_video_", ".mp4", getCacheDir());
                                   videoOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           videoFile
                                   );

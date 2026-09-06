@@ -1,0 +1,19 @@
+Water Treatment Doctor V18.5.4 FINAL FIXED
+Date: 2026-09-06
+
+Consolidated fixes applied:
+- Approved startup flow retained: Splash -> compact Home Dashboard.
+- Removed accidental CSS pipe tokens from index.html embedded style block.
+- Home Dashboard isolated from legacy long-page sections; original sections now remain separate in-app pages.
+- Bottom navigation rebuilt with 5 equal safe-width columns, safe-area-aware height, smaller labels, and no content overlap.
+- In-app page shell ends above bottom navigation and keeps scroll content clear of the navigation bar.
+- Plant Detail keeps separate Overview / Process / Design / Drawing / O&M tabs.
+- Fixed tab rebuild when switching from one plant to another (STP -> ETP etc.).
+- Full Drawing modal constrained above bottom navigation with visible Close button and responsive full-width image.
+- Startup background/splash layering adjusted to prevent white flash before splash paint.
+- Existing Smart Design, HRT, chemical dosing, diagnosis/media, AI backend settings and bilingual assets retained.
+- All 22 referenced plant drawing files verified present.
+- Static local asset references verified present.
+- All inline/external JavaScript syntax checked successfully with Node.js.
+
+Note: Automated Chromium visual rendering was blocked by the execution environment administrator policy, so final checks used source/static validation and layout-rule consistency checks.

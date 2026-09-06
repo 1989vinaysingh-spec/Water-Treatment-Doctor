@@ -19,8 +19,8 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<style>|
- | /* ===== V18.5.4 COMPLETE MOBILE LAYOUT FIX ===== */
+<style>
+/* ===== V18.5.4 COMPLETE MOBILE LAYOUT FIX ===== */
 
 html{
   scroll-padding-top:20px;
@@ -125,7 +125,7 @@ nav.bottom{
 @media(max-width:480px){.topbar{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;align-items:start!important}.brand-logo{width:48px!important;height:48px!important}.top-actions{grid-column:1/-1!important;width:100%!important}}
 
 .complete-sizing-controls{margin:14px 0;padding:12px;border:1px solid #cbd5e1;border-radius:14px;background:#f8fafc}.multi-tank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}.multi-tank-card{border:1px solid #cbd5e1;border-radius:14px;padding:12px;background:#fff}.multi-tank-card h5{margin:0 0 8px;font-size:16px}.multi-tank-card .tank-auto-svg{width:100%;height:auto;max-height:230px}.multi-summary{padding:12px;border-radius:12px;background:#eef6ff;margin:12px 0}.basis-chip{display:inline-block;padding:3px 8px;border-radius:999px;background:#e2e8f0;font-size:12px;margin:2px}.warn-text{font-size:12px;color:#64748b}.parameter-design-card .button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-|/* ===== V18.5.4 FINAL MOBILE LAYOUT FIX ===== */
+/* ===== V18.5.4 FINAL MOBILE LAYOUT FIX ===== */
 
 *,
 *::before,
@@ -2706,6 +2706,99 @@ const old=window.openPlantByCode;window.openPlantByCode=function(c){const r=old?
  document.addEventListener('click',e=>{const m=document.getElementById('drawingModal');if(m&&m.classList.contains('show')&&e.target===m&&typeof closeDrawing==='function')closeDrawing();});
  document.addEventListener('DOMContentLoaded',initAI);
  if(document.readyState!=='loading')initAI();
+})();
+</script>
+
+
+<style id="wtd-v1854-final-consolidated-fix">
+/* V18.5.4 consolidated release fix: compact Home, safe bottom navigation, stable app pages. */
+:root{--wtd-final-nav-h:calc(76px + env(safe-area-inset-bottom,0px))}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{padding-bottom:var(--wtd-final-nav-h)!important}
+/* The approved opening screen is the compact dashboard only. All legacy sections open as separate in-app pages. */
+body:not(.wtd-app-page-open) main>#wtdHome1852{display:block!important}
+body:not(.wtd-app-page-open) main>.main-section,
+body:not(.wtd-app-page-open) main>#fieldReference,
+body:not(.wtd-app-page-open) main>#chemicalCalculator,
+body:not(.wtd-app-page-open) main>#mediaDiagnosis,
+body:not(.wtd-app-page-open) main>.card:not(#wtdHome1852){display:none!important}
+body:not(.wtd-app-page-open)>footer{display:none!important}
+#wtdHome1852{width:min(100%,760px);margin:0 auto;padding:12px 10px calc(var(--wtd-final-nav-h) + 18px)!important}
+.h52-plants{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.h52-plants button,.h52-tools button{min-width:0;overflow:hidden;padding:9px 4px!important}
+.h52-plants b,.h52-plants small,.h52-tools button{overflow-wrap:normal!important;word-break:normal!important}
+.h52-tools{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.mobile-bottom-nav{
+  position:fixed!important;left:0!important;right:0!important;bottom:0!important;
+  width:100%!important;height:var(--wtd-final-nav-h)!important;min-height:var(--wtd-final-nav-h)!important;
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))!important;
+  display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:2px!important;
+  z-index:15000!important;box-sizing:border-box!important;background:#fff!important;border-top:1px solid #cfdee8!important;
+}
+.mobile-bottom-nav .bottom-nav-item{
+  min-width:0!important;width:100%!important;min-height:52px!important;padding:4px 1px!important;margin:0!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;
+  border-radius:10px!important;color:#687f91!important;background:transparent!important;overflow:hidden!important;
+}
+.mobile-bottom-nav .bottom-nav-item.active{color:#0784c2!important;background:#eaf6fd!important}
+.mobile-bottom-nav .bottom-nav-item span{font-size:19px!important;line-height:1!important}
+.mobile-bottom-nav .bottom-nav-item b{display:block!important;width:100%!important;max-width:100%!important;font-size:9px!important;line-height:1.05!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;text-align:center!important}
+.wtd-page-shell{top:0!important;left:0!important;right:0!important;bottom:var(--wtd-final-nav-h)!important;height:auto!important;max-height:none!important;z-index:14500!important}
+.wtd-page-content{padding:10px 10px 24px!important;overscroll-behavior:contain}
+.wtd-page-content>.main-section,.wtd-page-content>section,.wtd-page-content>.card{display:block!important}
+.p52-tabs{top:0!important;z-index:40!important}
+.p52-tabs button{flex:0 0 auto!important}
+#drawingModal.show{display:flex!important;inset:0!important;bottom:var(--wtd-final-nav-h)!important;padding:max(10px,env(safe-area-inset-top,0px)) 8px 10px!important;align-items:center!important;z-index:20000!important}
+#drawingModal .drawing-modal-box{width:calc(100vw - 16px)!important;max-width:none!important;max-height:calc(100dvh - var(--wtd-final-nav-h) - 20px)!important;overflow:auto!important}
+#drawingModal .drawing-view img{display:block!important;width:100%!important;height:auto!important;max-height:calc(100dvh - var(--wtd-final-nav-h) - 120px)!important;object-fit:contain!important}
+#drawingModal .close{position:sticky!important;top:0!important;float:right!important;z-index:60!important}
+/* Prevent startup white flash while splash is being painted. */
+html{background:#032b50!important}
+body{background:#eef7fc!important}
+.wtd-splash{inset:0!important;z-index:30000!important}
+@media(max-width:390px){
+  #wtdHome1852{padding-left:7px!important;padding-right:7px!important}
+  .h52-brand img{width:54px!important;height:54px!important}.h52-brand h1{font-size:17px!important}
+  .h52-plants{gap:6px!important}.h52-plants button{min-height:78px!important}.h52-plants span{font-size:22px!important}.h52-plants small{font-size:8px!important}
+  .h52-tools{gap:6px!important}.h52-tools button{min-height:72px!important;font-size:11px!important}
+  .mobile-bottom-nav .bottom-nav-item b{font-size:8px!important;letter-spacing:-.15px!important}
+}
+</style>
+<script id="wtd-v1854-final-consolidated-js">
+(function(){
+  const $=id=>document.getElementById(id);
+  // Rebuild the five plant tabs every time a different plant is rendered.
+  function rebuildPlantTabs(code){
+    const box=$('plantDetailContent');
+    if(!box)return;
+    const key=String(code||'').trim().toUpperCase();
+    if(box.dataset.tabbedCode===key && box.querySelector('.p52-tabs'))return;
+    delete box.dataset.tabbed;
+    box.dataset.tabbedCode=key;
+    const db=(typeof modules!=='undefined'&&modules)||{}, p=db[key]||{};
+    const kids=[...box.children].filter(n=>!n.classList?.contains('p52-tabs')&&!n.classList?.contains('p52-summary')&&!n.classList?.contains('p52-quick')&&!n.classList?.contains('p52-panel'));
+    const panels={overview:document.createElement('div'),process:document.createElement('div'),design:document.createElement('div'),drawing:document.createElement('div'),om:document.createElement('div')};
+    Object.values(panels).forEach(x=>x.className='p52-panel'); panels.overview.classList.add('active');
+    let cur='overview';
+    kids.forEach(n=>{const t=(n.textContent||'');if(n.tagName==='H4'){if(/Drawing/i.test(t))cur='drawing';else if(/Process Flow/i.test(t))cur='process';else if(/Design/i.test(t))cur='design';else if(/SOP|Operation|Maintenance|Chemical|Troubleshooting/i.test(t))cur='om'}panels[cur].appendChild(n)});
+    box.replaceChildren();
+    const nav=document.createElement('div');nav.className='p52-tabs';nav.innerHTML='<button class="active" data-k="overview">Overview</button><button data-k="process">Process</button><button data-k="design">Design</button><button data-k="drawing">Drawing</button><button data-k="om">O&amp;M</button>';
+    const sum=document.createElement('div');sum.className='p52-summary';sum.innerHTML='<h2>'+key+' - '+(p.name||'Water Treatment Plant')+'</h2><p>Complete plant information in separate tabs. / पूरी जानकारी अलग टैब में।</p>';
+    const q=document.createElement('div');q.className='p52-quick';q.innerHTML='<button data-k="design">⚙️<br>Design &amp; Sizing</button><button data-k="process">🔀<br>Process Flow</button><button data-k="drawing">🖼️<br>Drawing</button><button data-k="om">📄<br>SOP</button><button data-k="om">🔧<br>O&amp;M</button><button data-k="om">⚠️<br>Troubleshoot</button>';
+    box.append(nav,sum,q,panels.overview,panels.process,panels.design,panels.drawing,panels.om);
+    function show(k){nav.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.k===k));Object.entries(panels).forEach(([x,v])=>v.classList.toggle('active',x===k));const host=$('wtdPageContent');if(host)host.scrollTop=0}
+    nav.querySelectorAll('button').forEach(b=>b.onclick=()=>show(b.dataset.k)); q.querySelectorAll('button').forEach(b=>b.onclick=()=>show(b.dataset.k));
+  }
+  const previousOpen=window.openPlantByCode;
+  window.openPlantByCode=function(code){
+    const key=String(code||'').trim().toUpperCase();
+    const result=previousOpen?previousOpen(key):false;
+    requestAnimationFrame(()=>{rebuildPlantTabs(key);const host=$('wtdPageContent');if(host)host.scrollTop=0;});
+    return result;
+  };
+  // Hardware/browser Back first closes drawing, then in-app page, instead of leaving a stuck overlay.
+  window.addEventListener('popstate',()=>{if($('drawingModal')?.classList.contains('show')){window.closeDrawing?.();return}if(document.body.classList.contains('wtd-app-page-open'))window.closeAppPage?.()});
+  document.addEventListener('DOMContentLoaded',()=>{document.body.classList.remove('plant-page-open');window.scrollTo(0,0)});
 })();
 </script>
 </body>

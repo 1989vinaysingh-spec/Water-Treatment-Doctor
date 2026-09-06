@@ -26,7 +26,8 @@ jobs:
         run: |
           mkdir -p app/src/main/java/com/vinaykumarsingh/watertreatmentdoctor
           mkdir -p app/src/main/assets
-          mkdir -p app/src/main/res/mipmap-hdpi
+          mkdir -p app/src/main/res/values
+          mkdir -p app/src/main/res/xml
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
@@ -68,9 +69,13 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 18404
-                  versionName "18.4.4"
+                  versionCode 1854
+                  versionName "18.5.4"
               }
+          }
+
+          dependencies {
+              implementation 'androidx.core:core:1.13.1'
           }
           EOF
 
@@ -83,22 +88,28 @@ jobs:
                   android:label="Water Treatment Doctor"
                   android:usesCleartextTraffic="true">
 
+                  <provider
+                      android:name="androidx.core.content.FileProvider"
+                      android:authorities="${applicationId}.fileprovider"
+                      android:exported="false"
+                      android:grantUriPermissions="true">
+                      <meta-data
+                          android:name="android.support.FILE_PROVIDER_PATHS"
+                          android:resource="@xml/file_paths" />
+                  </provider>
+
                   <activity
                       android:name=".MainActivity"
                       android:screenOrientation="portrait"
                       android:exported="true">
-
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
                           <category android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
-
                   </activity>
               </application>
           </manifest>
           EOF
-
-          mkdir -p app/src/main/res/values
 
           cat > app/src/main/res/values/styles.xml <<'EOF'
           <resources>
@@ -109,19 +120,40 @@ jobs:
           </resources>
           EOF
 
+          cat > app/src/main/res/xml/file_paths.xml <<'EOF'
+          <paths xmlns:android="http://schemas.android.com/apk/res/android">
+              <cache-path name="camera_cache" path="." />
+          </paths>
+          EOF
+
           cat > app/src/main/java/com/vinaykumarsingh/watertreatmentdoctor/MainActivity.java <<'EOF'
           package com.vinaykumarsingh.watertreatmentdoctor;
 
           import android.app.Activity;
+          import android.content.ClipData;
+          import android.content.Intent;
+          import android.net.Uri;
           import android.os.Bundle;
+          import android.provider.MediaStore;
+          import android.webkit.ValueCallback;
           import android.webkit.WebChromeClient;
           import android.webkit.WebSettings;
           import android.webkit.WebView;
           import android.webkit.WebViewClient;
 
+          import androidx.core.content.FileProvider;
+
+          import java.io.File;
+          import java.io.IOException;
+
           public class MainActivity extends Activity {
 
+              private static final int FILE_CHOOSER_REQUEST = 1001;
+
               private WebView webView;
+              private ValueCallback<Uri[]> filePathCallback;
+              private Uri cameraOutputUri;
+              private Uri videoOutputUri;
 
               @Override
               protected void onCreate(Bundle savedInstanceState) {
@@ -135,11 +167,135 @@ jobs:
                   settings.setDomStorageEnabled(true);
                   settings.setAllowFileAccess(true);
                   settings.setAllowContentAccess(true);
+                  settings.setMediaPlaybackRequiresUserGesture(false);
 
                   webView.setWebViewClient(new WebViewClient());
-                  webView.setWebChromeClient(new WebChromeClient());
+                  webView.setWebChromeClient(new WebChromeClient() {
+                      @Override
+                      public boolean onShowFileChooser(
+                              WebView webView,
+                              ValueCallback<Uri[]> filePathCallbackParam,
+                              FileChooserParams fileChooserParams) {
+
+                          if (filePathCallback != null) {
+                              filePathCallback.onReceiveValue(null);
+                          }
+
+                          filePathCallback = filePathCallbackParam;
+
+                          String[] acceptTypes = fileChooserParams.getAcceptTypes();
+                          String accept = "";
+                          if (acceptTypes != null && acceptTypes.length > 0 && acceptTypes[0] != null) {
+                              accept = acceptTypes[0];
+                          }
+
+                          boolean wantsImage = accept.isEmpty() || accept.contains("image") || accept.equals("*/*");
+                          boolean wantsVideo = accept.isEmpty() || accept.contains("video") || accept.equals("*/*");
+
+                          Intent contentIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                          contentIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                          contentIntent.setType(accept.isEmpty() ? "*/*" : accept);
+                          contentIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,
+                                  fileChooserParams.getMode() == FileChooserParams.MODE_OPEN_MULTIPLE);
+
+                          java.util.ArrayList<Intent> extraIntents = new java.util.ArrayList<>();
+
+                          if (wantsImage) {
+                              try {
+                                  File imageFile = File.createTempFile("wtd_photo_", ".jpg", getCacheDir());
+                                  cameraOutputUri = FileProvider.getUriForFile(
+                                          this,
+                                          getPackageName() + ".fileprovider",
+                                          imageFile
+                                  );
+
+                                  Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                  cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraOutputUri);
+                                  cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION |
+                                          Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                  extraIntents.add(cameraIntent);
+                              } catch (IOException ignored) {
+                                  cameraOutputUri = null;
+                              }
+                          }
+
+                          if (wantsVideo) {
+                              try {
+                                  File videoFile = File.createTempFile("wtd_video_", ".mp4", getCacheDir());
+                                  videoOutputUri = FileProvider.getUriForFile(
+                                          this,
+                                          getPackageName() + ".fileprovider",
+                                          videoFile
+                                  );
+
+                                  Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                                  videoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoOutputUri);
+                                  videoIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION |
+                                          Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                  extraIntents.add(videoIntent);
+                              } catch (IOException ignored) {
+                                  videoOutputUri = null;
+                              }
+                          }
+
+                          Intent chooser = new Intent(Intent.ACTION_CHOOSER);
+                          chooser.putExtra(Intent.EXTRA_INTENT, contentIntent);
+                          chooser.putExtra(
+                                  Intent.EXTRA_INITIAL_INTENTS,
+                                  extraIntents.toArray(new Intent[0])
+                          );
+
+                          try {
+                              startActivityForResult(chooser, FILE_CHOOSER_REQUEST);
+                              return true;
+                          } catch (Exception e) {
+                              filePathCallback = null;
+                              return false;
+                          }
+                      }
+                  });
 
                   webView.loadUrl("file:///android_asset/index.html");
+              }
+
+              @Override
+              protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                  super.onActivityResult(requestCode, resultCode, data);
+
+                  if (requestCode != FILE_CHOOSER_REQUEST || filePathCallback == null) {
+                      return;
+                  }
+
+                  Uri[] results = null;
+
+                  if (resultCode == Activity.RESULT_OK) {
+                      if (data != null) {
+                          String dataString = data.getDataString();
+
+                          if (data.getClipData() != null) {
+                              ClipData clipData = data.getClipData();
+                              results = new Uri[clipData.getItemCount()];
+                              for (int i = 0; i < clipData.getItemCount(); i++) {
+                                  results[i] = clipData.getItemAt(i).getUri();
+                              }
+                          } else if (dataString != null) {
+                              results = new Uri[]{Uri.parse(dataString)};
+                          }
+                      }
+
+                      if (results == null) {
+                          if (cameraOutputUri != null) {
+                              results = new Uri[]{cameraOutputUri};
+                          } else if (videoOutputUri != null) {
+                              results = new Uri[]{videoOutputUri};
+                          }
+                      }
+                  }
+
+                  filePathCallback.onReceiveValue(results);
+                  filePathCallback = null;
+                  cameraOutputUri = null;
+                  videoOutputUri = null;
               }
 
               @Override

@@ -206,7 +206,7 @@ jobs:
                               try {
                                   File imageFile = File.createTempFile("wtd_photo_", ".jpg", getCacheDir());
                                   cameraOutputUri = FileProvider.getUriForFile(
-                                          this,
+                                          MainActivity.this,
                                           getPackageName() + ".fileprovider",
                                           imageFile
                                   );
@@ -225,7 +225,7 @@ jobs:
                               try {
                                   File videoFile = File.createTempFile("wtd_video_", ".mp4", getCacheDir());
                                   videoOutputUri = FileProvider.getUriForFile(
-                                          this,
+                                          MainActivity.this,
                                           getPackageName() + ".fileprovider",
                                           videoFile
                                   );

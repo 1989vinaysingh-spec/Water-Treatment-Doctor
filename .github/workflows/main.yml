@@ -28,7 +28,12 @@ jobs:
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/xml
-
+          
+          cat > gradle.properties <<'EOF'
+          android.useAndroidX=true
+          android.enableJetifier=true
+          EOF
+          
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {

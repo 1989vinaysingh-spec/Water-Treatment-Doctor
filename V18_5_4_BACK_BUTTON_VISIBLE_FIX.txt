@@ -1,0 +1,5 @@
+
+V18.5.4 BACK BUTTON VISIBLE FIX
+- Restored clear Back / वापस button on all full app pages.
+- Kept Plant Detail Back button visible/sticky.
+- Removed CSS override that reduced Back to an unlabeled chevron.

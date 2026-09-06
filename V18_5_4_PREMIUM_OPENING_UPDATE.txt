@@ -1,0 +1,7 @@
+Water Treatment Doctor V18.5.4 — Premium Opening Update
+- Premium 2–3 second animated splash screen.
+- Animated logo, title reveal and smooth progress bar.
+- Clean blue/green water engineering theme.
+- DESIGN • CALCULATE • LEARN • SOLVE branding.
+- Smooth fade into approved compact Home Dashboard.
+- Existing Smart Design visibility and Back button fixes retained.

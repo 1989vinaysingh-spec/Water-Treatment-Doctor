@@ -1,0 +1,11 @@
+Water Treatment Doctor V18.5.4 — Smart Design Visibility Fix
+Date: 06-Sep-2026
+
+Changes in this build:
+1. Smart Design is now visibly available on the compact approved Home screen.
+2. Home Smart Design button opens the full Smart Design page directly.
+3. Plant Detail > Design remains wired to selected-plant Smart Design.
+4. Selected plant type is prefilled when Smart Design opens from a plant.
+5. Biological/Main Process HRT input is clearly exposed. A user-entered HRT (for example 10 hr) overrides the biological/main reactor HRT for STP/ETP/CETP/MBR/SBR/MBBR/ASP sizing.
+6. Dosing-pump equipment duty remains chemical-duty based (L/hr or mL/min from chemical dose/strength/density/run time), not plant KLD.
+7. Smart Design page gets a clear visible banner so it cannot look like a generic calculator page.

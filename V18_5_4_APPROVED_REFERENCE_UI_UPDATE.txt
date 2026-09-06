@@ -1,0 +1,21 @@
+Water Treatment Doctor V18.5.4 — Approved Reference UI Update
+Date: 2026-09-06
+
+Updated from the user-supplied latest V18.5.4 source only.
+
+Implemented approved flow:
+1. Splash Screen on app open with Water Treatment Doctor branding, loading bar and bilingual clean-water message.
+2. Compact Home Dashboard with 3x3 grid: STP, ETP, CETP, WTP, RO, UF, ZLD, WSP, All Plants.
+3. Bottom navigation aligned to reference: Home, Knowledge, Tools, Support, Profile.
+4. Plant selection opens a separate in-app Plant Detail Page rather than legacy long-page scrolling.
+5. Plant Detail uses Overview / Process / Design / Drawing / O&M tabs.
+6. Design tab opens the selected plant Smart Design screen and keeps the selected plant type.
+7. Smart Design HRT logic retained/final-checked: entered biological/main HRT overrides the biological reactor HRT and tank volume uses Q x HRT / 24.
+8. Dosing pump sizing remains chemical-duty based (dose, strength, density, runtime), not plant KLD shown as pump capacity.
+9. Drawing tab retains full drawing; full-screen modal restyled for a clean dedicated drawing view with Close, zoom and download controls.
+10. App page header/back/home behavior and bottom-nav overlap/safe-area handling consolidated.
+11. Existing AI backend, calculators, catalogue, chemical dosing and plant engineering content retained.
+
+QA:
+- Inline JavaScript syntax checked with Node.js.
+- Source version remains V18.5.4.

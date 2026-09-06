@@ -1,0 +1,9 @@
+Water Treatment Doctor V18.5.4 Final Check
+- Target startup retained: Splash -> compact Home Dashboard -> separate tabbed Plant Detail.
+- Smart Design with Hydraulic Retention Time retained.
+- Service-worker cache bumped to V18.5.4 so an installed update does not keep stale V18.5.0 UI/assets.
+- Live Render AI backend prefilled and persisted on device.
+- Inline process drawings use eager loading; full drawing close/back safeguards retained.
+- Android workflow versionCode 1854 / versionName 18.5.4.
+- 22 PNG process drawings present.
+- Android camera/gallery/video chooser retained.

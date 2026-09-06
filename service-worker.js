@@ -1,4 +1,4 @@
-const CACHE='wtd-v18.5.4-target';
+const CACHE='wtd-v18.5.4-audit1';
 const ASSETS=[
   './','./index.html','./styles.css','./complete-bilingual.js','./bilingual.js',
   './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png',

@@ -1,0 +1,16 @@
+Water Treatment Doctor V18.5.4 — Smart Design Fix Pass
+Date: 2026-09-06
+
+Fixed:
+1. User-entered HRT now overrides the biological/main reactor HRT for STP/ETP/CETP/MBR/MBBR/ASP/SBR instead of only appearing as a separate overall value.
+   Example: STP 100 KLD, HRT 10 hr -> Biological Reactor basis 10 hr and design volume 45.8 m3 including 10% allowance.
+2. Total listed tank HRT and retention volumes now recalculate from the actual tank-wise HRT values after the override.
+3. Dosing pump sizing no longer incorrectly uses plant hydraulic flow (m3/hr or KLD). It now states that dosing pump capacity must come from chemical dose, product strength/density and run time and be selected in L/hr or mL/min.
+4. Sludge pumps no longer inherit raw plant hydraulic flow. Duty is tied to sludge production, concentration, cycle and head.
+5. Equipment matching corrected so text such as 'Bio media' cannot be incorrectly treated as EDI/membrane equipment due to substring matching.
+6. Pump, filter, membrane, clarifier, blower/diffuser and panel sizing guidance made service-specific.
+7. Smart Design tables improved for mobile: horizontal scrolling, sensible minimum column widths, and no letter-by-letter word breaking.
+8. Full P&ID Drawing button contrast fixed for visibility.
+
+Engineering note:
+Outputs remain preliminary design aids. Final sizing must be verified using actual inlet/outlet analysis, loading/mass balance, hydraulic profile, process kinetics, OEM data, civil/structural criteria, applicable standards and site requirements.

@@ -1,0 +1,11 @@
+Water Treatment Doctor V18.5.4 - Opening Splash Update
+Date: 2026-09-06
+
+Updated startup experience:
+- Premium full-screen light/orange/blue water-themed splash.
+- Larger Water Treatment Doctor logo and clear app branding.
+- Hindi + English clean-water tagline.
+- Animated loading bar and subtle logo motion.
+- Water-treatment plant silhouette at the bottom.
+- Startup timing adjusted so the splash is visible cleanly before the compact Home Dashboard opens.
+- Existing app features, plant navigation, Smart Design and drawings are preserved.

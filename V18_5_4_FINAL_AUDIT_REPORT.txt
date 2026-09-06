@@ -1,0 +1,13 @@
+Water Treatment Doctor V18.5.4 — Final Audit Fix
+
+Checked and corrected:
+1. Biological/main reactor HRT uses the user-entered Smart Design HRT for biological plant types.
+2. Chemical dosing pumps are not sized from plant KLD/hydraulic flow; guidance uses approved dose, product strength/density and pump run time.
+3. Fixed hidden control characters in membrane-equipment matching regex (RO/UF/NF/EDI detection).
+4. Tank table now separates true hydraulic working volume from +10% preliminary design volume; dimensions use design volume.
+5. Smart Design table is horizontally scrollable on small screens to prevent broken words/narrow columns.
+6. Full P&ID modal now opens above the fixed bottom navigation and respects safe-area/bottom spacing.
+7. Service-worker cache version bumped so deployed fixes are not masked by an older V18.5.4 cached index.
+8. Local drawing assets, duplicate HTML IDs, and external JS syntax were audited.
+
+Preliminary engineering outputs still require project-specific engineering verification before IFC/GFC/construction use.

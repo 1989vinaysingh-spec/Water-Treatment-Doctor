@@ -70,8 +70,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185422
-                  versionName "18.5.4 Build 22"
+                  versionCode 185526
+                  versionName "18.5.5 Build 22.6 Final Clean"
               }
           }
 

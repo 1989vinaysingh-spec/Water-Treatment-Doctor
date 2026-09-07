@@ -57,6 +57,12 @@ jobs:
           }
           EOF
 
+          cat > gradle.properties <<'EOF'
+          android.useAndroidX=true
+          android.enableJetifier=true
+          android.suppressUnsupportedCompileSdk=36
+          EOF
+
           cat > app/build.gradle <<'EOF'
           plugins {
               id 'com.android.application'
@@ -70,8 +76,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185526
-                  versionName "18.5.5 Build 22.6 Final Clean"
+                  versionCode 185529
+                  versionName "18.5.5 Build 22.9 Option 7 Final"
               }
           }
 

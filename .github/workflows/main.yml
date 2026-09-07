@@ -28,8 +28,8 @@ jobs:
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/xml
+          mkdir -p app/src/main/res/drawable
 
-                printf "android.useAndroidX=true\nandroid.enableJetifier=true\n" > gradle.properties
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {
@@ -87,6 +87,7 @@ jobs:
               <application
                   android:theme="@style/AppTheme"
                   android:label="Water Treatment Doctor"
+                  android:icon="@drawable/app_icon"
                   android:usesCleartextTraffic="true">
 
                   <provider
@@ -117,6 +118,10 @@ jobs:
               <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
                   <item name="android:fontFamily">sans</item>
                   <item name="android:windowActionModeOverlay">true</item>
+                  <item name="android:windowBackground">#EEF9FF</item>
+                  <item name="android:statusBarColor">#EEF9FF</item>
+                  <item name="android:navigationBarColor">#FFFFFF</item>
+                  <item name="android:windowLightStatusBar">true</item>
               </style>
           </resources>
           EOF
@@ -132,20 +137,28 @@ jobs:
 
           import android.app.Activity;
           import android.content.ClipData;
+          import android.content.ContentValues;
           import android.content.Intent;
           import android.net.Uri;
+          import android.os.Build;
           import android.os.Bundle;
+          import android.os.Environment;
           import android.provider.MediaStore;
+          import android.webkit.JavascriptInterface;
           import android.webkit.ValueCallback;
           import android.webkit.WebChromeClient;
           import android.webkit.WebSettings;
           import android.webkit.WebView;
           import android.webkit.WebViewClient;
+          import android.widget.Toast;
 
           import androidx.core.content.FileProvider;
 
           import java.io.File;
+          import java.io.FileOutputStream;
           import java.io.IOException;
+          import java.io.InputStream;
+          import java.io.OutputStream;
 
           public class MainActivity extends Activity {
 
@@ -155,6 +168,48 @@ jobs:
               private ValueCallback<Uri[]> filePathCallback;
               private Uri cameraOutputUri;
               private Uri videoOutputUri;
+
+              public class DownloadBridge {
+                  @JavascriptInterface
+                  public void saveAsset(String assetPath, String requestedName) {
+                      final String cleanPath = assetPath == null ? "" : assetPath.replaceFirst("^/+", "");
+                      String cleanName = requestedName == null ? "drawing.png" : requestedName.replaceAll("[^A-Za-z0-9._-]", "_");
+                      if (!cleanName.toLowerCase().endsWith(".png")) cleanName += ".png";
+                      final String fileName = cleanName;
+                      if (cleanPath.isEmpty() || cleanPath.contains("..")) {
+                          runOnUiThread(() -> Toast.makeText(MainActivity.this, "Invalid drawing path", Toast.LENGTH_SHORT).show());
+                          return;
+                      }
+                      new Thread(() -> {
+                          try (InputStream in = getAssets().open(cleanPath)) {
+                              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                  ContentValues values = new ContentValues();
+                                  values.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
+                                  values.put(MediaStore.Downloads.MIME_TYPE, "image/png");
+                                  values.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Water Treatment Doctor");
+                                  values.put(MediaStore.Downloads.IS_PENDING, 1);
+                                  Uri uri = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+                                  if (uri == null) throw new IOException("Could not create download");
+                                  try (OutputStream out = getContentResolver().openOutputStream(uri)) {
+                                      if (out == null) throw new IOException("Could not open download");
+                                      byte[] buf = new byte[8192]; int n; while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+                                  }
+                                  values.clear(); values.put(MediaStore.Downloads.IS_PENDING, 0);
+                                  getContentResolver().update(uri, values, null, null);
+                              } else {
+                                  File dir = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Water Treatment Doctor");
+                                  if (!dir.exists() && !dir.mkdirs()) throw new IOException("Could not create folder");
+                                  try (OutputStream out = new FileOutputStream(new File(dir, fileName))) {
+                                      byte[] buf = new byte[8192]; int n; while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+                                  }
+                              }
+                              runOnUiThread(() -> Toast.makeText(MainActivity.this, "Drawing saved to Downloads / ड्रॉइंग सेव हो गई", Toast.LENGTH_LONG).show());
+                          } catch (Exception e) {
+                              runOnUiThread(() -> Toast.makeText(MainActivity.this, "Download failed: " + e.getMessage(), Toast.LENGTH_LONG).show());
+                          }
+                      }).start();
+                  }
+              }
 
               @Override
               protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +224,10 @@ jobs:
                   settings.setAllowFileAccess(true);
                   settings.setAllowContentAccess(true);
                   settings.setMediaPlaybackRequiresUserGesture(false);
+                  settings.setBuiltInZoomControls(false);
+                  settings.setDisplayZoomControls(false);
 
+                  webView.addJavascriptInterface(new DownloadBridge(), "AndroidDownloads");
                   webView.setWebViewClient(new WebViewClient());
                   webView.setWebChromeClient(new WebChromeClient() {
                       @Override
@@ -190,22 +248,29 @@ jobs:
                               accept = acceptTypes[0];
                           }
 
-                          boolean wantsImage = accept.isEmpty() || accept.contains("image") || accept.equals("*/*");
-                          boolean wantsVideo = accept.isEmpty() || accept.contains("video") || accept.equals("*/*");
+                          boolean acceptsImage = accept.isEmpty() || accept.contains("image") || accept.equals("*/*");
+                          boolean acceptsVideo = accept.isEmpty() || accept.contains("video") || accept.equals("*/*");
+                          boolean mixedMedia = acceptsImage && acceptsVideo;
 
                           Intent contentIntent = new Intent(Intent.ACTION_GET_CONTENT);
                           contentIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                          contentIntent.setType(accept.isEmpty() ? "*/*" : accept);
+                          if (mixedMedia) {
+                              contentIntent.setType("*/*");
+                              contentIntent.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/*", "video/*"});
+                          } else {
+                              contentIntent.setType(accept.isEmpty() ? "*/*" : accept);
+                          }
                           contentIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,
                                   fileChooserParams.getMode() == FileChooserParams.MODE_OPEN_MULTIPLE);
 
                           java.util.ArrayList<Intent> extraIntents = new java.util.ArrayList<>();
 
-                          if (wantsImage) {
+                          // Mixed Photo/Video uses the gallery picker. Dedicated buttons below request only one camera mode, avoiding ambiguous returned URIs.
+                          if (acceptsImage && !mixedMedia) {
                               try {
                                   File imageFile = File.createTempFile("wtd_photo_", ".jpg", getCacheDir());
                                   cameraOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           imageFile
                                   );
@@ -220,11 +285,11 @@ jobs:
                               }
                           }
 
-                          if (wantsVideo) {
+                          if (acceptsVideo && !mixedMedia) {
                               try {
                                   File videoFile = File.createTempFile("wtd_video_", ".mp4", getCacheDir());
                                   videoOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           videoFile
                                   );
@@ -299,16 +364,28 @@ jobs:
                   videoOutputUri = null;
               }
 
+              private void exitOrWebBack() {
+                  if (webView.canGoBack()) webView.goBack(); else super.onBackPressed();
+              }
+
               @Override
               public void onBackPressed() {
-                  if (webView.canGoBack()) {
-                      webView.goBack();
-                  } else {
-                      super.onBackPressed();
-                  }
+                  webView.evaluateJavascript(
+                      "(function(){" +
+                      "var d=document.getElementById('drawingModal');if(d&&d.classList.contains('show')){if(window.closeDrawing)closeDrawing();return 'handled';}" +
+                      "var p=document.getElementById('appOverviewModal');if(p&&p.classList.contains('show')){if(window.closeAppOverview)closeAppOverview();return 'handled';}" +
+                      "if(document.body.classList.contains('wtd-app-page-open')){if(window.closeAppPage)closeAppPage();return 'handled';}" +
+                      "return 'exit';})()",
+                      value -> {
+                          if (value != null && value.contains("handled")) return;
+                          exitOrWebBack();
+                      }
+                  );
               }
           }
           EOF
+
+          cp icon-192.png app/src/main/res/drawable/app_icon.png
 
           rsync -av \
             --exclude='.git' \
@@ -325,11 +402,11 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22-APK
+          name: Water-Treatment-Doctor-Build22-2-FINAL-QA-APK
           path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22-AAB
+          name: Water-Treatment-Doctor-Build22-2-FINAL-QA-AAB
           path: app/build/outputs/bundle/release/app-release.aab

@@ -1,0 +1,18 @@
+Water Treatment Doctor — Build #22 Consolidated Fix
+Base: Water_Treatment_Doctor_V18_5_4_PREMIUM_OPENING_FINAL.zip
+
+Implemented:
+1. Approved flow enforced: Premium Splash -> compact Home Dashboard -> separate Plant Detail page.
+2. Plant navigation hard-fixed so each plant render starts fresh; stale STP/ZLD cross-content state is cleared.
+3. Plant Detail uses Overview / Process / Design / Drawing / O&M tabs.
+4. Design tab opens the selected plant Smart Design directly.
+5. Smart Design retains the selected biological/main-process HRT logic instead of forcing the old default reactor HRT.
+6. Equipment/dosing-pump sizing avoids treating plant KLD as chemical dosing-pump capacity.
+7. Chemical Dosing is directly visible on Home and opens the dedicated calculator.
+8. Full-screen Drawing includes Close, Zoom -, Zoom +, Download and Reset controls.
+9. Legacy home/long-scroll sections are suppressed while Home is active.
+10. GitHub Actions output is labeled Build22; Android versionName is 18.5.4 Build 22.
+11. All 22 process drawing PNG assets were checked in the source.
+
+Build source note:
+Upload the contents of this ZIP to the GitHub repository and run the existing GitHub Actions workflow “Build Water Treatment Doctor Android”.

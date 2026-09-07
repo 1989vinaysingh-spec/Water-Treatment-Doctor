@@ -2949,3 +2949,26 @@ body{font-family:Arial,Helvetica,sans-serif!important;background:var(--ref-bg)!i
  document.addEventListener('DOMContentLoaded',upgrade); if(document.readyState!=='loading')upgrade();
 })();
 </script>
+
+<!-- Build #22 final hard-fix: loaded last so legacy V18 layers cannot override approved navigation/state. -->
+<style id="wtd-build22-hard-fix">
+body:not(.wtd-app-page-open) main>*:not(#wtdHome1852){display:none!important}
+body:not(.wtd-app-page-open) #wtdHome1852{display:block!important}
+#wtdHome1852 .ref-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#plants.detail-view>#modules,#plants.detail-view>h3,#plants.detail-view>.plant-detail-head,#plants.detail-view>.bottom-back{display:none!important}
+#plants.detail-view>#plantDetail{display:block!important;margin:0 -10px!important;padding:0!important;border:0!important;background:#f5f8fa!important;box-shadow:none!important}
+#plantDetailContent>.p52-plant-hero{display:flex!important}
+#plantDetailContent>.p52-tabs{display:flex!important;position:sticky!important;top:0!important;z-index:70!important}
+#plantDetailContent>.p52-panel{display:none!important}
+#plantDetailContent>.p52-panel.active{display:block!important}
+#plantDetailContent .p52-design-open{display:block!important;width:100%!important;margin:8px 0 12px!important;padding:13px!important;border:0!important;border-radius:10px!important;background:linear-gradient(135deg,#075da8,#0a9a4b)!important;color:#fff!important;font-weight:900!important}
+#drawingModal.show{display:flex!important;inset:0!important;bottom:0!important;z-index:50000!important;background:#fff!important;padding:0!important}
+#drawingModal.show .drawing-modal-box{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;border-radius:0!important;padding:56px 8px 12px!important;overflow:auto!important}
+#drawingModal.show .drawing-view{min-height:calc(100dvh - 80px)!important;overflow:auto!important;display:grid!important;place-items:center!important}
+#drawingModal.show #drawingImage{width:auto!important;max-width:none!important;height:auto!important;max-height:calc(100dvh - 110px)!important;transform-origin:center center!important;transition:transform .12s ease!important}
+#drawingModal.show .close{display:block!important;position:fixed!important;left:8px!important;right:auto!important;top:max(6px,env(safe-area-inset-top,0px))!important;z-index:50010!important;width:42px!important;height:42px!important;background:#fff!important;color:#173a54!important;border:1px solid #d9e5ed!important;border-radius:50%!important;font-size:30px!important}
+#drawingModal .drawing-actions{display:flex!important;position:fixed!important;right:8px!important;top:max(7px,env(safe-area-inset-top,0px))!important;z-index:50011!important;gap:5px!important}
+#drawingModal .drawing-actions button{display:grid!important;place-items:center!important;min-width:38px!important;height:38px!important;padding:0 8px!important;border:1px solid #d8e4ec!important;border-radius:9px!important;background:#fff!important;color:#0b527d!important;font-size:15px!important;font-weight:900!important}
+@media(max-width:390px){#wtdHome1852 .ref-tools{gap:7px!important}.ref-tool{min-height:65px!important}.ref-grid{gap:7px!important}}
+</style>
+<script src="build22-fix.js?v=22"></script>

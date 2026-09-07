@@ -2478,7 +2478,7 @@ window.addEventListener('DOMContentLoaded',()=>{updateSmartDesignInputs();docume
 (function(){
  const splash=document.getElementById('wtdSplash'); if(!splash)return;
  const started=performance.now();
- function closeSplash(){const wait=Math.max(0,5200-(performance.now()-started));setTimeout(()=>{splash.classList.add('hide');setTimeout(()=>splash.remove(),380)},wait)}
+ function closeSplash(){const wait=Math.max(0,4800-(performance.now()-started));setTimeout(()=>{splash.classList.add('hide');setTimeout(()=>splash.remove(),380)},wait)}
  if(document.readyState==='complete')closeSplash(); else window.addEventListener('load',closeSplash,{once:true});
  setTimeout(closeSplash,5600);
 })();
@@ -2731,8 +2731,6 @@ body{font-family:Arial,Helvetica,sans-serif!important;background:var(--ref-bg)!i
 })();
 </script>
 
-</body>
-</html>
 <style id="wtd-v1854-back-button-visible-fix">
 /* V18.5.5: keep Back controls clearly visible on every inner page */
 .wtd-page-header{grid-template-columns:minmax(92px,auto) minmax(0,1fr) 52px!important;gap:6px!important}
@@ -2760,15 +2758,7 @@ body{font-family:Arial,Helvetica,sans-serif!important;background:var(--ref-bg)!i
 @keyframes wtdTitleReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes wtdProgress{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
 </style>
-<script id="wtd-v1854-premium-opening-content">
-(function(){
- function upgrade(){
-  const s=document.getElementById('wtdSplash'),inn=s&&s.querySelector('.wtd-splash-inner'); if(!inn)return;
-  inn.innerHTML='<div class="wtd-splash-badge">SMART WATER ENGINEERING</div><div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><div class="wtd-splash-kicker">ALL PLANTS • ALL SOLUTIONS</div><h2>Water Treatment<br><span>Doctor</span></h2><p>DESIGN • CALCULATE • LEARN • SOLVE</p><div class="wtd-splash-sub">स्वच्छ जल • बेहतर कल &nbsp;|&nbsp; Clean Water • Better Tomorrow</div><div class="wtd-splash-loader"><i></i></div><small>V18.5.5<br>Developed by Vinay Kumar Singh<br>Preparing your engineering workspace…</small>';
- }
- document.addEventListener('DOMContentLoaded',upgrade); if(document.readyState!=='loading')upgrade();
-})();
-</script>
+<!-- wtd-v1854-premium-opening-content removed in Build 22.8 QA: superseded by final opening controller -->
 
 <!-- Build #22 final hard-fix: loaded last so legacy V18 layers cannot override approved navigation/state. -->
 <style id="wtd-build22-hard-fix">
@@ -2854,16 +2844,7 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 #drawingModal.show .drawing-view{padding-top:8px!important}.drawing-actions button{font-size:0!important}.drawing-actions button small{display:none!important}
 @media(max-width:370px){.ref-tools{grid-template-columns:repeat(3,minmax(0,1fr))!important}.ref-home-banner b{font-size:17px!important}.wtd-page-header{grid-template-columns:70px minmax(0,1fr) 48px!important}.wtd-page-back{min-width:66px!important;font-size:11px!important}}
 </style>
-<script id="wtd-build22-6-approved-opening-js">
-(function(){
- const $=id=>document.getElementById(id);
- function stage1(){const s=$('wtdSplash'),i=s&&s.querySelector('.wtd-splash-inner');if(!i)return;i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>Design &nbsp;|&nbsp; Calculate &nbsp;|&nbsp; Learn &nbsp;|&nbsp; Solve</p><div class="wtd-splash-sub">Clean Water • Healthier Tomorrow</div><small>V18.5.5<br>Developed by Vinay Kumar Singh</small>';}
- function stage2(){const s=$('wtdSplash'),i=s&&s.querySelector('.wtd-splash-inner');if(!i)return;i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>Design &nbsp;|&nbsp; Calculate &nbsp;|&nbsp; Learn &nbsp;|&nbsp; Solve</p><h3 style="margin:16px 0 0;color:#173f68">Loading...</h3><div class="wtd-splash-loader"><i></i></div><div class="wtd-splash-sub" style="margin-top:18px">🌐 &nbsp; Building a Cleaner,<br>Greener Tomorrow</div>';}
- function stage3(){const s=$('wtdSplash'),i=s&&s.querySelector('.wtd-splash-inner');if(!i)return;i.innerHTML='<h2 style="font-size:1.75rem!important;line-height:1.15!important">Smart Solutions<br>for a Better Tomorrow</h2><div class="approved-final-art"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px;font-weight:800;color:#314f62"><span>💧<br>Save Water</span><span>🌿<br>Protect Environment</span><span>👥<br>Improve Life</span></div><div class="wtd-splash-loader" style="margin-top:24px!important"><i></i></div><small>Almost Ready...</small>';}
- function run(){stage1();setTimeout(stage2,1050);setTimeout(stage3,3550);}
- document.addEventListener('DOMContentLoaded',run,{once:true});if(document.readyState!=='loading')run();
-})();
-</script>
+<!-- wtd-build22-6-approved-opening-js removed in Build 22.8 QA: superseded by final opening controller -->
 
 <style id="wtd-build22-4-final-cleanup">
 /* Build 22.4 final cleanup: authoritative last layer */
@@ -2881,6 +2862,28 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 #wtdSplash .opening-scene{height:min(38vh,310px);margin:8px -20px -4px;background:url('opening-water-scene.svg') center bottom/cover no-repeat;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(20,105,153,.08)}
 #wtdSplash .stage-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px;font-weight:800;color:#314f62}.stage-icons i{font-style:normal;font-size:22px;display:block;margin-bottom:3px}
 @media(max-width:380px){#wtdCatalogueFinal .cat-grid{grid-template-columns:1fr}.wtd-page-header{grid-template-columns:68px minmax(0,1fr) 58px!important}.wtd-page-back{min-width:64px!important;width:64px!important;font-size:10px!important}}
+/* Build 22.9 Option 7 — Water Journey opening */
+#wtdSplash.wtd-splash{background:linear-gradient(180deg,#e7f7ff 0%,#f9fdff 54%,#e7f7f3 100%)!important}
+#wtdSplash:before{background:radial-gradient(circle at 50% 4%,rgba(55,180,234,.18),transparent 32%),radial-gradient(circle at 88% 86%,rgba(39,177,108,.12),transparent 28%)!important}
+#wtdSplash .wtd-splash-inner{width:min(94vw,460px)!important;padding:18px 16px 22px!important}
+#wtdSplash .journey-title{font-size:14px;font-weight:900;letter-spacing:.03em;color:#174f78;margin:2px 0 10px}
+#wtdSplash .journey-art{width:100%;height:min(62vh,570px);background:url('water-journey.svg') center/contain no-repeat;margin:0 auto 2px;animation:wtdJourneyIn .7s ease both}
+#wtdSplash .journey-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 10px}
+#wtdSplash .journey-step{border-radius:12px;background:rgba(255,255,255,.84);border:1px solid #cfe6f1;padding:8px 4px;font-size:10px;line-height:1.2;font-weight:900;color:#26536e;box-shadow:0 6px 16px rgba(11,96,139,.07)}
+#wtdSplash .journey-step b{display:block;font-size:18px;margin-bottom:2px}
+#wtdSplash .journey-arrow{color:#108abb;font-size:18px;font-weight:900;align-self:center}
+#wtdSplash .journey-tag{font-size:16px!important;font-weight:900!important;color:#14844b!important;margin:8px 0 0!important}
+#wtdSplash .journey-stage2 .wtd-splash-logo{width:128px!important;height:128px!important;margin-bottom:8px!important}
+#wtdSplash .journey-stage2 h2{font-size:2.15rem!important;margin:4px 0 4px!important}
+#wtdSplash .journey-stage2 .wtd-splash-loader{width:min(72vw,250px)!important;height:8px!important;margin-top:15px!important}
+#wtdSplash .journey-stage3 .approved-final-art{width:150px!important;height:150px!important;margin:4px auto 5px!important;background:url('icon-512.png') center/contain no-repeat!important}
+#wtdSplash .journey-stage3 .approved-final-art:before,#wtdSplash .journey-stage3 .approved-final-art:after{display:none!important}
+#wtdSplash .journey-stage3 h2{font-size:1.8rem!important;line-height:1.08!important;margin:5px 0 8px!important}
+#wtdSplash .journey-stage3 p{font-size:.78rem!important;margin:0 0 8px!important;color:#315a71!important}
+#wtdSplash .journey-stage3 .wtd-splash-sub{font-size:.9rem!important;font-weight:900!important;color:#14844b!important;margin:8px 0 6px!important}
+@keyframes wtdJourneyIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-height:700px){#wtdSplash .journey-art{height:420px}#wtdSplash .journey-stage3 .approved-final-art{width:120px!important;height:120px!important}}
+
 </style>
 <script id="wtd-build22-4-final-cleanup-js">
 (function(){
@@ -2910,12 +2913,16 @@ function safeAI(){
 }
 function opening(){
  const s=$('wtdSplash'),i=s&&s.querySelector('.wtd-splash-inner');if(!i)return;
- const stage1=()=>{if(!i.isConnected)return;i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>Design &nbsp;|&nbsp; Calculate &nbsp;|&nbsp; Learn &nbsp;|&nbsp; Solve</p><div class="opening-scene"></div><small>V18.5.5<br>Developed by Vinay Kumar Singh</small>'};
- const stage2=()=>{if(!i.isConnected)return;i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>Design &nbsp;|&nbsp; Calculate &nbsp;|&nbsp; Learn &nbsp;|&nbsp; Solve</p><h3 style="margin:16px 0 0;color:#173f68">Loading...</h3><div class="wtd-splash-loader"><i></i></div><div class="wtd-splash-sub" style="margin-top:18px">◉ &nbsp; Building a Cleaner,<br>Greener Tomorrow</div>'};
- const stage3=()=>{if(!i.isConnected)return;i.innerHTML='<h2 style="font-size:1.75rem!important;line-height:1.15!important">Smart Solutions<br>for a Better Tomorrow</h2><div class="approved-final-art"></div><div class="stage-icons"><span><i>💧</i>Save Water</span><span><i>🌿</i>Protect Environment</span><span><i>●●●</i>Improve Life</span></div><div class="wtd-splash-loader" style="margin-top:20px!important"><i></i></div><small>Almost Ready...</small>'};
- stage1();setTimeout(stage2,900);setTimeout(stage3,3350);
+ const stage1=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage1';i.innerHTML='<div class="journey-art" aria-hidden="true"></div><div class="journey-tag">For a Cleaner • Healthier Tomorrow</div><small>V18.5.5 &nbsp;|&nbsp; Build 22.9</small>'};
+ const stage2=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage2';i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>SMART WATER ENGINEERING<br><small style="margin:4px 0 0">ALL PLANTS • ALL SOLUTIONS</small></p><div class="wtd-splash-loader"><i></i></div><div class="wtd-splash-sub">Preparing your engineering tools...</div><small>Design • Calculate • Diagnose • Learn • Grow</small>'};
+ const stage3=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage3';i.innerHTML='<div class="approved-final-art" aria-hidden="true"></div><div style="font-size:.85rem;color:#42677c">Welcome to</div><h2>Water Treatment Doctor</h2><p>Your Complete Water Treatment Engineering Companion</p><div style="font-size:.69rem;font-weight:900;color:#31566e">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP</div><div class="wtd-splash-sub">Clean Water • Better Tomorrow</div><small>V18.5.5 &nbsp;|&nbsp; Build 22.9<br><b>Developed by Vinay Kumar Singh</b></small>'};
+ stage1();setTimeout(stage2,1650);setTimeout(stage3,3250);
 }
 function init(){catalogue();langButton();safeAI();opening();}
 document.addEventListener('DOMContentLoaded',init,{once:true});if(document.readyState!=='loading')init();
 })();
 </script>
+<link rel="stylesheet" href="build22-final-authoritative.css?v=22.9">
+<script src="build22-final-authoritative.js?v=22.9"></script>
+</body>
+</html>

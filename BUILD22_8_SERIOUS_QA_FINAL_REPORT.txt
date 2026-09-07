@@ -1,0 +1,20 @@
+Water Treatment Doctor V18.5.5 — Build 22.8 Serious QA Final
+Date: 2026-09-07
+Base: Water_Treatment_Doctor_V18_5_5_BUILD22_7_CONSOLIDATED_FINAL.zip
+
+Consolidated recheck/fixes:
+1. Final bottom navigation locked after all legacy layers: Home, Plants, Tools, Drawings, Profile.
+2. Profile modal open/close rebound in final authoritative layer.
+3. Inner-page Back button and compact EN/हिं language cycle remain authoritative and non-overlapping.
+4. Drawing viewer remains full-screen with close, zoom out/in, reset and Android/browser save/download fallbacks.
+5. All 22 drawing PNG assets validated as readable images and mapped in plantDrawings.
+6. Smart Design selected HRT overrides biological/main reactor HRT for STP/ETP/CETP/MBR/SBR/MBBR/ASP.
+7. Equipment sizing no longer labels dosing pump capacity from plant KLD; dosing duty explicitly uses chemical dose/strength/density/run-time.
+8. Chemical Dosing Calculator outputs active kg/day, product kg/day/L/day, pump L/hr and mL/min.
+9. AI diagnosis uses configured online backend when available, otherwise gives offline guided assessment instead of ending only on a failure screen.
+10. Removed two superseded duplicate opening controllers to reduce splash-handler competition; final opening controller remains.
+11. Service worker bumped to Build 22.8 and changed to network-first for navigation/final authoritative JS/CSS to prevent stale cached UI from reviving older behavior after a fresh build/update.
+12. Static QA: 16 inline JS blocks syntax checked = PASS; external JS syntax = PASS; service-worker asset references 34/34 present; 22/22 drawings valid.
+
+Important final validation:
+A freshly built/installed Android APK should still be exercised on the target phone for Android WebView permissions, native download bridge behavior, camera/gallery/video chooser behavior, and live AI-backend network connectivity. These depend on the APK wrapper/device/runtime and cannot be proven solely from static ZIP source inspection.

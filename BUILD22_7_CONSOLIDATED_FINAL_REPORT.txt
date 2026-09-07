@@ -1,0 +1,17 @@
+Water Treatment Doctor V18.5.5 — Build 22.7 Consolidated Final Pass
+
+Source: Water_Treatment_Doctor_V18_5_5_BUILD22_6_FINAL_CLEAN.zip
+
+Final authoritative fixes:
+- Consolidated late conflicting navigation/header handlers.
+- Back control made compact and reliable on inner pages.
+- Language control restored as 3-state English / Hindi / Both without header overlap.
+- Bottom Home/Profile/navigation tap behavior hardened.
+- Profile/About modal reliably opens above page shell; developer attribution retained: Vinay Kumar Singh.
+- Full-screen process drawing controls hardened for Android safe areas.
+- Drawing zoom/reset/save handlers consolidated; Android bridge, Web Share, Blob download and direct-link fallbacks included.
+- AI Vision no longer ends at a dead failure screen: online analysis is attempted, with timeout and offline guided assessment fallback.
+- Existing advanced Smart Design retained; selected biological/main-process HRT is applied to the reactor sizing, and dosing pump duty remains chemical-dose based rather than plant KLD.
+- Closing BODY/HTML tags moved after all final layers for valid load order.
+
+Engineering note: Smart Design and process diagrams remain preliminary engineering aids and require project-specific verification before execution.

@@ -1,0 +1,17 @@
+Water Treatment Doctor V18.5.5 — Build 22.9 Option 7 Water Journey Final
+
+Finalized opening interface:
+1. Water Journey: Raw Water -> Treatment -> Clean Water
+2. Branded loading screen with Water Treatment Doctor logo
+3. Compact welcome screen with plant coverage and developer attribution
+4. Smooth handoff to the existing approved compact Home Dashboard
+
+Preserved from Build 22.8 Serious QA Final:
+- Home/Main and Profile navigation stabilization
+- Back/language control cleanup
+- Smart Design HRT and dosing logic fixes
+- Drawing fullscreen/zoom/download handling and 22 drawing assets
+- AI online failure fallback to offline guided troubleshooting
+- Service-worker stale-cache mitigation
+
+Build/cache updated to 22.9 and water-journey.svg is included in offline core assets.

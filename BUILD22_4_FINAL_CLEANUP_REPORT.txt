@@ -1,0 +1,16 @@
+Water Treatment Doctor V18.5.4 — Build 22.4 Final Cleanup
+
+Source: BUILD22_3_APPROVED_INTERFACE
+Target: approved 8-screen interface reference.
+
+Final cleanup included:
+- Restored working Home Catalogue as a dedicated modal sheet.
+- Plant-detail hero now follows selected plant drawing (STP/ETP/CETP/WTP/RO/UF/ZLD/WSP etc.) instead of always STP.
+- Inner-page header simplified: Back left, centered page title, compact English/Hindi switch right; overlap reduced.
+- Premium opening tightened to Splash -> 2-3 sec Loading -> Final Splash -> compact Home.
+- Replaced emoji-only final splash art with local vector water/globe/leaf artwork.
+- AI failure screen hardened: online visual AI still requires backend, but app falls back to guided offline assessment rather than ending only on failure.
+- Existing Smart Design/HRT, drawing full-screen/download, bottom Home/Profile and approved home layout retained.
+- Service-worker build cache tag advanced to Build 22.4 where applicable.
+
+QA status: HTML/JS assets and drawing files checked in package. Real AI visual interpretation still depends on deployed backend + valid server-side API key and network access.

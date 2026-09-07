@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+<defs><radialGradient id="g"><stop stop-color="#effdff"/><stop offset=".55" stop-color="#75d9ef"/><stop offset="1" stop-color="#0b79b8"/></radialGradient><linearGradient id="leaf"><stop stop-color="#75ce4c"/><stop offset="1" stop-color="#118e42"/></linearGradient></defs>
+<circle cx="210" cy="210" r="132" fill="url(#g)" stroke="#e5fbff" stroke-width="10"/><path d="M157 151c54-48 122-29 147 17-37 5-63 4-87 31-18 20-18 50-42 66-22-30-28-73-18-114z" fill="#42a95b" opacity=".96"/><path d="M238 245c35-27 73-22 93-8-15 41-46 72-81 88-10-25-14-53-12-80z" fill="#4fbb63"/><path d="M103 299c59 26 137 26 209-4" fill="none" stroke="#bfefff" stroke-width="9" stroke-linecap="round"/><path d="M72 325c93 35 190 34 276-5" fill="none" stroke="#d5f7ff" stroke-width="7" stroke-linecap="round"/>
+<path d="M76 255c-48-48-33-97 30-121 3 55 11 84-30 121z" fill="url(#leaf)"/><path d="M344 260c50-45 48-94-6-120-10 53-23 82 6 120z" fill="url(#leaf)"/>
+<path d="M116 149c18 15 35 30 51 49M305 157c-17 13-31 27-44 43" stroke="#107c49" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M207 42c-14 23-38 44-38 73 0 25 18 43 41 43 24 0 42-18 42-43 0-29-25-50-45-73z" fill="#078bd1" opacity=".9"/>
+</svg>

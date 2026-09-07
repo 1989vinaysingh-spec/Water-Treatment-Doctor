@@ -1,0 +1,10 @@
+Water Treatment Doctor V18.5.5 — Build 22.5 Final Stable
+
+Release update:
+- App version updated from V18.5.4 to V18.5.5.
+- Developer attribution: Vinay Kumar Singh.
+- Splash/opening shows V18.5.5 and developer name.
+- About App and privacy/version references updated to V18.5.5.
+- Android build versionName updated to 18.5.5 Build 22.5 Final Stable.
+- Android versionCode updated to 185525.
+- Service-worker cache updated to V18.5.5 while retaining Build 22.5 stable fixes.

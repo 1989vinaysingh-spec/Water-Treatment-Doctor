@@ -1,0 +1,11 @@
+Water Treatment Doctor V18.5.5 — Build 22.6 Final Clean
+
+Final source-cleanup and stability pass:
+- Removed obsolete duplicate global implementations for media preview, guided diagnosis, AI status/analysis, chemical calculation and legacy Smart Design.
+- Kept the consolidated media/AI reliability implementation as the single canonical global implementation.
+- Exposed the advanced HRT-aware Smart Design implementation to the actual inline UI handler (window.buildDesign).
+- Exposed updateSmartDesignInputs and openPidFull so process selection and full P&ID buttons work from inline UI handlers.
+- Preserved V18.5.5 and developer attribution: Vinay Kumar Singh.
+- Advanced Android build metadata to Build 22.6 / versionCode 185526.
+- Advanced service-worker cache namespace to build22-6-final-clean.
+- Approved opening, Home, plant detail, catalogue, drawing, language/header and AI fallback layers retained.

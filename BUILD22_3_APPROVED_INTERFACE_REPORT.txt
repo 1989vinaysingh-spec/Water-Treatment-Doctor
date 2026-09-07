@@ -1,0 +1,17 @@
+Water Treatment Doctor V18.5.4 — Build 22.3 Approved Interface Pass
+
+Source: BUILD22_2_FINAL_QA-1
+Target: approved 8-screen reference supplied by user.
+
+Implemented:
+- Three-stage opening: Splash -> 2-3 sec Loading -> Final Splash Message -> Home.
+- Compact Home dashboard aligned to approved reference: top brand, banner, 2-column plant grid, compact tools, 5-item bottom nav.
+- Clear Back/title/language header on inner pages to avoid overlap.
+- Plant detail tabs retained: Overview / Process / Design / Drawing / O&M.
+- Smart Design flow preserved, including selected HRT logic.
+- Full-screen drawing authority retained with zoom/save controls.
+- Profile and Home navigation remain under Build 22 hardening.
+- AI online endpoint + offline guided fallback retained.
+- Service worker cache key bumped so old interface is not reused after rebuild/install.
+
+Use this source for the next APK/AAB build.

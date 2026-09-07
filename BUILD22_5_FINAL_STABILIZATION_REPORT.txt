@@ -1,0 +1,19 @@
+WATER TREATMENT DOCTOR V18.5.4 - BUILD 22.5 FINAL STABILIZATION
+
+Base: BUILD22_4_FINAL_CLEANUP
+
+Final stabilization actions:
+1. Service Worker registration re-enabled for HTTP/HTTPS builds; file:// execution remains safely excluded.
+2. Service Worker cache namespace bumped to build22-5-final-stable so older UI caches are purged on activation.
+3. External consolidated fix script cache-busted to v=22.5.
+4. Approved opening identifiers bumped to Build 22.5.
+5. Existing final Build 22.4 catalogue, per-plant hero/drawing selection, language/header, Smart Design/HRT, drawing full-screen/download, profile/home navigation and AI guided fallback retained.
+6. Legacy source layers were intentionally not destructively deleted where removal could break old inline handlers; final canonical overrides remain last in the document. This is a stability-first cleanup.
+
+QA checklist:
+- ZIP integrity
+- JavaScript syntax
+- duplicate HTML IDs
+- local asset references
+- service-worker cache/version
+- core handlers present

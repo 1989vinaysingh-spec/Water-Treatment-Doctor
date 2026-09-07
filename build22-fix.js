@@ -183,7 +183,7 @@
   function ensureProfileModal(){
     let m=$('appOverviewModal'); if(m) return m;
     m=document.createElement('div'); m.id='appOverviewModal'; m.className='modal'; m.setAttribute('aria-hidden','true');
-    m.innerHTML='<div class="modal-box"><button type="button" class="close" onclick="closeAppOverview()" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="icon-512.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:22px;object-fit:cover"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.4</p><p><b>Developer:</b> Vinay Kumar Singh</p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
+    m.innerHTML='<div class="modal-box"><button type="button" class="close" onclick="closeAppOverview()" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="icon-512.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:22px;object-fit:cover"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.5</p><p><b>Developer:</b> Vinay Kumar Singh</p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
     document.body.appendChild(m); return m;
   }
   // Profile modal must always sit above the page shell and remain tappable.

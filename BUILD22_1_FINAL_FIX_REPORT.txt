@@ -1,0 +1,30 @@
+WATER TREATMENT DOCTOR V18.5.4 — BUILD 22.1 CONSOLIDATED FINAL FIX
+
+Base source:
+Water_Treatment_Doctor_V18_5_4_BUILD22_CONSOLIDATED.zip
+
+Fixed in this pass:
+1. Replaced conflicting live navigation overrides with one final authoritative page router.
+2. Home/Main button now restores the compact approved dashboard and active bottom-nav state.
+3. Bottom Profile button now creates (if missing) and opens/closes a dedicated app profile/overview modal above all fixed page layers.
+4. Plant taps open the selected plant in the separate detail page; no anchor/long-scroll navigation is used.
+5. Plant detail tabs are rebuilt as Overview / Process / Design / Drawing / O&M.
+6. Design tab opens Smart Design for the selected plant.
+7. Smart Design HRT is no longer forcibly cleared every time; the selected HRT is retained per plant and the existing design calculation applies it to the biological/main reactor.
+8. Chemical Dosing flow placeholder changed from confusing fixed “100” to “Enter actual plant flow”; calculation remains based on entered flow, dose, strength, density and pump hours.
+9. Drawing full-screen handler rebuilt with reliable PNG fallback, Close, Zoom +/-, Reset and Download controls.
+10. Detail page top bar no longer competes with the global language/top header: global top bar hides while a dedicated detail header is open.
+11. Mobile header/back/home and plant tab touch targets hardened for Android WebView.
+12. Profile/drawing modals sit above bottom navigation; bottom navigation is disabled behind a modal.
+13. Chemical Dosing quick tool is ensured on the compact home dashboard.
+14. AI backend field remains secure and external. If no backend URL is configured, offline guided diagnosis remains available. True automatic AI visual analysis still requires deployed ai-backend + server-side OPENAI_API_KEY; no API key is embedded in APK/source.
+15. All 22 process PNG drawing assets verified present in drawings/.
+
+Validation performed:
+- build22-fix.js syntax: PASS
+- bilingual.js syntax: PASS
+- complete-bilingual.js syntax: PASS
+- ai-backend/server.mjs syntax: PASS
+- Required UI IDs: present
+- All 22 drawing PNG files: present
+- Local automated browser click test could not run because the execution environment blocks localhost/file navigation by administrator policy. Source-level and asset-level validation completed.

@@ -2970,5 +2970,24 @@ body:not(.wtd-app-page-open) #wtdHome1852{display:block!important}
 #drawingModal .drawing-actions{display:flex!important;position:fixed!important;right:8px!important;top:max(7px,env(safe-area-inset-top,0px))!important;z-index:50011!important;gap:5px!important}
 #drawingModal .drawing-actions button{display:grid!important;place-items:center!important;min-width:38px!important;height:38px!important;padding:0 8px!important;border:1px solid #d8e4ec!important;border-radius:9px!important;background:#fff!important;color:#0b527d!important;font-size:15px!important;font-weight:900!important}
 @media(max-width:390px){#wtdHome1852 .ref-tools{gap:7px!important}.ref-tool{min-height:65px!important}.ref-grid{gap:7px!important}}
+/* Build 22.1 interaction/layout authority */
+body.wtd-app-page-open>.topbar,body.wtd-app-page-open>.lite-banner{display:none!important}
+body.wtd-app-page-open .wtd-page-shell{display:flex!important;inset:0 0 var(--wtd-nav-h,76px) 0!important;z-index:30000!important;pointer-events:auto!important}
+.wtd-page-header{grid-template-columns:auto minmax(0,1fr) auto!important;position:relative!important;top:auto!important;min-height:56px!important;padding:max(8px,env(safe-area-inset-top)) 8px 8px!important;z-index:30100!important}
+.wtd-page-back,.wtd-page-home{position:relative!important;inset:auto!important;min-height:40px!important;white-space:nowrap!important;z-index:2!important}
+.wtd-page-header strong{padding:0 4px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.wtd-app-page-open .mobile-bottom-nav{z-index:30200!important;pointer-events:auto!important}
+.mobile-bottom-nav .bottom-nav-item{pointer-events:auto!important;min-height:58px!important}
+#appOverviewModal.show{display:flex!important;z-index:51000!important;pointer-events:auto!important}
+#appOverviewModal.show .modal-box{pointer-events:auto!important;max-height:90dvh!important;overflow:auto!important}
+body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-events:none!important}
+#plantDetailContent .p52-tabs{overflow-x:auto!important;white-space:nowrap!important;scrollbar-width:none!important}
+#plantDetailContent .p52-tabs button{flex:0 0 auto!important;min-height:44px!important;touch-action:manipulation!important}
+#plantDetailContent .p52-panel{min-width:0!important;overflow-x:hidden!important}
+#plantDetailContent img.plant-drawing{display:block!important;width:100%!important;height:auto!important;object-fit:contain!important}
+#drawingModal.show .drawing-modal-box{padding-top:58px!important}
+#drawingModal.show .drawing-view{touch-action:pan-x pan-y!important}
+#drawingModal.show #drawingImage{display:block!important;transform-origin:center center!important}
+@media(max-width:430px){.wtd-page-back{font-size:12px!important;padding:7px 8px!important}.wtd-page-home{font-size:17px!important;padding:7px 9px!important}.wtd-page-header strong{font-size:12px!important}.lang-switch{max-width:132px!important}.top-actions{flex-wrap:wrap!important}.ref-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 </style>
-<script src="build22-fix.js?v=22"></script>
+<script src="build22-fix.js?v=22.1"></script>

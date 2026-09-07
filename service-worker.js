@@ -1,6 +1,6 @@
-const CACHE='wtd-v18.5.4-audit1';
+const CACHE='wtd-v18.5.4-build22-finalqa1';
 const ASSETS=[
-  './','./index.html','./styles.css','./complete-bilingual.js','./bilingual.js',
+  './','./index.html','./styles.css','./complete-bilingual.js','./bilingual.js','./build22-fix.js',
   './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png',
   './privacy-policy.html',
   './drawings/stp.png','./drawings/etp.png','./drawings/cetp.png','./drawings/ctp.png',

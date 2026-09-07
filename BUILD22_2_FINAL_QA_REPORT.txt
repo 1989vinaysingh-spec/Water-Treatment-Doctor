@@ -1,0 +1,30 @@
+Water Treatment Doctor V18.5.4 — Build 22.2 Final QA
+Date: 07-Sep-2026
+
+Consolidated fixes/hardening completed:
+1. Final navigation authority retained so legacy handlers cannot override Home/Plant/Profile flow.
+2. Home and Profile bottom buttons hardened; Profile modal remains above all page layers.
+3. Plant cards open a separate plant detail page with Overview / Process / Design / Drawing / O&M tabs.
+4. Detail header: Back button isolated; right-side control is now a real EN / हिंदी language cycle instead of overlapping Home/language content.
+5. Smart Design keeps selected HRT per plant; biological/main reactor uses the selected HRT rather than reverting to an old 6-hour value.
+6. Chemical dosing flow field no longer implies a fixed 100 m3/day; calculation uses actual entered flow, dose and product strength.
+7. All 22 PNG drawing assets verified present and readable.
+8. Full-screen Drawing open/close, zoom, reset and mobile-safe controls hardened.
+9. Drawing download fixed for the APK using an Android JavascriptInterface -> MediaStore Downloads bridge. Drawings save to Downloads/Water Treatment Doctor on Android 10+; web/PWA uses Blob/share/download fallback.
+10. Android hardware Back now closes Drawing/Profile/page before exiting the app.
+11. Photo/video upload chooser fixed: mixed gallery MIME handling corrected; dedicated camera and video capture no longer create ambiguous returned URIs.
+12. AI Analysis no longer ends at a dead failure screen. Online backend is attempted with timeout; if unavailable, the app automatically shows offline guided troubleshooting without pretending it performed visual AI analysis.
+13. Service-worker cache version bumped and build22-fix.js precached to reduce stale/old UI after updates.
+14. APK versionCode incremented to 185423 and versionName set to 18.5.4 Build 22.2 Final QA.
+15. Android app icon resource and startup window background added to reduce generic icon/white startup flash.
+16. Small-screen safe-area, modal z-index, drawing action bar and bottom navigation interaction hardening retained.
+
+Validation performed:
+- JavaScript syntax check passed: build22-fix.js, inline.js, bilingual.js, complete-bilingual.js, ai-backend/server.mjs.
+- GitHub Actions YAML parses successfully.
+- index.html has no duplicate DOM IDs.
+- 22 drawing PNG assets are present and structurally valid.
+- Static asset reference scan found no real missing assets (only template-string placeholders in source scan).
+
+Important deployment note:
+True image/video AI vision still requires the configured AI backend to be deployed and reachable with its server-side API key. The app now falls back safely to offline guided troubleshooting when that backend is unavailable.

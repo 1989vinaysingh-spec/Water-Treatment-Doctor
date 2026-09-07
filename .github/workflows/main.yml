@@ -29,8 +29,6 @@ jobs:
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/xml
 
-                  printf "android.useAndroidX=true\nandroid.enableJetifier=true\n" > gradle.properties
-
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {
@@ -71,8 +69,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 1854
-                  versionName "18.5.4"
+                  versionCode 185422
+                  versionName "18.5.4 Build 22"
               }
           }
 
@@ -206,7 +204,7 @@ jobs:
                               try {
                                   File imageFile = File.createTempFile("wtd_photo_", ".jpg", getCacheDir());
                                   cameraOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           imageFile
                                   );
@@ -225,7 +223,7 @@ jobs:
                               try {
                                   File videoFile = File.createTempFile("wtd_video_", ".mp4", getCacheDir());
                                   videoOutputUri = FileProvider.getUriForFile(
-                                          MainActivity.this,
+                                          this,
                                           getPackageName() + ".fileprovider",
                                           videoFile
                                   );
@@ -326,11 +324,11 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-APK
+          name: Water-Treatment-Doctor-Build22-APK
           path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-AAB
+          name: Water-Treatment-Doctor-Build22-AAB
           path: app/build/outputs/bundle/release/app-release.aab

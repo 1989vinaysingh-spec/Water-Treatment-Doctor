@@ -425,7 +425,7 @@ html{background:var(--wtd-navy)}body{background:linear-gradient(180deg,#edf8fc 0
     <button id="installBtn" class="install" hidden>Install</button>
   </div>
 </header>
-<div class="lite-banner">V18.5.5 • Build 22.6 Final Clean • AI Vision / AI विज़न</div>
+<div class="lite-banner">V18.5.5 • Build 22.9 • AI Vision / AI विज़न</div>
 
 <main>
 
@@ -2475,12 +2475,15 @@ window.addEventListener('DOMContentLoaded',()=>{updateSmartDesignInputs();docume
 
 
 <script id="wtd-v1850-startup">
+/* Build 22.9 Option 1: splash lifecycle is controlled by the final Minimal Premium opening. */
 (function(){
  const splash=document.getElementById('wtdSplash'); if(!splash)return;
- const started=performance.now();
- function closeSplash(){const wait=Math.max(0,4800-(performance.now()-started));setTimeout(()=>{splash.classList.add('hide');setTimeout(()=>splash.remove(),380)},wait)}
- if(document.readyState==='complete')closeSplash(); else window.addEventListener('load',closeSplash,{once:true});
- setTimeout(closeSplash,5600);
+ window.wtdCloseOpening=function(){
+   if(!splash.isConnected)return false;
+   splash.classList.add('hide');
+   setTimeout(()=>{try{splash.remove()}catch(_e){}},380);
+   return false;
+ };
 })();
 </script>
 
@@ -2725,8 +2728,7 @@ body{font-family:Arial,Helvetica,sans-serif!important;background:var(--ref-bg)!i
  }
  const oldOpen=window.openPlantByCode;
  window.openPlantByCode=function(code){const r=oldOpen?oldOpen(code):false;setTimeout(()=>enhancePlant(code),40);setTimeout(()=>enhancePlant(code),180);return r};
- function splash(){const s=$('wtdSplash');if(!s)return;const inn=s.querySelector('.wtd-splash-inner');if(!inn)return;inn.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>Clean Water &nbsp;|&nbsp; Healthy Life &nbsp;|&nbsp; Sustainable Future</p><div class="wtd-splash-sub">स्वच्छ जल &nbsp;|&nbsp; स्वस्थ जीवन &nbsp;|&nbsp; बेहतर कल</div><div class="wtd-splash-loader"><i></i></div><small>Loading...<br>Please wait</small>'}
- function init(){buildApprovedHome();bottomNav();splash();}
+ function init(){buildApprovedHome();bottomNav();}
  document.addEventListener('DOMContentLoaded',init); if(document.readyState!=='loading')init();
 })();
 </script>
@@ -2740,25 +2742,7 @@ body{font-family:Arial,Helvetica,sans-serif!important;background:var(--ref-bg)!i
 #plantDetail .plant-detail-head{display:flex!important;position:sticky!important;top:0!important;z-index:8!important;background:#fff!important;padding:8px 0!important}
 @media(max-width:480px){.wtd-page-header{grid-template-columns:92px minmax(0,1fr) 48px!important}.wtd-page-back{min-width:88px!important;padding:7px 8px!important;font-size:12px!important}}
 </style>
-<style id="wtd-v1854-premium-opening-final">
-/* Premium 2–3 second opening: lightweight CSS animation, no extra network assets */
-#wtdSplash.wtd-splash{background:linear-gradient(165deg,#eefaff 0%,#ffffff 45%,#e7f8f3 100%)!important}
-#wtdSplash.wtd-splash:before{background:radial-gradient(circle at 15% 12%,rgba(27,166,221,.18),transparent 30%),radial-gradient(circle at 88% 18%,rgba(47,181,115,.16),transparent 28%),linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.72))!important}
-#wtdSplash .wtd-splash-inner{padding:28px 22px 150px!important}
-#wtdSplash .wtd-splash-logo{width:132px!important;height:132px!important;border-radius:38px!important;animation:wtdPremiumLogo 2.1s ease-in-out infinite!important;box-shadow:0 22px 50px rgba(5,82,126,.20),0 0 0 8px rgba(255,255,255,.75)!important}
-#wtdSplash .wtd-splash-logo img{border-radius:30px!important}
-#wtdSplash h2{animation:wtdTitleReveal .72s .12s both!important}
-#wtdSplash p{font-size:.78rem!important;letter-spacing:.08em!important;color:#245c78!important;animation:wtdTitleReveal .72s .25s both!important}
-#wtdSplash .wtd-splash-sub{animation:wtdTitleReveal .72s .38s both!important;margin-top:8px!important}
-#wtdSplash .wtd-splash-loader{margin-top:22px!important;width:178px!important;height:6px!important;background:rgba(5,111,157,.12)!important}
-#wtdSplash .wtd-splash-loader i{width:100%!important;transform-origin:left!important;background:linear-gradient(90deg,#0b8fc4,#19b777)!important;animation:wtdProgress 2.15s cubic-bezier(.2,.7,.25,1) forwards!important}
-#wtdSplash small{font-size:.7rem!important;line-height:1.5!important}
-#wtdSplash .wtd-splash-art:after{background:linear-gradient(180deg,#13a4ce,#076293)!important}
-@keyframes wtdPremiumLogo{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.025)}}
-@keyframes wtdTitleReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@keyframes wtdProgress{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
-</style>
-<!-- wtd-v1854-premium-opening-content removed in Build 22.8 QA: superseded by final opening controller -->
+<!-- Legacy premium opening removed in Build 22.9 Option 1 Final Clean -->
 
 <!-- Build #22 final hard-fix: loaded last so legacy V18 layers cannot override approved navigation/state. -->
 <style id="wtd-build22-hard-fix">
@@ -2800,30 +2784,11 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 #drawingModal.show #drawingImage{display:block!important;transform-origin:center center!important}
 @media(max-width:430px){.wtd-page-back{font-size:12px!important;padding:7px 8px!important}.wtd-page-home{font-size:17px!important;padding:7px 9px!important}.wtd-page-header strong{font-size:12px!important}.lang-switch{max-width:132px!important}.top-actions{flex-wrap:wrap!important}.ref-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 </style>
-<script src="build22-fix.js?v=22.6"></script>
+<script src="build22-fix.js?v=22.9"></script>
 
 
-<style id="wtd-build22-6-approved-opening">
-/* Approved 8-screen reference authority — opening + compact home */
-#wtdSplash.wtd-splash{background:linear-gradient(180deg,#edf9ff 0%,#fff 58%,#eaf8ff 100%)!important;color:#123b61!important}
-#wtdSplash:before{content:""!important;position:absolute!important;inset:0!important;background:radial-gradient(circle at 50% 16%,rgba(16,151,217,.14),transparent 30%),linear-gradient(180deg,transparent 68%,rgba(5,132,194,.08))!important}
-#wtdSplash .wtd-splash-art,#wtdSplash .wtd-splash-wave,#wtdSplash .wtd-splash-badge,#wtdSplash .wtd-splash-kicker{display:none!important}
-#wtdSplash .wtd-splash-inner{padding:24px 20px!important;width:min(94vw,430px)!important}
-#wtdSplash .wtd-splash-logo{width:148px!important;height:148px!important;margin:0 auto 18px!important;padding:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;animation:wtdApprovedFloat 2.2s ease-in-out infinite!important}
-#wtdSplash .wtd-splash-logo img{width:100%!important;height:100%!important;object-fit:contain!important;border-radius:0!important}
-#wtdSplash h2{font-size:clamp(2rem,9vw,2.7rem)!important;line-height:1.02!important;margin:8px 0 10px!important;color:#0a3f79!important;letter-spacing:-.02em!important;text-shadow:none!important}
-#wtdSplash h2 span{color:#188c42!important}
-#wtdSplash p{font-size:.86rem!important;letter-spacing:.02em!important;color:#263f6b!important;margin:0 0 18px!important}
-#wtdSplash .wtd-splash-sub{font-size:.88rem!important;color:#226e8b!important;margin:6px 0 18px!important}
-#wtdSplash .wtd-splash-loader{width:min(74vw,240px)!important;height:9px!important;background:#cfd9df!important;border-radius:99px!important;margin:18px auto 0!important}
-#wtdSplash .wtd-splash-loader i{height:100%!important;border-radius:99px!important;background:#0b83d8!important;animation:wtdApprovedLoad 2.35s linear forwards!important}
-#wtdSplash small{font-size:.78rem!important;color:#4c6a7d!important;margin-top:14px!important;line-height:1.5!important}
-#wtdSplash .approved-final-art{width:210px;height:210px;margin:12px auto 16px;border-radius:50%;position:relative;background:radial-gradient(circle at 42% 38%,#e9fbff 0 35%,#6fd0f0 36% 42%,#168bc9 43% 51%,#e9fbff 52% 100%);box-shadow:0 18px 44px rgba(6,100,154,.17)}
-#wtdSplash .approved-final-art:before{content:"💧";position:absolute;inset:23px;display:grid;place-items:center;font-size:86px;filter:drop-shadow(0 9px 10px rgba(4,90,145,.18))}
-#wtdSplash .approved-final-art:after{content:"🌿";position:absolute;right:-10px;bottom:18px;font-size:52px;transform:rotate(-12deg)}
-@keyframes wtdApprovedFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes wtdApprovedLoad{from{width:4%}to{width:100%}}
-
+<style id="wtd-build22-approved-interface">
+/* Build 22.9 Option 1 Final Clean — approved compact home/detail/drawing authority */
 #wtdHome1852{max-width:620px!important;margin:0 auto!important;padding:8px 10px calc(var(--wtd-final-nav-h,84px) + 14px)!important;background:#f5fbff!important;min-height:100dvh!important}
 .ref-home-head{display:grid!important;grid-template-columns:44px minmax(0,1fr) 44px!important;align-items:center!important;gap:7px!important;padding:5px 2px 8px!important}
 .ref-menu,.ref-bell{width:40px!important;height:40px!important;border:0!important;background:transparent!important;color:#174e76!important;font-size:24px!important;padding:0!important}
@@ -2844,10 +2809,10 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 #drawingModal.show .drawing-view{padding-top:8px!important}.drawing-actions button{font-size:0!important}.drawing-actions button small{display:none!important}
 @media(max-width:370px){.ref-tools{grid-template-columns:repeat(3,minmax(0,1fr))!important}.ref-home-banner b{font-size:17px!important}.wtd-page-header{grid-template-columns:70px minmax(0,1fr) 48px!important}.wtd-page-back{min-width:66px!important;font-size:11px!important}}
 </style>
-<!-- wtd-build22-6-approved-opening-js removed in Build 22.8 QA: superseded by final opening controller -->
+<!-- Legacy Build 22.6 opening controller removed; Option 1 is the only opening authority. -->
 
-<style id="wtd-build22-4-final-cleanup">
-/* Build 22.4 final cleanup: authoritative last layer */
+<style id="wtd-build22-9-option1-final-cleanup">
+/* Build 22.9 Option 1 final cleanup: authoritative interface layer */
 #catalogue,#fixedCatalogueBtn,.catalogue-card{display:initial!important}
 #wtdCatalogueFinal{position:fixed;inset:0;background:rgba(3,30,48,.62);z-index:65000;display:none;align-items:flex-end;justify-content:center;padding:12px}
 #wtdCatalogueFinal.show{display:flex!important}
@@ -2857,35 +2822,36 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 #wtdCatalogueFinal .cat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}#wtdCatalogueFinal .cat-item{background:#fff;border:1px solid #dce9ef;border-radius:13px;padding:12px;min-height:96px}#wtdCatalogueFinal .cat-item b{display:block;color:#0d5385;margin:4px 0;font-size:13px}#wtdCatalogueFinal .cat-item span{font-size:25px}#wtdCatalogueFinal .cat-item small{font-size:10px;line-height:1.35;color:#5b7180;display:block}
 .wtd-page-header{grid-template-columns:76px minmax(0,1fr) 62px!important}.wtd-page-back{min-width:70px!important;width:70px!important;padding:6px!important;background:transparent!important;border:0!important;border-radius:8px!important;color:#164f83!important;font-size:11px!important}.wtd-page-back:before{content:""!important}.wtd-page-header strong{text-align:center!important;font-size:14px!important}.wtd-page-home{font-size:0!important;min-width:56px!important;width:56px!important;background:#f7fbfd!important;color:#15527d!important;border:1px solid #d8e6ee!important}.wtd-page-home:after{content:"EN / हि";font-size:10px!important;font-weight:900!important}
 #plantDetailContent>.p52-plant-hero{background-image:linear-gradient(180deg,rgba(3,55,92,.04),rgba(3,55,92,.82))!important}
-#wtdSplash .approved-final-art{background:url('final-water-globe.svg') center/contain no-repeat!important;box-shadow:none!important;border-radius:0!important;width:230px!important;height:230px!important}
-#wtdSplash .approved-final-art:before,#wtdSplash .approved-final-art:after{content:none!important;display:none!important}
-#wtdSplash .opening-scene{height:min(38vh,310px);margin:8px -20px -4px;background:url('opening-water-scene.svg') center bottom/cover no-repeat;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(20,105,153,.08)}
-#wtdSplash .stage-icons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px;font-weight:800;color:#314f62}.stage-icons i{font-style:normal;font-size:22px;display:block;margin-bottom:3px}
 @media(max-width:380px){#wtdCatalogueFinal .cat-grid{grid-template-columns:1fr}.wtd-page-header{grid-template-columns:68px minmax(0,1fr) 58px!important}.wtd-page-back{min-width:64px!important;width:64px!important;font-size:10px!important}}
-/* Build 22.9 Option 7 — Water Journey opening */
-#wtdSplash.wtd-splash{background:linear-gradient(180deg,#e7f7ff 0%,#f9fdff 54%,#e7f7f3 100%)!important}
-#wtdSplash:before{background:radial-gradient(circle at 50% 4%,rgba(55,180,234,.18),transparent 32%),radial-gradient(circle at 88% 86%,rgba(39,177,108,.12),transparent 28%)!important}
-#wtdSplash .wtd-splash-inner{width:min(94vw,460px)!important;padding:18px 16px 22px!important}
-#wtdSplash .journey-title{font-size:14px;font-weight:900;letter-spacing:.03em;color:#174f78;margin:2px 0 10px}
-#wtdSplash .journey-art{width:100%;height:min(62vh,570px);background:url('water-journey.svg') center/contain no-repeat;margin:0 auto 2px;animation:wtdJourneyIn .7s ease both}
-#wtdSplash .journey-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 10px}
-#wtdSplash .journey-step{border-radius:12px;background:rgba(255,255,255,.84);border:1px solid #cfe6f1;padding:8px 4px;font-size:10px;line-height:1.2;font-weight:900;color:#26536e;box-shadow:0 6px 16px rgba(11,96,139,.07)}
-#wtdSplash .journey-step b{display:block;font-size:18px;margin-bottom:2px}
-#wtdSplash .journey-arrow{color:#108abb;font-size:18px;font-weight:900;align-self:center}
-#wtdSplash .journey-tag{font-size:16px!important;font-weight:900!important;color:#14844b!important;margin:8px 0 0!important}
-#wtdSplash .journey-stage2 .wtd-splash-logo{width:128px!important;height:128px!important;margin-bottom:8px!important}
-#wtdSplash .journey-stage2 h2{font-size:2.15rem!important;margin:4px 0 4px!important}
-#wtdSplash .journey-stage2 .wtd-splash-loader{width:min(72vw,250px)!important;height:8px!important;margin-top:15px!important}
-#wtdSplash .journey-stage3 .approved-final-art{width:150px!important;height:150px!important;margin:4px auto 5px!important;background:url('icon-512.png') center/contain no-repeat!important}
-#wtdSplash .journey-stage3 .approved-final-art:before,#wtdSplash .journey-stage3 .approved-final-art:after{display:none!important}
-#wtdSplash .journey-stage3 h2{font-size:1.8rem!important;line-height:1.08!important;margin:5px 0 8px!important}
-#wtdSplash .journey-stage3 p{font-size:.78rem!important;margin:0 0 8px!important;color:#315a71!important}
-#wtdSplash .journey-stage3 .wtd-splash-sub{font-size:.9rem!important;font-weight:900!important;color:#14844b!important;margin:8px 0 6px!important}
-@keyframes wtdJourneyIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
-@media(max-height:700px){#wtdSplash .journey-art{height:420px}#wtdSplash .journey-stage3 .approved-final-art{width:120px!important;height:120px!important}}
+/* Build 22.9 Option 1 — Minimal Premium Opening (FINAL) */
+#wtdSplash.wtd-splash{background:linear-gradient(180deg,#edf9ff 0%,#fff 56%,#eaf8ff 100%)!important;color:#123b61!important}
+#wtdSplash:before{background:radial-gradient(circle at 50% 5%,rgba(30,154,221,.16),transparent 32%),radial-gradient(circle at 82% 88%,rgba(39,177,108,.10),transparent 28%)!important}
+#wtdSplash .wtd-splash-art,#wtdSplash .wtd-splash-wave,#wtdSplash .wtd-splash-badge,#wtdSplash .wtd-splash-kicker{display:none!important}
+#wtdSplash .wtd-splash-inner{width:min(92vw,430px)!important;padding:24px 20px!important;text-align:center!important}
+#wtdSplash .minimal-logo{width:150px;height:150px;margin:0 auto 18px;background:url('icon-512.png') center/contain no-repeat;filter:drop-shadow(0 14px 24px rgba(6,90,139,.16));animation:wtdMinimalFloat 2.2s ease-in-out infinite}
+#wtdSplash .minimal-title{font-size:2rem;line-height:1.02;font-weight:950;color:#0b3c69;margin:5px 0 8px}
+#wtdSplash .minimal-title span{color:#168844}
+#wtdSplash .minimal-tagline{font-size:.78rem;font-weight:850;color:#37657c;margin:0 0 9px}
+#wtdSplash .minimal-dev{font-size:.72rem;font-weight:800;color:#587381;margin-top:18px}
+#wtdSplash .minimal-loading-ring{width:74px;height:74px;margin:6px auto 18px;border:8px solid #cfe4ef;border-top-color:#0b83d8;border-right-color:#18a77a;border-radius:50%;animation:wtdMinimalSpin .9s linear infinite}
+#wtdSplash .minimal-loading-text{font-size:1rem;font-weight:900;color:#164f75;margin-bottom:14px}
+#wtdSplash .minimal-progress{width:min(72vw,250px);height:8px;margin:0 auto;background:#d6e4eb;border-radius:99px;overflow:hidden}
+#wtdSplash .minimal-progress i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#0b83d8,#18a77a);transform-origin:left;animation:wtdMinimalProgress 1.8s linear forwards}
+#wtdSplash .minimal-welcome{font-size:.86rem;color:#456b7e;margin:4px 0 2px}
+#wtdSplash .minimal-welcome-title{font-size:1.9rem;line-height:1.06;font-weight:950;color:#0b3c69;margin:4px 0 12px}
+#wtdSplash .minimal-welcome-sub{font-size:.82rem;line-height:1.35;font-weight:800;color:#386479;margin:0 auto 18px;max-width:310px}
+#wtdSplash .minimal-start{display:inline-flex;align-items:center;justify-content:center;min-width:210px;min-height:48px;border:0;border-radius:999px;padding:12px 28px;background:linear-gradient(135deg,#078ce2,#056bc1);box-shadow:0 11px 24px rgba(4,112,194,.22);color:#fff;font-size:1rem;font-weight:950;touch-action:manipulation}
+#wtdSplash .minimal-start:active{transform:scale(.98)}
+#wtdSplash .minimal-stage{animation:wtdMinimalIn .34s ease both}
+@keyframes wtdMinimalFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wtdMinimalSpin{to{transform:rotate(360deg)}}
+@keyframes wtdMinimalProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes wtdMinimalIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-height:650px){#wtdSplash .minimal-logo{width:118px;height:118px;margin-bottom:10px}#wtdSplash .minimal-title{font-size:1.65rem}#wtdSplash .minimal-dev{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){#wtdSplash .minimal-logo,#wtdSplash .minimal-loading-ring,#wtdSplash .minimal-progress i,#wtdSplash .minimal-stage{animation:none!important}}
 
 </style>
-<script id="wtd-build22-4-final-cleanup-js">
+<script id="wtd-build22-9-option1-final-controller">
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -2913,15 +2879,19 @@ function safeAI(){
 }
 function opening(){
  const s=$('wtdSplash'),i=s&&s.querySelector('.wtd-splash-inner');if(!i)return;
- const stage1=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage1';i.innerHTML='<div class="journey-art" aria-hidden="true"></div><div class="journey-tag">For a Cleaner • Healthier Tomorrow</div><small>V18.5.5 &nbsp;|&nbsp; Build 22.9</small>'};
- const stage2=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage2';i.innerHTML='<div class="wtd-splash-logo"><img src="icon-512.png" alt="Water Treatment Doctor"></div><h2>Water Treatment<br><span>Doctor</span></h2><p>SMART WATER ENGINEERING<br><small style="margin:4px 0 0">ALL PLANTS • ALL SOLUTIONS</small></p><div class="wtd-splash-loader"><i></i></div><div class="wtd-splash-sub">Preparing your engineering tools...</div><small>Design • Calculate • Diagnose • Learn • Grow</small>'};
- const stage3=()=>{if(!i.isConnected)return;i.className='wtd-splash-inner journey-stage3';i.innerHTML='<div class="approved-final-art" aria-hidden="true"></div><div style="font-size:.85rem;color:#42677c">Welcome to</div><h2>Water Treatment Doctor</h2><p>Your Complete Water Treatment Engineering Companion</p><div style="font-size:.69rem;font-weight:900;color:#31566e">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP</div><div class="wtd-splash-sub">Clean Water • Better Tomorrow</div><small>V18.5.5 &nbsp;|&nbsp; Build 22.9<br><b>Developed by Vinay Kumar Singh</b></small>'};
- stage1();setTimeout(stage2,1650);setTimeout(stage3,3250);
+ let finished=false;
+ const render=html=>{if(!i.isConnected||finished)return;i.className='wtd-splash-inner minimal-stage';i.innerHTML=html};
+ const stage1=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-title">Water Treatment<br><span>Doctor</span></div><div class="minimal-tagline">Clean Water • Healthier Tomorrow</div><div class="minimal-dev">Developed by<br><b>Vinay Kumar Singh</b></div>');
+ const stage2=()=>render('<div class="minimal-loading-ring" aria-hidden="true"></div><div class="minimal-loading-text">Preparing Your<br>Water Treatment Solution...</div><div class="minimal-progress"><i></i></div><div class="minimal-dev">Please Wait...</div>');
+ const stage3=()=>{render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-welcome">Welcome to</div><div class="minimal-welcome-title">Water Treatment Doctor</div><div class="minimal-welcome-sub">Smart Tools for Cleaner Water<br>and a Healthier Tomorrow</div><button type="button" class="minimal-start" id="wtdGetStarted">Get Started</button><div class="minimal-dev">Developed by <b>Vinay Kumar Singh</b></div>');const b=$('wtdGetStarted');if(b)b.onclick=finish;};
+ const finish=()=>{if(finished)return false;finished=true;try{window.wtdCloseOpening?.()}catch(_e){s.classList.add('hide');setTimeout(()=>s.remove(),380)}setTimeout(()=>window.goHome?.(),50);return false};
+ stage1();setTimeout(stage2,1150);setTimeout(stage3,2950);
 }
 function init(){catalogue();langButton();safeAI();opening();}
 document.addEventListener('DOMContentLoaded',init,{once:true});if(document.readyState!=='loading')init();
 })();
 </script>
+<!-- BUILD22_9_OPTION1_FINAL_CLEAN_LOCK: single approved opening + deterministic final controllers -->
 <link rel="stylesheet" href="build22-final-authoritative.css?v=22.9">
 <script src="build22-final-authoritative.js?v=22.9"></script>
 </body>

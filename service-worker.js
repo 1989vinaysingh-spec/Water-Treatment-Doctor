@@ -1,7 +1,7 @@
-const CACHE='wtd-v18.5.5-build22-9-water-journey-final';
+const CACHE='wtd-v18.5.5-build22-9-option1-final-clean-v2';
 const CORE=[
   './styles.css','./complete-bilingual.js','./bilingual.js','./build22-fix.js','./build22-final-authoritative.css','./build22-final-authoritative.js',
-  './manifest.webmanifest','./water-journey.svg','./logo.jpg','./icon-192.png','./icon-512.png','./privacy-policy.html',
+  './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png','./privacy-policy.html',
   './drawings/stp.png','./drawings/etp.png','./drawings/cetp.png','./drawings/ctp.png','./drawings/ro.png','./drawings/wtp.png','./drawings/wsp.png','./drawings/zld.png',
   './drawings/uf.png','./drawings/nf.png','./drawings/soft.png','./drawings/dm.png','./drawings/edi.png','./drawings/mbbr.png','./drawings/sbr.png','./drawings/mbr.png',
   './drawings/asp.png','./drawings/mee.png','./drawings/atfd.png','./drawings/cooling.png','./drawings/boiler.png','./drawings/desal.png'

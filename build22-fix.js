@@ -67,7 +67,7 @@
     const box=$('plantDetailContent'); if(!box) return;
     const key=String(code||'').trim().toUpperCase();
     if(box.dataset.build22Plant===key && box.querySelector('.p52-tabs')) return;
-    const db=(typeof window.modules==='object'&&window.modules)||{}; const plant=db[key]||{};
+    const db=(typeof modules==='object'&&modules)||{}; const plant=db[key]||{};
     const raw=[...box.children];
     const panels={overview:document.createElement('div'),process:document.createElement('div'),design:document.createElement('div'),drawing:document.createElement('div'),om:document.createElement('div')};
     Object.values(panels).forEach(p=>p.className='p52-panel'); panels.overview.classList.add('active');
@@ -92,7 +92,7 @@
     nav.innerHTML='<button class="active" data-k="overview">Overview</button><button data-k="process">Process</button><button data-k="design">Design</button><button data-k="drawing">Drawing</button><button data-k="om">O&amp;M</button>';
     const smartBtn=document.createElement('button'); smartBtn.type='button'; smartBtn.className='p52-design-open'; smartBtn.textContent='Open '+key+' Smart Design / स्मार्ट डिजाइन'; smartBtn.onclick=()=>window.openSmartDesignForPlant(key); panels.design.prepend(smartBtn);
     const drawingImg=panels.drawing.querySelector('img.plant-drawing');
-    const drawingSrc=drawingImg?.getAttribute('src') || ((typeof window.plantDrawings==='object'&&window.plantDrawings[key])||('drawings/'+key.toLowerCase()+'.png'));
+    const drawingSrc=drawingImg?.getAttribute('src') || ((typeof plantDrawings==='object'&&plantDrawings[key])||('drawings/'+key.toLowerCase()+'.png'));
     const full=document.createElement('button'); full.type='button'; full.className='p52-design-open'; full.textContent='Full Screen Drawing / पूरी ड्रॉइंग'; full.onclick=()=>window.openDrawing(key,drawingSrc); panels.drawing.prepend(full);
     box.append(hero,nav,panels.overview,panels.process,panels.design,panels.drawing,panels.om);
     nav.querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>{
@@ -102,7 +102,7 @@
   }
   const renderPlant=window.openModule;
   window.openPlantByCode=function(code){
-    const key=String(code||'').trim().toUpperCase(); const db=(typeof window.modules==='object'&&window.modules)||{}; const plant=db[key];
+    const key=String(code||'').trim().toUpperCase(); const db=(typeof modules==='object'&&modules)||{}; const plant=db[key];
     if(!plant) return false;
     window.openAppPage('plants',key+' — '+(plant.name||'Plant'));
     const box=$('plantDetailContent'); if(box){delete box.dataset.tabbed;delete box.dataset.tabbedCode;delete box.dataset.build22Plant;}
@@ -171,7 +171,7 @@
     drawingScale=1; img.style.transform='scale(1)';
     const fallback='drawings/'+key.toLowerCase()+'.png';
     img.onerror=()=>{if(!img.src.endsWith('/'+fallback) && !img.src.endsWith(fallback)){img.onerror=null;img.src=fallback;}};
-    img.src=src||((typeof window.plantDrawings==='object'&&window.plantDrawings[key])||fallback);
+    img.src=src||((typeof plantDrawings==='object'&&plantDrawings[key])||fallback);
     modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('wtd-modal-open');
     let actions=modal.querySelector('.drawing-actions');
     if(!actions){actions=document.createElement('div');actions.className='drawing-actions';actions.innerHTML='<button type="button" onclick="wtdDrawingZoom(-0.2)" aria-label="Zoom out">−</button><button type="button" onclick="wtdDrawingZoom(0.2)" aria-label="Zoom in">+</button><button type="button" class="drawing-download-btn" onclick="wtdDownloadDrawing()" aria-label="Download drawing">⇩ <small>Save</small></button><button type="button" onclick="wtdDrawingReset()" aria-label="Reset">1:1</button>';modal.querySelector('.drawing-modal-box')?.appendChild(actions);}
@@ -183,7 +183,7 @@
   function ensureProfileModal(){
     let m=$('appOverviewModal'); if(m) return m;
     m=document.createElement('div'); m.id='appOverviewModal'; m.className='modal'; m.setAttribute('aria-hidden','true');
-    m.innerHTML='<div class="modal-box"><button type="button" class="close" onclick="closeAppOverview()" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="icon-512.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:22px;object-fit:cover"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.5</p><p><b>Developer:</b> Vinay Kumar Singh</p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
+    m.innerHTML='<div class="modal-box"><button type="button" class="close" onclick="closeAppOverview()" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="final-round-logo.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:50%;object-fit:contain"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.5</p><p><b>Developer:</b> Vinay Kumar Singh</p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
     document.body.appendChild(m); return m;
   }
   // Profile modal must always sit above the page shell and remain tappable.

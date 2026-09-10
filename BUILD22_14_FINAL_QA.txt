@@ -1,0 +1,25 @@
+Water Treatment Doctor V18.5.5 Build 22.14 FINAL CONSOLIDATED
+
+Source base: Build 22.13 RAW JS RENDER FIXED
+
+Consolidated changes:
+- Preserved Build 22.13 raw-JavaScript rendering fix.
+- Added last-loaded interaction authority for Home/Main buttons.
+- Locked Home to compact non-scrolling Android viewport.
+- Plant cards now directly open the selected plant detail.
+- All Plants restores full plant module list.
+- Bottom navigation rebuilt: Home / Plants / Tools / Drawings / Profile.
+- Added direct Chemical Dosing shortcut on Home.
+- Hardened page Back and language control spacing/behavior.
+- Hardened fullscreen drawing close control and viewport.
+- Preserved Smart Design, dosing, AI guided fallback, drawing download bridge, bilingual assets and plant content.
+- Updated Android workflow versionName/versionCode to Build 22.14.
+
+QA completed:
+- All inline JavaScript syntax checked: PASS.
+- Final Build 22.14 JavaScript syntax checked: PASS.
+- Script tag open/close counts balanced: PASS.
+- Required main UI IDs present: PASS.
+- ZIP integrity test: PASS.
+
+Next: Upload/replace these files in GitHub main branch, run Build Water Treatment Doctor Android, install fresh APK, then test installed app.

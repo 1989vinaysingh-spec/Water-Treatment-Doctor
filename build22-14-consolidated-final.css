@@ -1,0 +1,18 @@
+/* Build 22.14 final compact/mobile authority */
+body:not(.wtd-app-page-open):not(.wtd-modal-open){overflow:hidden!important;touch-action:manipulation!important}
+body:not(.wtd-app-page-open):not(.wtd-modal-open) #wtdHome1852{overflow:hidden!important;overscroll-behavior:none!important}
+#modules{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+body.plant-page-open #modules,body.plant-page-open #plants>h3{display:none!important}
+body.plant-page-open #plantDetail{display:block!important;border:0!important;box-shadow:none!important;margin:0!important;padding:0 0 18px!important}
+.b2212-quick{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.b2212-quick button{min-width:0!important;font-size:7px!important}
+.wtd-page-header{grid-template-columns:62px minmax(0,1fr) 58px!important;gap:4px!important}
+.wtd-page-back{min-width:58px!important;width:58px!important;overflow:hidden!important}
+.wtd-page-home{min-width:54px!important;width:54px!important;white-space:nowrap!important;overflow:hidden!important;font-size:10px!important}
+.wtd-final-drawing-close{position:fixed!important;left:8px!important;top:max(7px,env(safe-area-inset-top,0px))!important;z-index:50020!important;width:38px!important;height:38px!important;border:1px solid #d8e4ec!important;border-radius:9px!important;background:#fff!important;color:#0b527d!important;font-size:25px!important;font-weight:900!important;line-height:1!important;padding:0!important;display:grid!important;place-items:center!important}
+#drawingModal.show{display:flex!important;z-index:50000!important}
+#drawingModal.show .drawing-modal-box{width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;border-radius:0!important;margin:0!important}
+#drawingModal.show .drawing-view{height:calc(100dvh - 64px)!important;overflow:auto!important;display:grid!important;place-items:center!important}
+#drawingModal.show #drawingImage{max-width:100%!important;max-height:calc(100dvh - 82px)!important;width:auto!important;height:auto!important}
+@media(max-height:720px){.b2212-quick{display:none!important}.b2212-home{grid-template-rows:auto auto minmax(0,1fr) auto auto!important}}
+@media(max-width:360px){.b2212-quick{grid-template-columns:repeat(5,minmax(0,1fr))!important}.b2212-quick span{font-size:14px!important}.b2212-quick button{font-size:6.4px!important}}

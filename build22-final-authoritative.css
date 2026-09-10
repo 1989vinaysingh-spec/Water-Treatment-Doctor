@@ -30,3 +30,13 @@ body.wtd-modal-open .mobile-bottom-nav{visibility:hidden!important;pointer-event
 
 .p52-tabs{position:sticky!important;top:54px!important;z-index:20!important;background:#fff!important}.p52-tabs button{touch-action:manipulation!important}.p52-panel{min-width:0!important}.plant-drawing{width:100%!important;max-width:100%!important;height:auto!important;object-fit:contain!important}
 @media(max-width:360px){.wtd-page-header{grid-template-columns:48px minmax(0,1fr) 54px!important}.wtd-page-back{width:43px!important;min-width:43px!important}.wtd-page-home{width:51px!important;min-width:51px!important;font-size:8px!important}.wtd-page-header strong{font-size:12px!important}.mobile-bottom-nav .bottom-nav-item b{font-size:8px!important}}
+
+/* Build 22.10 main dashboard lock: approved compact 3-column plant grid. */
+#wtdHome1852 .ref-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+#wtdHome1852 .ref-plant{min-height:88px!important;display:block!important;text-align:center!important;padding:8px 4px!important}
+#wtdHome1852 .ref-plant .ico{display:grid!important;width:38px!important;height:38px!important;margin:0 auto 4px!important;font-size:21px!important}
+#wtdHome1852 .ref-plant b{font-size:13px!important}
+#wtdHome1852 .ref-plant small{font-size:8px!important;line-height:1.1!important}
+#wtdHome1852 .ref-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#wtdHome1852 .ref-hero{display:block!important;height:112px!important;margin:7px 0 10px!important}
+@media(max-width:360px){#wtdHome1852 .ref-grid{gap:6px!important}#wtdHome1852 .ref-plant{min-height:82px!important;padding:6px 3px!important}#wtdHome1852 .ref-plant b{font-size:12px!important}}

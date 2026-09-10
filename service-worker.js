@@ -1,6 +1,6 @@
-const CACHE='wtd-v18.5.5-build22-9-option1-final-clean-v2';
+const CACHE='wtd-v18.5.5-build22-12-home-final-v1';
 const CORE=[
-  './styles.css','./complete-bilingual.js','./bilingual.js','./build22-fix.js','./build22-final-authoritative.css','./build22-final-authoritative.js',
+  './styles.css','./complete-bilingual.js','./bilingual.js','./build22-fix.js','./build22-final-authoritative.css','./build22-final-authoritative.js','./build22-12-home-final.css','./build22-12-home-final.js',
   './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png','./privacy-policy.html',
   './drawings/stp.png','./drawings/etp.png','./drawings/cetp.png','./drawings/ctp.png','./drawings/ro.png','./drawings/wtp.png','./drawings/wsp.png','./drawings/zld.png',
   './drawings/uf.png','./drawings/nf.png','./drawings/soft.png','./drawings/dm.png','./drawings/edi.png','./drawings/mbbr.png','./drawings/sbr.png','./drawings/mbr.png',
@@ -12,7 +12,7 @@ self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
   const url=new URL(e.request.url);
   // HTML and final control JS/CSS are network-first so an older cached UI cannot override a fresh build.
-  if(e.request.mode==='navigate'||/index\.html$/.test(url.pathname)||/build22-final-authoritative\.(js|css)$/.test(url.pathname)){
+  if(e.request.mode==='navigate'||/index\.html$/.test(url.pathname)||/(build22-final-authoritative|build22-12-home-final)\.(js|css)$/.test(url.pathname)){
     e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r;}).catch(()=>caches.match(e.request).then(x=>x||caches.match('./index.html'))));return;
   }
   e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r;})));

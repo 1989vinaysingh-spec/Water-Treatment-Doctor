@@ -27,7 +27,7 @@ function hardenHeader(){
 function ensureProfile(){
   let m=$('appOverviewModal');
   if(!m){m=document.createElement('div');m.id='appOverviewModal';m.className='modal';document.body.appendChild(m);}
-  if(!m.querySelector('.modal-box')) m.innerHTML='<div class="modal-box"><button type="button" class="close" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="icon-512.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:22px;object-fit:cover"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.5 • Build 22.9</p><p><b>Developed by Vinay Kumar Singh</b></p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
+  if(!m.querySelector('.modal-box')) m.innerHTML='<div class="modal-box"><button type="button" class="close" aria-label="Close">×</button><div style="text-align:center;padding:10px 4px"><img src="final-round-logo.png" alt="Water Treatment Doctor" style="width:88px;height:88px;border-radius:50%;object-fit:contain"><h2 style="margin:12px 0 4px">Water Treatment Doctor</h2><p class="muted">Version 18.5.5 • Build 22.9</p><p><b>Developed by Vinay Kumar Singh</b></p><p>Design • Calculate • Learn • Solve</p><p class="muted">STP • ETP • CETP • WTP • RO • UF • ZLD • WSP and more</p></div></div>';
   const c=m.querySelector('.close');if(c)c.onclick=window.closeAppOverview;
   return m;
 }
@@ -63,7 +63,7 @@ let scale=1;
 function applyScale(){const img=$('drawingImage');if(img)img.style.transform='scale('+scale+')';}
 window.wtdDrawingZoom=d=>{scale=Math.max(.5,Math.min(3,scale+Number(d||0)));applyScale();return false;};
 window.wtdDrawingReset=()=>{scale=1;applyScale();return false;};
-window.openDrawing=function(code,src){const key=String(code||'PLANT').toUpperCase(),m=$('drawingModal'),img=$('drawingImage');if(!m||!img)return false;const title=$('drawingTitle');if(title)title.textContent=key+' Drawing / ड्रॉइंग';scale=1;applyScale();const fallback='drawings/'+key.toLowerCase()+'.png';img.onerror=()=>{if(!String(img.getAttribute('src')||'').endsWith(fallback)){img.onerror=null;img.src=fallback;}};img.src=src||(window.plantDrawings?.[key]||fallback);m.classList.add('show');m.setAttribute('aria-hidden','false');document.body.classList.add('wtd-modal-open');let a=m.querySelector('.drawing-actions');if(!a){a=document.createElement('div');a.className='drawing-actions';a.innerHTML='<button type="button" aria-label="Zoom out">−</button><button type="button" aria-label="Zoom in">+</button><button type="button" aria-label="Save drawing">⇩</button><button type="button" aria-label="Reset zoom">1:1</button>';m.querySelector('.drawing-modal-box')?.appendChild(a);}const bs=a.querySelectorAll('button');if(bs[0])bs[0].onclick=()=>window.wtdDrawingZoom(-.2);if(bs[1])bs[1].onclick=()=>window.wtdDrawingZoom(.2);if(bs[2])bs[2].onclick=window.wtdDownloadDrawing;if(bs[3])bs[3].onclick=window.wtdDrawingReset;return true;};
+window.openDrawing=function(code,src){const key=String(code||'PLANT').toUpperCase(),m=$('drawingModal'),img=$('drawingImage');if(!m||!img)return false;const title=$('drawingTitle');if(title)title.textContent=key+' Drawing / ड्रॉइंग';scale=1;applyScale();const fallback='drawings/'+key.toLowerCase()+'.png';img.onerror=()=>{if(!String(img.getAttribute('src')||'').endsWith(fallback)){img.onerror=null;img.src=fallback;}};img.src=src||((typeof plantDrawings==='object'&&plantDrawings[key])||fallback);m.classList.add('show');m.setAttribute('aria-hidden','false');document.body.classList.add('wtd-modal-open');let a=m.querySelector('.drawing-actions');if(!a){a=document.createElement('div');a.className='drawing-actions';a.innerHTML='<button type="button" aria-label="Zoom out">−</button><button type="button" aria-label="Zoom in">+</button><button type="button" aria-label="Save drawing">⇩</button><button type="button" aria-label="Reset zoom">1:1</button>';m.querySelector('.drawing-modal-box')?.appendChild(a);}const bs=a.querySelectorAll('button');if(bs[0])bs[0].onclick=()=>window.wtdDrawingZoom(-.2);if(bs[1])bs[1].onclick=()=>window.wtdDrawingZoom(.2);if(bs[2])bs[2].onclick=window.wtdDownloadDrawing;if(bs[3])bs[3].onclick=window.wtdDrawingReset;return true;};
 window.closeDrawing=function(){const m=$('drawingModal');if(m){m.classList.remove('show');m.setAttribute('aria-hidden','true');}document.body.classList.remove('wtd-modal-open');scale=1;applyScale();return false;};
 window.wtdDownloadDrawing=async function(){const img=$('drawingImage');if(!img?.src)return false;const title=(($('drawingTitle')?.textContent||'plant-drawing').replace(/[^a-z0-9_-]+/gi,'_'))+'.png';let path='';try{const u=new URL(img.src,location.href);path=u.pathname.replace(/^.*?android_asset\//,'').replace(/^\//,'');}catch(_){path=img.getAttribute('src')||'';}
  if(window.AndroidDownloads&&typeof window.AndroidDownloads.saveAsset==='function'&&path){try{window.AndroidDownloads.saveAsset(path,title);return false;}catch(_){}}
@@ -99,7 +99,18 @@ function lockBottomNav(){
     b.onclick=e=>{e.preventDefault();act();setActive(b);return false;}; nav.appendChild(b);
   });
 }
-function finalQA(){lockBottomNav();
+function hardenHomeAndPlants(){
+  // Keep the router from build22-fix (it owns plant tab construction); only harden Main/Home state here.
+  window.goHome=function(){
+    window.closeAppPage?.();
+    const d=$('plantDetail');if(d){d.hidden=true;d.classList.remove('open');}
+    $('plants')?.classList.remove('detail-view');
+    const h=$('wtdHome1852');if(h){h.hidden=false;h.style.display='block';}
+    document.querySelectorAll('.mobile-bottom-nav .bottom-nav-item').forEach(x=>x.classList.toggle('active',x.dataset.go==='home'));
+    window.scrollTo(0,0);return false;
+  };
+}
+function finalQA(){hardenHomeAndPlants();lockBottomNav();
   // Ensure modal close buttons are bound after any legacy HTML replacements.
   const pm=$('appOverviewModal');pm?.querySelector('.close')?.addEventListener('click',e=>{e.preventDefault();window.closeAppOverview?.();});
   const dm=$('drawingModal');dm?.querySelector('.close')?.addEventListener('click',e=>{e.preventDefault();window.closeDrawing?.();});

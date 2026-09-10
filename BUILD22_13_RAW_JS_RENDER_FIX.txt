@@ -1,0 +1,2 @@
+Water Treatment Doctor V18.5.5 Build 22.13
+Fix: removed accidental Build 22.12 stylesheet/script injection from the printable-report JavaScript template literal. The literal </script> prematurely terminated the main script in Android WebView and caused JavaScript source code to render visibly on the page. The intended Build 22.12 Home CSS/JS remains loaded once at the actual end of index.html.

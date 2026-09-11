@@ -1,0 +1,11 @@
+Water Treatment Doctor V18.5.5 — Build 22.16 FINAL FIX
+Base: Water_Treatment_Doctor_V18_5_5_BUILD22_15_FINAL_LOGO.zip only.
+
+Consolidated fixes:
+1. Bottom navigation hidden during Splash / Loading / Welcome / Get Started opening flow; shown only after app Home opens.
+2. Plant detail routed content centered with equal mobile left/right padding.
+3. Back to Plants / Android-style in-app back behavior hardened to return to compact All Plants without white screen.
+4. All Plants forced to compact two-column module grid; plant detail layer hidden until one plant is selected.
+5. Visible AI Troubleshooting + Guided Troubleshooting shortcuts added inside each plant detail page; existing Home AI/Troubleshooting access preserved.
+6. Drawing viewer rebuilt as true full-viewport fit-to-screen surface with bottom nav hidden, centered image, zoom/reset/download controls and reliable close.
+7. Previous approved circular final logo and Build 22.15 opening/interface preserved.

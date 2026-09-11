@@ -1,0 +1,38 @@
+/* Build 22.16 — final mobile authority, loaded last */
+body.wtd-opening-active{padding-bottom:0!important;overflow:hidden!important}
+body.wtd-opening-active .mobile-bottom-nav{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body.wtd-opening-active #wtdPageShell{display:none!important}
+
+/* Keep all routed content centered and symmetric on mobile. */
+.wtd-page-content{box-sizing:border-box!important;width:100%!important;max-width:760px!important;margin:0 auto!important;padding-left:12px!important;padding-right:12px!important}
+#plants,#plantDetail,#plantDetailContent{box-sizing:border-box!important;width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}
+body.plant-page-open #plantDetail{padding:0 0 22px!important}
+#plantDetailContent>.p52-plant-hero,#plantDetailContent>.p52-tabs,#plantDetailContent>.p52-panel{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+#plantDetailContent>.p52-panel{padding-left:0!important;padding-right:0!important}
+
+/* Compact All Plants: grid only, no mixed detail layer. */
+#plants:not(.detail-view) #plantDetail{display:none!important}
+#plants:not(.detail-view) #modules{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important}
+#plants:not(.detail-view) #modules .module{min-width:0!important;margin:0!important}
+
+/* AI access inside every plant detail. */
+.wtd-plant-ai-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin:12px 0!important}
+.wtd-plant-ai-row button{min-height:48px!important;border:1px solid #d5e4ed!important;border-radius:12px!important;background:#fff!important;color:#114f78!important;font-weight:900!important;padding:9px!important}
+
+/* Drawing viewer owns the whole viewport; bottom nav is hidden while open. */
+body.wtd-drawing-open{padding-bottom:0!important;overflow:hidden!important}
+body.wtd-drawing-open .mobile-bottom-nav{display:none!important}
+#drawingModal.show{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;padding:0!important;margin:0!important;display:flex!important;align-items:stretch!important;justify-content:stretch!important;background:#f2f7fa!important;z-index:60000!important}
+#drawingModal.show .drawing-modal-box{position:relative!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:max(54px,calc(env(safe-area-inset-top,0px) + 48px)) 8px calc(74px + env(safe-area-inset-bottom,0px))!important;border-radius:0!important;background:#f7fbfd!important;overflow:hidden!important;box-sizing:border-box!important}
+#drawingModal.show #drawingTitle{position:fixed!important;top:max(10px,env(safe-area-inset-top,0px))!important;left:54px!important;right:54px!important;margin:0!important;height:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;font-size:14px!important;color:#174a6b!important;z-index:60010!important;pointer-events:none!important}
+#drawingModal.show .drawing-view{width:100%!important;height:100%!important;min-height:0!important;overflow:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#fff!important;border:1px solid #dce8ef!important;border-radius:12px!important;padding:8px!important;box-sizing:border-box!important;touch-action:pan-x pan-y pinch-zoom!important}
+#drawingModal.show #drawingImage{display:block!important;max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;object-fit:contain!important;margin:auto!important;transform-origin:center center!important;background:#fff!important}
+#drawingModal.show .drawing-actions{position:fixed!important;left:8px!important;right:8px!important;bottom:max(8px,env(safe-area-inset-bottom,0px))!important;height:52px!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:8px!important;padding:5px!important;background:rgba(255,255,255,.97)!important;border:1px solid #d7e4ec!important;border-radius:13px!important;z-index:60015!important;box-shadow:0 5px 18px rgba(15,58,86,.12)!important}
+#drawingModal.show .drawing-actions button{border:0!important;border-radius:9px!important;background:#eaf4fa!important;color:#0d527d!important;font-size:18px!important;font-weight:900!important}
+#drawingModal.show .close{display:none!important}
+.wtd-final-drawing-close{position:fixed!important;left:8px!important;top:max(8px,env(safe-area-inset-top,0px))!important;z-index:60020!important}
+
+@media(max-width:380px){
+ .wtd-page-content{padding-left:9px!important;padding-right:9px!important}
+ .wtd-plant-ai-row{grid-template-columns:1fr!important}
+}

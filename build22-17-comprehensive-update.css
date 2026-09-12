@@ -1,0 +1,22 @@
+/* Build 22.17 — centered plant pages, readable engineering reference, robust drawing viewer */
+#plants.detail-view{width:100%!important;max-width:100%!important;margin:0 auto!important;padding:0!important;overflow-x:hidden!important}
+#plants.detail-view>#plantDetail{width:100%!important;max-width:760px!important;margin:0 auto!important;padding:0 12px 28px!important;box-sizing:border-box!important;background:#eef7fc!important}
+#plantDetailContent{width:100%!important;max-width:736px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box!important}
+#plantDetailContent>.p52-plant-hero,#plantDetailContent>.p52-tabs{width:100%!important;max-width:736px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+#plantDetailContent>.p52-summary,#plantDetailContent>.p52-panel{width:calc(100% - 16px)!important;max-width:720px!important;margin:12px auto!important;box-sizing:border-box!important}
+#plantDetailContent>.wtd-plant-ai-row{width:calc(100% - 16px)!important;max-width:720px!important;margin:12px auto!important}
+.p52-panel .table-wrap,.wtd-ops-card .table-wrap{width:100%!important;max-width:100%!important;overflow:auto!important;-webkit-overflow-scrolling:touch}
+.wtd-ops-card{background:#fff;border:1px solid #d7e5ed;border-radius:14px;padding:13px;margin:12px 0;box-shadow:0 5px 16px rgba(15,72,105,.07)}
+.wtd-ops-card h4{margin:0 0 8px;color:#124d71}.wtd-ops-card h5{margin:14px 0 7px;color:#174d6b}.wtd-ops-card ul,.wtd-ops-card ol{padding-left:20px}.wtd-ops-card li{margin:6px 0;line-height:1.45}
+.wtd-param-table{min-width:690px;border-collapse:collapse;width:100%}.wtd-param-table th,.wtd-param-table td{padding:8px;border:1px solid #d9e5ec;vertical-align:top;text-align:left;font-size:12px}.wtd-param-table th{background:#edf6fb;color:#143f5a}
+.wtd-compliance-note{padding:10px 11px;border-radius:10px;background:#fff8e8;border:1px solid #f2d79b;color:#684b0b;font-size:12px;line-height:1.45}
+.wtd-design-schedule{margin-top:14px;padding:12px;border:1px solid #d3e3eb;border-radius:12px;background:#fff}.wtd-design-schedule h4{margin:0 0 8px}.wtd-design-schedule .table-wrap{overflow:auto}
+@media(max-width:480px){
+ #plants.detail-view>#plantDetail{padding-left:10px!important;padding-right:10px!important}
+ #plantDetailContent>.p52-summary,#plantDetailContent>.p52-panel,#plantDetailContent>.wtd-plant-ai-row{width:100%!important;margin-left:auto!important;margin-right:auto!important}
+ .p52-tabs{padding-left:0!important;padding-right:0!important}
+}
+/* Drawing modal: keep drawing centered, scrollable after zoom, controls always reachable. */
+#drawingModal.show .drawing-view{justify-content:flex-start!important;align-items:flex-start!important;overflow:auto!important}
+#drawingModal.show #drawingImage{margin:auto!important;flex:0 0 auto!important;max-width:100%!important;max-height:100%!important;transform-origin:center center!important}
+#drawingModal.show .drawing-actions button{min-width:0!important;min-height:42px!important}

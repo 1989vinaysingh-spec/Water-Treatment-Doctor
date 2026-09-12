@@ -1,0 +1,20 @@
+Water Treatment Doctor V18.5.5 — Build 22.17 Comprehensive Update
+Source base: Water_Treatment_Doctor_V18_5_5_BUILD22_16_FINAL_FIX.zip
+
+Changes:
+1. Plant detail page forced to centered, symmetric mobile layout with equal left/right padding.
+2. Bottom Plants -> plant selection -> selected plant detail render hardened; avoids blank Plants shell.
+3. Full-screen drawing viewer hardened; zoom/reset controls and download/save fallback added.
+4. Plant Operation & Compliance Reference injected into every plant detail:
+   - daily/shift routine checkpoints
+   - equipment/chemical/instrument/sludge logging checks
+   - plant-specific process checks
+   - parameter monitoring guidance
+   - CPCB/Consent applicability note
+5. STP compliance reference includes pH/BOD/COD/TSS/Total-N/fecal-coliform reference, with applicability warning.
+6. ETP/CETP explicitly use industry/cluster/disposal-route and current SPCB/PCC Consent conditions rather than a false universal inlet/outlet limit.
+7. Smart Design result now appends a Drawing Size & Capacity Schedule containing calculated all-tank sizes/volumes and all pump/equipment duty bases beside the P&ID reference.
+8. Existing approved app opening flow and compact Home are preserved.
+
+Engineering note:
+Influent values are design-basis/site measurements, not universal CPCB input limits. Final compliance must be checked against the latest applicable CPCB/MoEF&CC notification and the project's current SPCB/PCC Consent-to-Operate conditions.

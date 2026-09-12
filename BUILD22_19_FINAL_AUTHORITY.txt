@@ -1,0 +1,8 @@
+Water Treatment Doctor V18.5.5 Build 22.19 FINAL AUTHORITY
+- One capture-phase plant router removes old false "Plant module not found" alerts.
+- All Plants always rebuilds all 22 supported modules.
+- Plant detail is centered and includes plant-specific daily operation checkpoints.
+- CPCB/Consent reference corrected: STP outlet reference, Schedule-VI general industrial reference, and clear notes where BIS/industry/consent standards apply instead of fake universal CPCB input limits.
+- Drawing list uses packaged PNG previews.
+- Drawing viewer is true edge-to-edge full-screen with no large boxed canvas; fit-width, zoom, rotate, reset, close and native Android Save.
+- Android workflow includes the fixed MainActivity Context calls and Build 22.19 artifact names.

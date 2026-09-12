@@ -1,0 +1,31 @@
+/* Build 22.19 final authority — centered plant pages + true full-screen drawings */
+#plants.detail-view{padding:0!important;margin:0!important;width:100%!important;max-width:none!important}
+#plantDetail{display:block;width:100%!important;max-width:760px!important;margin:0 auto!important;padding:8px 14px 100px!important;box-sizing:border-box!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#plantDetail[hidden]{display:none!important}
+#plantDetailContent{width:100%!important;max-width:720px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box!important}
+#plantDetailContent>*{box-sizing:border-box!important;max-width:100%!important}
+#modules{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;width:100%!important;padding:12px 12px 96px!important;box-sizing:border-box!important}
+#modules .wtd2219-module{width:100%!important;min-width:0!important;margin:0!important;text-align:left!important;overflow:hidden!important}
+#modules .wtd2219-module span,#modules .wtd2219-module small{overflow-wrap:anywhere!important}
+.wtd2219-plant-head,.wtd2219-panel{background:#fff;border:1px solid #dce8ef;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 6px 22px rgba(20,73,103,.06)}
+.wtd2219-plant-head h2{margin:10px 0 8px;font-size:clamp(23px,6vw,34px);line-height:1.14;color:#153e5b}.wtd2219-plant-head p{margin:0;color:#4e6473;line-height:1.6}
+.wtd2219-panel h3{margin:0 0 14px;color:#0e557b;font-size:21px}.wtd2219-panel h4{margin:14px 0 8px;color:#183e57}.wtd2219-panel li{margin:9px 0;line-height:1.48}
+.wtd2219-action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.wtd2219-action-row button,.wtd2219-open-drawing,.wtd2219-drawing-card button{min-height:46px;border:0;border-radius:12px;background:#075b87;color:#fff;font-weight:800;padding:10px}
+.wtd2219-two{display:grid;grid-template-columns:1fr;gap:10px}.wtd2219-two>div{background:#f5fafc;border:1px solid #dce8ef;border-radius:14px;padding:12px}
+.wtd2219-table-wrap{overflow:auto}.wtd2219-standards{width:100%;border-collapse:collapse}.wtd2219-standards th,.wtd2219-standards td{padding:9px;border-bottom:1px solid #e4edf2;text-align:left}.wtd2219-standards th{width:52%;color:#173f58}
+.wtd2219-reg-note{margin-top:12px;padding:12px;border-radius:12px;background:#fff8e8;border:1px solid #ecd497;color:#684d0b;line-height:1.5}
+.wtd2219-inline-drawing{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;min-width:0!important;border:0!important;border-radius:10px!important;background:#fff!important;margin:8px auto 12px!important}
+.wtd2219-back-row{text-align:center;margin:18px 0 24px}
+.wtd2219-drawing-grid{display:grid;grid-template-columns:1fr;gap:14px;padding-bottom:96px}.wtd2219-drawing-card{background:#fff;border:1px solid #dce8ef;border-radius:16px;padding:14px;overflow:hidden}.wtd2219-drawing-card h4{margin:0 0 10px;color:#183e57}.wtd2219-preview{width:100%;aspect-ratio:16/6;background:#fff;border:1px solid #e1e9ee;border-radius:10px;overflow:hidden;margin-bottom:10px}.wtd2219-preview img{display:block!important;width:100%!important;height:100%!important;min-width:0!important;max-width:100%!important;object-fit:contain!important;background:#fff!important}
+#drawingModal.show{display:block!important;position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;z-index:999999!important;margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}
+#drawingModal.show .drawing-modal-box{display:flex!important;flex-direction:column!important;position:absolute!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#fff!important;overflow:hidden!important;box-shadow:none!important}
+#drawingModal.show .wtd2219-drawbar{flex:0 0 auto;min-height:56px;padding:max(6px,env(safe-area-inset-top)) 8px 6px;display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:6px;border-bottom:1px solid #dce8ef;background:#fff;z-index:4;box-sizing:border-box}
+#drawingModal.show .wtd2219-drawbar>button,#drawingModal.show .wtd2219-draw-actions button{height:42px;min-width:42px;border:0;border-radius:10px;background:#eaf4fa;color:#0d527d;font-size:16px;font-weight:900;padding:0 9px}
+#drawingModal.show .wtd2219-drawbar strong{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#173f58;text-align:center}
+#drawingModal.show .wtd2219-draw-actions{display:flex;gap:5px;align-items:center}
+#drawingModal.show .wtd2219-drawing-view{flex:1 1 auto!important;width:100%!important;height:auto!important;min-height:0!important;margin:0!important;padding:8px!important;border:0!important;border-radius:0!important;background:#fff!important;overflow:auto!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;box-sizing:border-box!important;touch-action:pan-x pan-y pinch-zoom!important}
+#drawingModal.show #drawingImage{display:block!important;width:100%!important;height:auto!important;min-width:0!important;max-width:1400px!important;max-height:none!important;object-fit:contain!important;margin:0 auto!important;background:#fff!important;border:0!important;box-shadow:none!important;transition:transform .08s linear!important}
+#drawingModal.show .close,#drawingModal.show>.wtd-final-drawing-close,#drawingModal.show .drawing-actions{display:none!important}
+body.wtd-drawing-open{overflow:hidden!important}
+@media(min-width:560px){#modules{grid-template-columns:repeat(3,minmax(0,1fr))!important}.wtd2219-drawing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wtd2219-two{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){#drawingModal.show .wtd2219-drawbar{grid-template-columns:42px minmax(0,1fr);grid-template-areas:'close title' 'actions actions';padding-bottom:7px}#drawingModal.show .wtd2219-drawbar>button{grid-area:close}#drawingModal.show .wtd2219-drawbar>strong{grid-area:title}#drawingModal.show .wtd2219-draw-actions{grid-area:actions;display:grid;grid-template-columns:repeat(5,1fr);width:100%}#drawingModal.show .wtd2219-draw-actions button{padding:0 5px;font-size:14px}}

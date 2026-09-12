@@ -1,0 +1,7 @@
+Water Treatment Doctor V18.5.5 Build 22.18 Final Stability
+- Removes false "Plant module not found" alerts by using one final plant router.
+- Rebuilds All Plants grid from the complete modules database every time Plants opens.
+- Keeps plant detail centered with equal mobile padding.
+- Rebuilds all 22 drawing previews using packaged PNG assets.
+- Full-screen drawing opens fitted to width with zoom/reset/close and Save fallback.
+- Android workflow fixes WebChromeClient Context compile error and uses Build 22.18 artifact names.

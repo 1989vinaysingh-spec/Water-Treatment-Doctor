@@ -1,0 +1,20 @@
+/* Build 22.18 final stability layout */
+#plants.detail-view{padding-left:0!important;padding-right:0!important}
+#plantDetail{width:100%!important;max-width:760px!important;margin:0 auto!important;padding:0 12px 96px!important;box-sizing:border-box!important;border:0!important;background:transparent!important}
+#plantDetailContent{width:100%!important;max-width:720px!important;margin:0 auto!important;box-sizing:border-box!important}
+#plantDetailContent>*{max-width:100%!important;box-sizing:border-box!important}
+#modules{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:12px 12px 90px!important;box-sizing:border-box!important}
+#modules .module{min-width:0!important;width:100%!important;margin:0!important;text-align:left!important}
+.all-drawing-grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important;padding-bottom:90px!important}
+.wtd2218-drawing-tile{overflow:hidden!important}
+.wtd2218-drawing-tile img{display:block!important;width:100%!important;height:auto!important;max-height:210px!important;object-fit:contain!important;background:#fff!important;border:1px solid #dce8ee!important;border-radius:10px!important}
+.wtd2218-preview-fallback{min-height:90px;display:grid;place-items:center;background:#f4f9fc;border:1px dashed #b8cfdb;border-radius:10px;color:#42657a;font-weight:800}
+#drawingModal.show{display:flex!important;position:fixed!important;inset:0!important;background:#fff!important;z-index:65000!important;padding:0!important}
+#drawingModal.show .drawing-modal-box{position:relative!important;width:100%!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:64px 10px 18px!important;border-radius:0!important;overflow:hidden!important;box-sizing:border-box!important;background:#fff!important}
+#drawingModal.show .drawing-view{display:block!important;width:100%!important;height:calc(100dvh - 88px)!important;min-height:0!important;overflow:auto!important;padding:8px!important;box-sizing:border-box!important;background:#fff!important}
+#drawingModal.show .drawing-view img{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;margin:0 auto!important;transform-origin:center center!important}
+#drawingModal .drawing-actions{position:fixed!important;top:max(8px,env(safe-area-inset-top))!important;right:8px!important;z-index:65003!important;display:flex!important;gap:6px!important}
+#drawingModal .drawing-actions button{min-width:42px!important;height:42px!important;padding:0 8px!important;border:1px solid #d6e3eb!important;border-radius:10px!important;background:#fff!important;color:#0d507b!important;font-size:16px!important;font-weight:900!important}
+#drawingModal .drawing-actions small{font-size:11px!important}
+#drawingModal .close,.wtd-final-drawing-close{position:fixed!important;top:max(8px,env(safe-area-inset-top))!important;left:8px!important;width:42px!important;height:42px!important;z-index:65004!important;border-radius:10px!important;background:#fff!important;color:#0d507b!important;border:1px solid #d6e3eb!important}
+@media(min-width:560px){#modules{grid-template-columns:repeat(3,minmax(0,1fr))!important}.all-drawing-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}

@@ -1,0 +1,16 @@
+Build 22.19 compliance reference notes
+
+1) STP outlet reference shown in app:
+   pH 6.5-9.0; BOD <=10 mg/L; COD <=50 mg/L; TSS <=20 mg/L;
+   NH4-N <=5 mg/L; Total N <=10 mg/L; Fecal Coliform <100 MPN/100 mL.
+   Source basis: CPCB official STP effluent standards reference for new STPs.
+
+2) General industrial inland-surface-water reference shown for ETP/CETP:
+   pH 5.5-9.0; TSS <=100 mg/L; Oil & Grease <=10 mg/L;
+   BOD (3 days at 27 C) <=30 mg/L; COD <=250 mg/L;
+   Ammoniacal N <=50 mg/L; Free ammonia as NH3 <=5 mg/L;
+   Total residual chlorine <=1.0 mg/L.
+   Source basis: Environment (Protection) Rules, 1986, Schedule VI, General Standards.
+
+Important engineering/regulatory note:
+Industry-specific Schedule-I standards and SPCB/PCC Consent-to-Operate conditions may be different or stricter and must be checked for the actual plant. Influent values are site/design-basis measurements, not universal CPCB input limits. Potable-water quality is primarily checked against current BIS/public-health requirements, not CPCB effluent standards.

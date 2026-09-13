@@ -1,0 +1,15 @@
+Water Treatment Doctor V18.5.5 Build 22.20 — source QA
+
+Checked in this package:
+- Final runtime JS syntax: PASS (Build 22.19 + Build 22.20).
+- GitHub Actions YAML parses successfully.
+- All Plants final authority contains 22 plant modules: PASS.
+- Packaged process PNG drawings: 22/22 present.
+- STP drawing visually verified after re-render: Hindi Devanagari renders correctly; square-box glyph issue removed.
+- Legacy drawing pseudo-header/box explicitly disabled in final CSS.
+- Fullscreen drawing control remains + / - / Fit / Save, with new pinch/pan support.
+- Android native save bridge retained; Build 22.20 adds landscape drawing mode for better full-screen use.
+- PWA/Android launcher icon packaging updated to keep the complete circular logo visible within modern icon masks.
+- CPCB/NGT reference text includes CTO/SPCB/PCC caution; STP fecal-coliform reference now states desirable <100 and permissible <230 MPN/100 mL.
+
+Important: The final APK/AAB must still be built by the included GitHub Actions workflow and tested on the target Android phone because WebView/device behavior cannot be fully reproduced by static source checks alone.

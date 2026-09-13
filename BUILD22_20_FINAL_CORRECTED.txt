@@ -1,0 +1,11 @@
+Water Treatment Doctor V18.5.5 — Build 22.20 FINAL CORRECTED
+
+Consolidated corrections over Build 22.19:
+- Removed legacy pseudo header/box that overlapped the drawing viewer.
+- Full-screen drawing viewer now uses true screen area; Android switches to landscape while a process drawing is open and returns to portrait on close.
+- Added reliable pinch-to-zoom and pan handling plus existing +/-/Fit controls.
+- Kept native Android Downloads bridge for packaged PNG drawing save.
+- Re-rendered all 22 process drawing PNGs through Chromium with Noto Devanagari fallback so Hindi text no longer appears as square boxes.
+- Preserved all 22 All Plants modules and final plant routing.
+- Added clear bilingual compliance note: latest MoEF&CC/CPCB + plant SPCB/PCC CTO govern; industry-specific/consent limits may be stricter.
+- Added separate maskable PWA icons and an Android adaptive launcher icon so the complete circular logo stays visible instead of being clipped.

@@ -1,0 +1,14 @@
+/* Build 22.20 final corrected authority */
+/* Kill legacy pseudo-header that caused the box/overlap above drawings. */
+#drawingModal.show .drawing-modal-box::before{content:none!important;display:none!important}
+#drawingModal.show .wtd2219-drawbar{padding-top:max(8px,env(safe-area-inset-top))!important;background:#fff!important;position:relative!important;z-index:20!important}
+#drawingModal.show .wtd2219-drawing-view{padding:0!important;align-items:center!important;justify-content:center!important;overscroll-behavior:contain!important;touch-action:none!important;background:#f8fafc!important}
+#drawingModal.show #drawingImage{width:auto!important;height:auto!important;max-width:100%!important;max-height:calc(100dvh - 112px)!important;object-fit:contain!important;transform-origin:center center!important;user-select:none!important;-webkit-user-drag:none!important}
+#drawingModal.show .wtd2219-draw-actions button{white-space:nowrap!important}
+@media(max-width:520px){
+ #drawingModal.show .wtd2219-drawbar{grid-template-columns:42px minmax(0,1fr)!important;grid-template-areas:'close title' 'actions actions'!important}
+ #drawingModal.show .wtd2219-drawing-view{min-height:0!important}
+ #drawingModal.show #drawingImage{max-height:calc(100dvh - 118px)!important}
+}
+.wtd2219-reg-note b{color:inherit}
+.wtd2220-source-note{margin-top:8px;font-size:12px;line-height:1.45;color:#536a79}

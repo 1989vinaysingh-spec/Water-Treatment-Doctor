@@ -29,6 +29,8 @@ jobs:
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/xml
           mkdir -p app/src/main/res/drawable
+          mkdir -p app/src/main/res/drawable-nodpi
+          mkdir -p app/src/main/res/mipmap-anydpi-v26
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
@@ -70,8 +72,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185540
-                  versionName "18.5.5 Build 22.19 Final Authority"
+                  versionCode 185550
+                  versionName "18.5.5 Build 22.20 Final Corrected"
               }
           }
 
@@ -87,7 +89,8 @@ jobs:
               <application
                   android:theme="@style/AppTheme"
                   android:label="Water Treatment Doctor"
-                  android:icon="@drawable/app_icon"
+                  android:icon="@mipmap/ic_launcher"
+                  android:roundIcon="@mipmap/ic_launcher"
                   android:usesCleartextTraffic="true">
 
                   <provider
@@ -136,6 +139,7 @@ jobs:
           package com.vinaykumarsingh.watertreatmentdoctor;
 
           import android.app.Activity;
+          import android.content.pm.ActivityInfo;
           import android.content.ClipData;
           import android.content.ContentValues;
           import android.content.Intent;
@@ -170,6 +174,14 @@ jobs:
               private Uri videoOutputUri;
 
               public class DownloadBridge {
+
+                  @JavascriptInterface
+                  public void setDrawingFullscreen(boolean enabled) {
+                      runOnUiThread(() -> setRequestedOrientation(enabled
+                              ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                              : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT));
+                  }
+
                   @JavascriptInterface
                   public void saveAsset(String assetPath, String requestedName) {
                       final String cleanPath = assetPath == null ? "" : assetPath.replaceFirst("^/+", "");
@@ -385,7 +397,20 @@ jobs:
           }
           EOF
 
-          cp icon-192.png app/src/main/res/drawable/app_icon.png
+          cp launcher-foreground.png app/src/main/res/drawable-nodpi/ic_launcher_foreground.png
+          cat > app/src/main/res/drawable/ic_launcher_background.xml <<'EOF'
+          <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+              <solid android:color="#EEF9FF"/>
+          </shape>
+          EOF
+          cat > app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+              <background android:drawable="@drawable/ic_launcher_background"/>
+              <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+          </adaptive-icon>
+          EOF
+          mkdir -p app/src/main/res/mipmap-mdpi
+          cp icon-192.png app/src/main/res/mipmap-mdpi/ic_launcher.png
 
           rsync -av \
             --exclude='.git' \
@@ -402,11 +427,11 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-V18.5.5-Build22.19-FINAL-AUTHORITY-APK
+          name: Water-Treatment-Doctor-V18.5.5-Build22.20-FINAL-CORRECTED-APK
           path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-V18.5.5-Build22.19-FINAL-AUTHORITY-AAB
+          name: Water-Treatment-Doctor-V18.5.5-Build22.20-FINAL-CORRECTED-AAB
           path: app/build/outputs/bundle/release/app-release.aab

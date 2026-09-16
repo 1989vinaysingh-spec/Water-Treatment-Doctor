@@ -1,0 +1,7 @@
+/* Build 22.21 bilingual readability + mobile header safety */
+.wtd2221-hi{display:block;margin-top:6px;color:#31576b;font-size:.94em;line-height:1.48;font-weight:500}
+.wtd2219-panel li .wtd2221-hi{margin-top:3px}
+.wtd2219-plant-head>p .wtd2221-hi{font-size:.9em}
+#fieldReference .ref-grid>div>span .wtd2221-hi{margin-top:8px;color:#31576b}
+.wtd-page-header{padding-top:max(10px,env(safe-area-inset-top))!important}
+@media(max-width:520px){.wtd2219-action-row{grid-template-columns:1fr 1fr!important}.wtd2219-panel{overflow-wrap:anywhere}.wtd2219-plant-head h2{font-size:clamp(27px,8vw,38px)!important}}

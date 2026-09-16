@@ -1,0 +1,9 @@
+Water Treatment Doctor V18.5.5 — Build 22.21 BILINGUAL QA
+
+Corrections over Build 22.20:
+- Added Hindi companion text to Field Reference descriptions, not only headings.
+- Added Hindi technical companion text to dynamically generated plant operation, design-scope and reference items across all 22 plant modules.
+- Preserved English + Hindi together for field use.
+- Added mobile-safe header spacing and long-text wrapping.
+- Added orientation recovery guard so normal app pages return to portrait after the drawing modal is no longer open.
+- Preserved Build 22.20 drawing pinch/pan, +/-/Fit, native Android Save, all 22 drawings, app icon, plant routing, Smart Design and CPCB/Consent caution.

@@ -1,0 +1,4 @@
+Water Treatment Doctor V18.5.5 — Build 22.22
+Base: Build 22.21 Bilingual QA
+Added: first-use language selection (English/Hindi), persisted language choice, icon-based plant knowledge hub for all 22 plants, expandable plant topics, definition/purpose, process, operation, daily checklist, chemicals/dosing access, operating parameters, troubleshooting, Smart Design, drawing, maintenance/SOP, safety and logbook sections. Existing drawings, calculators, AI, navigation and offline assets preserved.
+Note: engineering/chemical/regulatory values remain project-specific and must be validated against actual analysis, consent conditions, OEM data and site design before field implementation.

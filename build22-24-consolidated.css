@@ -1,0 +1,13 @@
+/* Home keeps all nine plant cards and exposes both frequently used tools. */
+#wtdHome1852 .b2212-features{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+#wtdHome1852 .b2224-chemical,#wtdHome1852 .b2224-ai{min-width:0!important;min-height:54px!important;padding:6px!important}
+#wtdHome1852 .b2224-chemical b,#wtdHome1852 .b2224-ai b{font-size:11px!important;line-height:1.1!important}
+#wtdHome1852 .b2224-chemical small,#wtdHome1852 .b2224-ai small{font-size:8px!important}
+/* Only the full drawing viewer rotates if Android does not grant orientation lock. */
+@media(orientation:portrait){body.b2224-landscape #drawingModal.show{position:fixed!important;left:0!important;top:0!important;width:100dvh!important;height:100vw!important;inset:auto!important;transform-origin:top left!important;transform:translateX(100vw) rotate(90deg)!important;z-index:99999!important}
+body.b2224-landscape #drawingModal.show .drawing-modal-box{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;display:flex!important;flex-direction:column!important}
+body.b2224-landscape #drawingModal.show .wtd2219-drawbar{padding:5px 8px!important;grid-template-columns:42px minmax(0,1fr) auto!important;grid-template-areas:'close title actions'!important}
+body.b2224-landscape #drawingModal.show .wtd2219-draw-actions{display:flex!important;gap:3px!important;width:auto!important}
+body.b2224-landscape #drawingModal.show .wtd2219-draw-actions button{min-width:35px!important;height:32px!important;font-size:12px!important}
+body.b2224-landscape #drawingModal.show .wtd2219-drawing-view{flex:1!important;min-height:0!important;display:flex!important;align-items:center!important;justify-content:center!important}
+body.b2224-landscape #drawingModal.show #drawingImage{max-width:98%!important;max-height:calc(100vw - 52px)!important;width:auto!important;height:auto!important;object-fit:contain!important}}

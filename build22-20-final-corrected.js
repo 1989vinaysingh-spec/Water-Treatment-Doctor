@@ -18,7 +18,7 @@ function attachGestures(){
 }
 function nativeDrawingMode(on){try{if(window.AndroidDownloads&&typeof window.AndroidDownloads.setDrawingFullscreen==='function')window.AndroidDownloads.setDrawingFullscreen(!!on);}catch(e){console.warn(e)}}
 const oldOpen=window.openDrawing, oldClose=window.closeDrawing, oldReset=window.wtdDrawingReset;
-window.openDrawing=function(code,src){const r=oldOpen?oldOpen(code,src):false;resetGesture();setTimeout(()=>{attachGestures();const el=img();if(el){el.onload=()=>{resetGesture();};}},30);return r;};
+window.openDrawing=function(code,src){const r=oldOpen?oldOpen(code,src):false;nativeDrawingMode(true);resetGesture();setTimeout(()=>{attachGestures();const el=img();if(el){el.onload=()=>{resetGesture();};}},30);return r;};
 window.closeDrawing=function(){nativeDrawingMode(false);resetGesture();pointers.clear();return oldClose?oldClose():false;};
 window.wtdDrawingReset=function(){resetGesture();try{oldReset&&oldReset()}catch(_){}return false;};
 // Keep Android Back/rotation clean even after stale modal state.

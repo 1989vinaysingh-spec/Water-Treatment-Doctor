@@ -55,7 +55,7 @@ jobs:
 
           cat > build.gradle <<'EOF'
           plugins {
-              id 'com.android.application' version '8.7.3' apply false
+              id 'com.android.application' version '8.10.1' apply false
           }
           EOF
 
@@ -72,8 +72,24 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185550
-                  versionName "18.5.5 Build 22.20 Final Corrected"
+                  versionCode 185551
+                  versionName "18.5.5 Build 22.25 Testing"
+              }
+
+              signingConfigs {
+                  release {
+                      if (System.getenv('WTD_KEYSTORE_PATH')) {
+                          storeFile file(System.getenv('WTD_KEYSTORE_PATH'))
+                          storePassword System.getenv('WTD_STORE_PASSWORD')
+                          keyAlias System.getenv('WTD_KEY_ALIAS')
+                          keyPassword System.getenv('WTD_KEY_PASSWORD')
+                      }
+                  }
+              }
+              buildTypes {
+                  release {
+                      if (System.getenv('WTD_KEYSTORE_PATH')) signingConfig signingConfigs.release
+                  }
               }
           }
 
@@ -91,7 +107,7 @@ jobs:
                   android:label="Water Treatment Doctor"
                   android:icon="@mipmap/ic_launcher"
                   android:roundIcon="@mipmap/ic_launcher"
-                  android:usesCleartextTraffic="true">
+                  android:usesCleartextTraffic="false">
 
                   <provider
                       android:name="androidx.core.content.FileProvider"
@@ -177,6 +193,7 @@ jobs:
 
                   @JavascriptInterface
                   public void setDrawingFullscreen(boolean enabled) {
+                      // Rotate only while the full drawing modal is open.
                       runOnUiThread(() -> setRequestedOrientation(enabled
                               ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                               : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT));
@@ -420,18 +437,80 @@ jobs:
             --exclude='settings.gradle' \
             ./ app/src/main/assets/
 
-      - name: Build APK and AAB
+      - name: Verify packaged assets and JavaScript
         run: |
-          gradle assembleDebug bundleRelease
+          python3 - <<'PYVERIFY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Assets(HTMLParser):
+              def __init__(self): super().__init__(); self.files=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag=='script' and a.get('src'): self.files.append(a['src'].split('?')[0])
+                  if tag=='link' and a.get('rel')=='stylesheet' and a.get('href'): self.files.append(a['href'].split('?')[0])
+          parser=Assets();parser.feed(Path('index.html').read_text())
+          missing=[f for f in parser.files if not Path(f).is_file()]
+          assert not missing, f'Missing app assets: {missing}'
+          assert all(Path('drawings', p+'.png').is_file() for p in ('stp','etp','cetp','ro','wtp','wsp','zld','uf'))
+          PYVERIFY
+          for js in *.js; do node --check "$js"; done
 
-      - name: Upload APK
+      - name: Prepare Play upload signing
+        env:
+          WTD_KEYSTORE_BASE64: ${{ secrets.WTD_KEYSTORE_BASE64 }}
+          WTD_STORE_PASSWORD: ${{ secrets.WTD_STORE_PASSWORD }}
+          WTD_KEY_ALIAS: ${{ secrets.WTD_KEY_ALIAS }}
+          WTD_KEY_PASSWORD: ${{ secrets.WTD_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$WTD_KEYSTORE_BASE64" && -z "$WTD_STORE_PASSWORD" && -z "$WTD_KEY_ALIAS" && -z "$WTD_KEY_PASSWORD" ]]; then
+            echo "WTD_SIGNED_RELEASE=false" >> "$GITHUB_ENV"
+            echo "Signing secrets absent: building testing APK only."
+          elif [[ -z "$WTD_KEYSTORE_BASE64" || -z "$WTD_STORE_PASSWORD" || -z "$WTD_KEY_ALIAS" || -z "$WTD_KEY_PASSWORD" ]]; then
+            echo "Incomplete signing configuration; add all four WTD secrets." >&2
+            exit 1
+          else
+            printf '%s' "$WTD_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/wtd-upload.jks"
+            keytool -list -keystore "$RUNNER_TEMP/wtd-upload.jks" -storepass "$WTD_STORE_PASSWORD" -alias "$WTD_KEY_ALIAS" > /dev/null
+            echo "WTD_KEYSTORE_PATH=$RUNNER_TEMP/wtd-upload.jks" >> "$GITHUB_ENV"
+            echo "WTD_SIGNED_RELEASE=true" >> "$GITHUB_ENV"
+            echo "Upload key verified."
+          fi
+
+      - name: Build testing APK and signed release when configured
+        env:
+          WTD_STORE_PASSWORD: ${{ secrets.WTD_STORE_PASSWORD }}
+          WTD_KEY_ALIAS: ${{ secrets.WTD_KEY_ALIAS }}
+          WTD_KEY_PASSWORD: ${{ secrets.WTD_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ "$WTD_SIGNED_RELEASE" == true ]]; then
+            gradle assembleDebug assembleRelease bundleRelease
+            test -s app/build/outputs/bundle/release/app-release.aab
+            test -s app/build/outputs/apk/release/app-release.apk
+          else
+            gradle assembleDebug
+          fi
+
+      - name: Upload testing APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-V18.5.5-Build22.20-FINAL-CORRECTED-APK
+          name: Water-Treatment-Doctor-Build22.25-TEST-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
 
-      - name: Upload AAB
+      - name: Upload signed release APK
+        if: env.WTD_SIGNED_RELEASE == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-V18.5.5-Build22.20-FINAL-CORRECTED-AAB
+          name: Water-Treatment-Doctor-Build22.25-SIGNED-APK
+          path: app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+
+      - name: Upload signed Play AAB
+        if: env.WTD_SIGNED_RELEASE == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Water-Treatment-Doctor-Build22.25-PLAY-AAB
           path: app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error

@@ -5,6 +5,6 @@ function translateNode(n){if(selected()!=='hi'||!n||!n.parentElement)return;cons
 function walk(root){root=root||document.body;if(!root||selected()!=='hi')return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())translateNode(n);root.querySelectorAll?.('input,textarea,[placeholder],[title],[aria-label]').forEach(el=>{['placeholder','title','aria-label'].forEach(a=>{if(el.hasAttribute(a)){const v=el.getAttribute(a);if(v&&!isBi(v)&&DICT[v])el.setAttribute(a,DICT[v]);}})});}
 function selected(){return localStorage.getItem('wtdLangChoice')==='hi'?'hi':'en'}
 function setSelected(v){v=v==='hi'?'hi':'en';localStorage.setItem('wtdLangChoice',v);localStorage.setItem('wtdLanguage',v);localStorage.setItem('wtdLang',v);document.documentElement.dataset.lang=v;document.documentElement.lang=v;const sel=document.getElementById('langSwitch');if(sel){sel.disabled=false;sel.innerHTML='<option value="en">English</option><option value="hi">हिन्दी</option>';sel.value=v;}}
-window.WTDI18N={setLanguage:v=>{setSelected(v);location.reload()},refresh:root=>walk(root||document.body)};
+window.WTDI18N={setLanguage:v=>{setSelected(v);walk(document.body)},refresh:root=>walk(root||document.body)};
 document.addEventListener('DOMContentLoaded',()=>{setSelected(selected());walk(document.body);new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{if(n.nodeType===1)walk(n)}))).observe(document.body,{childList:true,subtree:true})});
 })();

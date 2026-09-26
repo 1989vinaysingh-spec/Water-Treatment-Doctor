@@ -1,4 +1,4 @@
-const CACHE='wtd-v18.5.5-build22-25-testing-v1';
+const CACHE='wtd-v18.5.5-build22-27-startup-stability-v1';
 const CORE=[
   './styles.css','./complete-bilingual.js','./bilingual.js','./build22-fix.js','./build22-final-authoritative.css','./build22-final-authoritative.js','./build22-12-home-final.css','./build22-12-home-final.js','./build22-19-final-authority.css','./build22-19-final-authority.js','./build22-20-final-corrected.css','./build22-20-final-corrected.js','./build22-21-bilingual-qa.css','./build22-21-bilingual-qa.js','./build22-22-operator-platform.css','./build22-22-operator-platform.js','./build22-24-consolidated.css','./build22-24-consolidated.js','./build22-25-language-completion.js',
   './manifest.webmanifest','./logo.jpg','./icon-192.png','./icon-512.png','./privacy-policy.html',

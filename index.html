@@ -1447,7 +1447,12 @@ if(installBtn) installBtn.addEventListener('click',async()=>{
   installBtn.hidden=true;
 });
 if(location.protocol!=='file:' && 'serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));
+  // Service workers are only valid on HTTP(S). The Android app runs this page
+  // from file:///android_asset, so attempting registration there only adds a
+  // failing startup task and can destabilize some WebView versions.
+  if(/^https?:$/.test(location.protocol) && 'serviceWorker' in navigator){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));
+  }
 }
 
 
@@ -2881,9 +2886,14 @@ function opening(){
  const render=html=>{if(!i.isConnected||finished)return;i.className='wtd-splash-inner minimal-stage';i.innerHTML=html};
  const stage1=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-title">Water Treatment<br><span>Doctor</span></div><div class="minimal-tagline">Clean Water • Healthier Tomorrow</div><div class="minimal-dev">Developed by<br><b>Vinay Kumar Singh</b></div>');
  const stage2=()=>render('<div class="minimal-loading-ring" aria-hidden="true"></div><div class="minimal-loading-text">Preparing Your<br>Water Treatment Solution...</div><div class="minimal-progress"><i></i></div><div class="minimal-dev">Please Wait...</div>');
- const stage3=()=>{render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-welcome">Welcome to</div><div class="minimal-welcome-title">Water Treatment Doctor</div><div class="minimal-welcome-sub">Smart Tools for Cleaner Water<br>and a Healthier Tomorrow</div><button type="button" class="minimal-start" id="wtdGetStarted">Get Started</button><div class="minimal-dev">Developed by <b>Vinay Kumar Singh</b></div>');const b=$('wtdGetStarted');if(b)b.onclick=finish;};
+ const stage3=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-welcome">Welcome to</div><div class="minimal-welcome-title">Water Treatment Doctor</div><div class="minimal-welcome-sub">Smart Tools for Cleaner Water<br>and a Healthier Tomorrow</div><div class="minimal-dev">Developed by <b>Vinay Kumar Singh</b></div>');
  const finish=()=>{if(finished)return false;finished=true;try{window.wtdCloseOpening?.()}catch(_e){s.classList.add('hide');setTimeout(()=>s.remove(),380)}setTimeout(()=>window.goHome?.(),50);return false};
- stage1();setTimeout(stage2,1150);setTimeout(stage3,2950);
+ // A recent boot means the WebView has reloaded unexpectedly. Skip all
+ // opening stages so a reload can never trap the user in a splash loop.
+ const now=Date.now(),last=Number(sessionStorage.getItem('wtdLastBootAt')||0);
+ sessionStorage.setItem('wtdLastBootAt',String(now));
+ if(last && now-last<15000){finish();return;}
+ stage1();setTimeout(stage2,650);setTimeout(stage3,1450);setTimeout(finish,2050);
 }
 function init(){catalogue();langButton();safeAI();opening();}
 document.addEventListener('DOMContentLoaded',init,{once:true});if(document.readyState!=='loading')init();

@@ -72,8 +72,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185551
-                  versionName "18.5.5 Build 22.25 Testing"
+                  versionCode 185552
+                  versionName "18.5.5 Build 22.26 Final QA"
               }
 
               signingConfigs {
@@ -193,10 +193,8 @@ jobs:
 
                   @JavascriptInterface
                   public void setDrawingFullscreen(boolean enabled) {
-                      // Rotate only while the full drawing modal is open.
-                      runOnUiThread(() -> setRequestedOrientation(enabled
-                              ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                              : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT));
+                      // Drawing landscape is simulated inside the WebView. Rotating the
+                      // Activity recreates the WebView and restarts the opening flow.
                   }
 
                   @JavascriptInterface
@@ -495,7 +493,7 @@ jobs:
       - name: Upload testing APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.25-TEST-APK
+          name: Water-Treatment-Doctor-Build22.26-TEST-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
@@ -503,7 +501,7 @@ jobs:
         if: env.WTD_SIGNED_RELEASE == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.25-SIGNED-APK
+          name: Water-Treatment-Doctor-Build22.26-SIGNED-APK
           path: app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
 
@@ -511,6 +509,6 @@ jobs:
         if: env.WTD_SIGNED_RELEASE == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.25-PLAY-AAB
+          name: Water-Treatment-Doctor-Build22.26-PLAY-AAB
           path: app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error

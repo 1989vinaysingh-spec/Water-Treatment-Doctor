@@ -72,8 +72,8 @@ jobs:
                   applicationId "com.vinaykumarsingh.watertreatmentdoctor"
                   minSdk 23
                   targetSdk 36
-                  versionCode 185553
-                  versionName "18.5.5 Build 22.27 Startup Stability"
+                  versionCode 185555
+                  versionName "18.5.5 Build 22.29 Readable Drawings"
               }
 
               signingConfigs {
@@ -493,7 +493,7 @@ jobs:
       - name: Upload testing APK
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.27-TEST-APK
+          name: Water-Treatment-Doctor-Build22.29-TEST-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
@@ -501,7 +501,7 @@ jobs:
         if: env.WTD_SIGNED_RELEASE == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.27-SIGNED-APK
+          name: Water-Treatment-Doctor-Build22.29-SIGNED-APK
           path: app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
 
@@ -509,6 +509,6 @@ jobs:
         if: env.WTD_SIGNED_RELEASE == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Water-Treatment-Doctor-Build22.27-PLAY-AAB
+          name: Water-Treatment-Doctor-Build22.29-PLAY-AAB
           path: app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error

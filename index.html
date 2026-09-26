@@ -2387,6 +2387,56 @@ const WTD49_PLANTS={
  EDI:{process:['RO Permeate','EDI Feed','EDI Stacks','Product Water'],hrt:[['Product Tank',3]],chem:['Normally no regeneration chemical; pretreatment/pH control only as required'],eq:['Feed Pump','EDI Stacks','DC Power Supply','Product/Reject Flow Controls','Conductivity/Resistivity Instruments','Panel']},
  WSP:{process:['Source / Storage','Duty/Standby Pumps','Distribution Header','User / Process'],hrt:[['Storage / Buffer',4]],chem:['Disinfection only where water service requires it'],eq:['Duty/Standby Pumps','Suction/Discharge Header','NRV/Isolation Valves','Pressure Vessel if applicable','Flow/Pressure Instruments','Panel']}
 };
+/* Build 22.28: complete plant-wise Smart Design unit mapping.
+   Third tuple value "sor" means surface overflow rate (m3/m2/day), not HRT. */
+Object.assign(WTD49_PLANTS,{
+ STP:{...WTD49_PLANTS.STP,process:['Screen & Grit/Oil Trap','Equalization','Anoxic (if required)','Aeration / MBBR Reactor','Secondary Tube Settler / Clarifier','Filter Feed','PSF','ACF','Chlorine Contact','Treated Water','Sludge Holding'],hrt:[['Screen & Grit Chamber',0.5],['Equalization Tank',8],['Anoxic Tank',2],['Aeration / MBBR Reactor',6],['Secondary Tube Settler / Clarifier',18,'sor'],['Filter Feed Tank',1],['Chlorine Contact Tank',0.5],['Treated Water Tank',4],['Sludge Holding Tank',1]]},
+ ETP:{...WTD49_PLANTS.ETP,process:['Collection','Oil & Grease Trap','Equalization','Neutralization','Flash Mixing','Flocculation','Primary Tube Settler / Clarifier','Biological Reactor (if required)','Secondary Clarifier','Filter Feed','Filtration / AOP','Treated Water','Sludge Holding'],hrt:[['Collection Tank',2],['Equalization Tank',10],['Neutralization Tank',1],['Flash Mixer',0.25],['Flocculator',0.5],['Primary Tube Settler / Clarifier',15,'sor'],['Biological Reactor / Holding',8],['Secondary Clarifier',18,'sor'],['Filter Feed Tank',1],['Treated Water Tank',4],['Sludge Holding Tank',1]]},
+ CETP:{...WTD49_PLANTS.CETP,process:['Receiving & Segregation','Equalization','Neutralization','Flash Mixing','Flocculation','Primary Tube Settler / Clarifier','Biological Treatment','Secondary Clarifier','Tertiary Feed','Tertiary Treatment','Treated Water','Sludge Handling'],hrt:[['Receiving / Collection Tank',2],['Equalization Tank',12],['Neutralization Tank',1],['Flash Mixer',0.25],['Flocculator',0.5],['Primary Tube Settler / Clarifier',12,'sor'],['Biological Reactor',10],['Secondary Clarifier',16,'sor'],['Tertiary Feed Tank',1],['Treated Water Tank',4],['Sludge Holding Tank',1]]},
+ WTP:{...WTD49_PLANTS.WTP,process:['Raw Water','Flash Mixing','Flocculation','Tube Settler / Clarifier','Filter Feed','Sand Filter','Carbon / Polishing','Disinfection','Clear Water','Backwash Recovery'],hrt:[['Raw Water Tank',2],['Flash Mixer',0.25],['Flocculator',0.5],['Tube Settler / Clarifier',8,'sor'],['Filter Feed Tank',0.5],['Chlorine Contact Tank',0.5],['Clear Water Tank',4],['Backwash Recovery Tank',1]]},
+ MBR:{...WTD49_PLANTS.MBR,process:['Screen & Grit','Equalization','Anoxic Tank','Aerobic Bioreactor','MBR Membrane Tank','Permeate / Disinfection','Treated Water','Sludge Holding'],hrt:[['Screen & Grit Chamber',0.5],['Equalization Tank',8],['Anoxic Tank',2],['Aerobic Bioreactor',7],['MBR Membrane Tank',1.5],['Permeate / Treated Water Tank',3],['Sludge Holding Tank',1]]},
+ SBR:{...WTD49_PLANTS.SBR,process:['Screen & Grit','Equalization','SBR Reactors (Fill-React-Settle-Decant)','Decant Holding','Tertiary / Disinfection','Treated Water','Sludge Holding'],hrt:[['Screen & Grit Chamber',0.5],['Equalization Tank',6],['SBR Working Volume',8],['Decant / Filter Feed Tank',1],['Chlorine Contact Tank',0.5],['Treated Water Tank',3],['Sludge Holding Tank',1]]},
+ MBBR:{...WTD49_PLANTS.MBBR,process:['Screen & Grit','Equalization','Anoxic (if required)','MBBR Reactor','Secondary Tube Settler / Clarifier','Filter Feed','Tertiary','Disinfection','Treated Water','Sludge Holding'],hrt:[['Screen & Grit Chamber',0.5],['Equalization Tank',8],['Anoxic Tank',2],['MBBR Reactor',6],['Secondary Tube Settler / Clarifier',18,'sor'],['Filter Feed Tank',1],['Chlorine Contact Tank',0.5],['Treated Water Tank',3],['Sludge Holding Tank',1]]},
+ ASP:{...WTD49_PLANTS.ASP,process:['Screen & Grit','Equalization','Anoxic (if required)','Aeration Tank','Secondary Clarifier','RAS/WAS','Filter Feed','Tertiary','Disinfection','Treated Water','Sludge Holding'],hrt:[['Screen & Grit Chamber',0.5],['Equalization Tank',8],['Anoxic Tank',2],['Aeration Tank',8],['Secondary Clarifier',18,'sor'],['Filter Feed Tank',1],['Chlorine Contact Tank',0.5],['Treated Water Tank',3],['Sludge Holding Tank',1]]},
+ RO:{...WTD49_PLANTS.RO,hrt:[['Raw / Feed Tank',4],['RO Feed Tank',1],['Permeate Tank',4],['Reject Tank',1],['CIP Tank',1]]},
+ UF:{...WTD49_PLANTS.UF,hrt:[['Raw / Feed Tank',3],['UF Feed Tank',1],['Backwash Tank',1],['Product Tank',3],['CIP Tank',1]]},
+ NF:{...WTD49_PLANTS.NF,hrt:[['Raw / Feed Tank',4],['NF Feed Tank',1],['Permeate Tank',4],['Reject Tank',1],['CIP Tank',1]]},
+ DM:{...WTD49_PLANTS.DM,hrt:[['Raw Water Tank',2],['Degassed Water Tank',1],['DM Water Tank',4],['Regeneration Waste Neutralization Tank',2]]},
+ SOFT:{...WTD49_PLANTS.SOFT,hrt:[['Raw Water Tank',2],['Soft Water Tank',4],['Brine Tank',1]]},
+ ZLD:{...WTD49_PLANTS.ZLD,hrt:[['Feed / Equalization Tank',8],['RO Concentrate Tank',2],['MEE Feed Tank',2],['Condensate Tank',4],['Salt / Mother Liquor Tank',1]]},
+ MEE:{...WTD49_PLANTS.MEE,hrt:[['Feed Tank',6],['Concentrate Tank',2],['Condensate Tank',4],['CIP Tank',1]]},
+ ATFD:{...WTD49_PLANTS.ATFD,hrt:[['Concentrate Feed Tank',6],['Condensate Tank',2],['CIP Tank',1]]},
+ CTP:{...WTD49_PLANTS.CTP,hrt:[['Make-up / Buffer Tank',2],['Cooling Tower Basin',1],['Blowdown Collection Tank',1]]},
+ COOLING:{...WTD49_PLANTS.COOLING,hrt:[['Make-up / Buffer Tank',2],['Cooling Tower Basin',1],['Blowdown Collection Tank',1]]},
+ BOILER:{...WTD49_PLANTS.BOILER,hrt:[['Raw Water Tank',2],['Feed Water / Deaerator Tank',2],['Condensate Tank',2],['Blowdown Tank',0.5]]},
+ DESAL:{...WTD49_PLANTS.DESAL,hrt:[['Intake / Feed Buffer',3],['UF Filtrate / RO Feed Tank',1],['Product Water Tank',4],['Reject / Neutralization Tank',1],['CIP Tank',1]]},
+ EDI:{...WTD49_PLANTS.EDI,hrt:[['EDI Feed Tank',1],['Product Water Tank',3],['Reject Recovery Tank',1]]},
+ WSP:{...WTD49_PLANTS.WSP,hrt:[['Source / Storage Tank',4],['Pressure / Break Tank',1]]}
+});
+const WTD49_PUMPS={
+ STP:['Raw Sewage Lift Pumps','Equalization Transfer Pumps','Internal Recycle Pumps','RAS Pumps','WAS/Sludge Pumps','Filter Feed Pumps','Treated Water Pumps'],
+ ETP:['Effluent Collection Pumps','Equalization Transfer Pumps','Chemical Sludge Pumps','Biological Feed/Recycle Pumps','Filter Feed Pumps','Sludge Transfer Pumps','Treated Water Pumps'],
+ CETP:['Collection/Lift Pumps','Equalization Transfer Pumps','Primary Sludge Pumps','Biological Feed/Recycle Pumps','RAS Pumps','WAS Pumps','Tertiary Feed Pumps','Treated Water Pumps'],
+ WTP:['Raw Water Pumps','Clarifier Sludge Pumps','Filter Feed Pumps','Filter Backwash Pumps','Air Blower for Backwash','Clear Water Pumps'],
+ RO:['Raw Water Transfer Pumps','RO Feed Pumps','High Pressure Pump','Permeate Transfer Pumps','Reject Transfer Pumps','CIP Pump'],
+ UF:['Raw Water Transfer Pumps','UF Feed Pumps','Backwash Pumps','CEB/CIP Pump','Product Water Pumps'],
+ NF:['Raw Water Transfer Pumps','NF Feed Pumps','High Pressure Pump','Permeate Transfer Pumps','Reject Transfer Pumps','CIP Pump'],
+ DM:['Raw Water Feed Pumps','Degasser Transfer Pumps','DM Water Pumps','Acid Regeneration Pump','Alkali Regeneration Pump','Neutralization Transfer Pump'],
+ SOFT:['Raw Water Feed Pumps','Soft Water Pumps','Brine/Regeneration Pump'],
+ MBR:['Raw Sewage Lift Pumps','Equalization Transfer Pumps','Internal Recycle Pumps','Permeate Pumps','Membrane Backwash/CIP Pump','Sludge Pumps','Treated Water Pumps'],
+ SBR:['Raw Sewage Lift Pumps','Equalization Transfer Pumps','SBR Feed Pumps','Decant Transfer Pumps','Sludge Pumps','Treated Water Pumps'],
+ MBBR:['Raw Sewage Lift Pumps','Equalization Transfer Pumps','Internal Recycle Pumps','Clarifier Sludge/RAS Pumps','Filter Feed Pumps','Sludge Pumps','Treated Water Pumps'],
+ ASP:['Raw Sewage Lift Pumps','Equalization Transfer Pumps','RAS Pumps','WAS Pumps','Filter Feed Pumps','Sludge Pumps','Treated Water Pumps'],
+ ZLD:['Feed Transfer Pumps','UF/RO Feed Pumps','RO High Pressure Pumps','Concentrate Transfer Pumps','MEE Feed Pumps','Condensate Pumps','ATFD Feed Pumps','CIP Pumps'],
+ MEE:['Feed Pumps','Effect Circulation Pumps','Condensate Pumps','Concentrate Transfer Pumps','Vacuum/Seal Water Pumps','CIP Pump'],
+ ATFD:['Concentrate Feed Pumps','Condensate Pumps','CIP Pump'],
+ CTP:['Make-up Water Pumps','Cooling Water Circulation Pumps','Side-stream Filter Pumps','Blowdown Transfer Pumps'],
+ COOLING:['Make-up Water Pumps','Cooling Water Circulation Pumps','Side-stream Filter Pumps','Blowdown Transfer Pumps'],
+ BOILER:['Raw Water Pumps','Boiler Feed Pumps','Condensate Return Pumps','Chemical Dosing Pumps','Blowdown Transfer Pumps'],
+ DESAL:['Seawater Intake Pumps','UF Feed/Backwash Pumps','SWRO High Pressure Pumps','Energy Recovery Booster Pump','Product Water Pumps','Reject/CIP Pumps'],
+ EDI:['EDI Feed Pumps','Product Water Pumps','Reject Recovery Pumps','CIP Pump'],
+ WSP:['Source/Transfer Pumps','Duty Distribution Pumps','Standby Distribution Pumps','Fire/Utility Pumps where applicable']
+};
 Object.assign(plantChemicalDB,{
  UF:[["Sodium Hypochlorite / सोडियम हाइपोक्लोराइट","CEB/disinfection where OEM-approved"],["Citric Acid / साइट्रिक एसिड","Acid CEB/CIP where membrane-approved"],["Caustic Soda / कास्टिक सोडा","Alkaline CEB/CIP where membrane-approved"]],
  NF:[["Antiscalant / एंटीस्केलेंट","Scale control from projection"],["SMBS / एसएमबीएस","Dechlorination when required"],["Acid / एसिड","pH/CIP only as approved"],["Alkaline Cleaner / अल्कलाइन क्लीनर","CIP per membrane OEM"]],
@@ -2410,19 +2460,21 @@ function buildDesign(){
  const name=document.getElementById('prName').value||'Water Treatment Project', type=document.getElementById('prType').value, q=sdVal('prQ'),hours=sdVal('prHours')||20,peakF=sdVal('prPeak')||2,targetHrt=sdVal('prHrt');
  if(!(q>0&&hours>0&&hours<=24&&peakF>=1) || (targetHrt!==null && !(targetHrt>0)))return setR('designResult','Enter valid capacity, operating hours, peak factor and HRT.');
  const cfg=WTD49_PLANTS[type]||WTD49_PLANTS.STP, avgHr=q/hours, peak=avgHr*peakF;
- const recommendedHrt=(cfg.hrt||[]).reduce((s,x)=>s+(Number(x[1])||0),0);
+ const recommendedHrt=(cfg.hrt||[]).filter(x=>x[2]!=='sor').reduce((s,x)=>s+(Number(x[1])||0),0);
  const bioPlants=/^(STP|ETP|CETP|MBR|MBBR|ASP|SBR)$/i.test(type);
  const isMainHrtUnit=(unit)=>/biolog|reactor|aeration|mbbr|sbr working/i.test(unit);
- const designTankHrt=(cfg.hrt||[]).map(([unit,h])=>[unit,(targetHrt&&targetHrt>0&&bioPlants&&isMainHrtUnit(unit))?targetHrt:h]);
- const designHrt=designTankHrt.reduce((sum,x)=>sum+(Number(x[1])||0),0);
+ const designTankHrt=(cfg.hrt||[]).map(([unit,h,basis])=>[unit,(targetHrt&&targetHrt>0&&bioPlants&&isMainHrtUnit(unit)&&basis!=='sor')?targetHrt:h,basis||'hrt']);
+ const designHrt=designTankHrt.filter(x=>x[2]!=='sor').reduce((sum,x)=>sum+(Number(x[1])||0),0);
  const hrtWorkingVolume=designHrt>0?q*designHrt/24:0;
  const hrtDesignVolume=hrtWorkingVolume*1.1;
  const inlet={pH:sdVal('inPh'),BOD:sdVal('inBod'),COD:sdVal('inCod'),TSS:sdVal('inTss'),TDS:sdVal('inTds'),Hardness:sdVal('inHard'),Turbidity:sdVal('inTurb'),'NH3-N':sdVal('inNh3')};
  const outlet={pH:sdVal('outPh'),BOD:sdVal('outBod'),COD:sdVal('outCod'),TSS:sdVal('outTss'),TDS:sdVal('outTds'),Hardness:sdVal('outHard'),Turbidity:sdVal('outTurb'),'NH3-N':sdVal('outNh3')};
  const givenIn=Object.entries(inlet).filter(([,v])=>v!==null), givenOut=Object.entries(outlet).filter(([,v])=>v!==null); const missing=[]; if(!givenIn.length)missing.push('Inlet water-quality analysis'); if(!givenOut.length)missing.push('Required outlet-water quality');
- let tanks=designTankHrt.map(([n,h])=>{const working=q*h/24, design=working*1.1; const d=tankDims(design); return {name:n,hrt:h,working,design,...d}});
- let tankRows=tanks.map(t=>`<tr><td>${escapeHtml(t.name)}</td><td>${t.hrt} hr</td><td>${t.working.toFixed(1)}</td><td>${t.design.toFixed(1)}</td><td>${t.l.toFixed(1)} × ${t.w.toFixed(1)} × ${t.d.toFixed(1)} m SWD</td><td>${t.free.toFixed(1)} m</td></tr>`).join('');
- let eqRows=cfg.eq.map((e,i)=>{
+ let tanks=designTankHrt.map(([n,v,basis])=>{if(basis==='sor'){const area=q/v,designArea=area*1.1,depth=3,ratio=1.5,w=Math.sqrt(designArea/ratio),l=w*ratio,working=area*depth,design=designArea*depth;return{name:n,basis:`SOR ${v} m³/m²/day`,working,design,l,w,d:depth,free:0.5}}const working=q*v/24,design=working*1.1,d=tankDims(design);return{name:n,basis:`${v} hr HRT`,working,design,...d}});
+ let tankRows=tanks.map(t=>`<tr><td>${escapeHtml(t.name)}</td><td>${t.basis}</td><td>${t.working.toFixed(1)}</td><td>${t.design.toFixed(1)}</td><td>${t.l.toFixed(1)} × ${t.w.toFixed(1)} × ${t.d.toFixed(1)} m SWD</td><td>${t.free.toFixed(1)} m</td></tr>`).join('');
+ const pumpList=(WTD49_PUMPS[type]||[]).map(x=>({name:x,kind:'Pump'}));
+ const equipmentList=[...pumpList,...cfg.eq.map(x=>({name:x,kind:'Equipment'}))].filter((x,i,a)=>a.findIndex(y=>y.name.toLowerCase()===x.name.toLowerCase())===i);
+ let eqRows=equipmentList.map((item,i)=>{const e=item.name;
    const el=String(e).toLowerCase(); let duty='',qty='As process design requires';
    if(/dosing|chemical skid|chemical pump|cip\/dosing/.test(el)){
      duty='Chemical duty must be calculated from approved dose, product strength/density and pump run time; size in L/hr or mL/min — not from plant hydraulic flow.';
@@ -2453,7 +2505,7 @@ function buildDesign(){
    } else {
      duty=`Sized from ${q.toFixed(1)} KLD design basis and the specific process loading/retention requirement.`;
    }
-   return `<tr><td>${i+1}</td><td>${escapeHtml(e)}</td><td>${duty}</td><td>${qty}</td></tr>`
+   return `<tr><td>${i+1}</td><td><b>${item.kind}</b> — ${escapeHtml(e)}</td><td>${duty}</td><td>${qty}</td></tr>`
  }).join('');
  const chemRows=cfg.chem.map(x=>`<li>${escapeHtml(x)}</li>`).join('');
  const inputRows=[...givenIn.map(([k,v])=>`<tr><td>Inlet ${k}</td><td>${v}</td></tr>`),...givenOut.map(([k,v])=>`<tr><td>Outlet ${k}</td><td>${v}</td></tr>`)].join('')||'<tr><td colspan="2">No quality parameters entered — provide actual analysis before final design.</td></tr>';
@@ -2886,14 +2938,14 @@ function opening(){
  const render=html=>{if(!i.isConnected||finished)return;i.className='wtd-splash-inner minimal-stage';i.innerHTML=html};
  const stage1=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-title">Water Treatment<br><span>Doctor</span></div><div class="minimal-tagline">Clean Water • Healthier Tomorrow</div><div class="minimal-dev">Developed by<br><b>Vinay Kumar Singh</b></div>');
  const stage2=()=>render('<div class="minimal-loading-ring" aria-hidden="true"></div><div class="minimal-loading-text">Preparing Your<br>Water Treatment Solution...</div><div class="minimal-progress"><i></i></div><div class="minimal-dev">Please Wait...</div>');
- const stage3=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-welcome">Welcome to</div><div class="minimal-welcome-title">Water Treatment Doctor</div><div class="minimal-welcome-sub">Smart Tools for Cleaner Water<br>and a Healthier Tomorrow</div><div class="minimal-dev">Developed by <b>Vinay Kumar Singh</b></div>');
+ const stage3=()=>render('<div class="minimal-logo" role="img" aria-label="Water Treatment Doctor logo"></div><div class="minimal-welcome">Welcome to</div><div class="minimal-welcome-title">Water Treatment Doctor</div><div class="minimal-welcome-sub">Smart Tools for Cleaner Water<br>and a Healthier Tomorrow</div><button id="wtdGetStarted" class="minimal-start" type="button">Get Started / शुरू करें</button><div class="minimal-dev">Developed by <b>Vinay Kumar Singh</b></div>');
  const finish=()=>{if(finished)return false;finished=true;try{window.wtdCloseOpening?.()}catch(_e){s.classList.add('hide');setTimeout(()=>s.remove(),380)}setTimeout(()=>window.goHome?.(),50);return false};
- // A recent boot means the WebView has reloaded unexpectedly. Skip all
- // opening stages so a reload can never trap the user in a splash loop.
+ // A recent boot means the WebView reloaded unexpectedly. Show the stable
+ // welcome action immediately; never bypass Get Started or language choice.
  const now=Date.now(),last=Number(sessionStorage.getItem('wtdLastBootAt')||0);
  sessionStorage.setItem('wtdLastBootAt',String(now));
- if(last && now-last<15000){finish();return;}
- stage1();setTimeout(stage2,650);setTimeout(stage3,1450);setTimeout(finish,2050);
+ if(last && now-last<15000){stage3();return;}
+ stage1();setTimeout(stage2,650);setTimeout(stage3,1450);
 }
 function init(){catalogue();langButton();safeAI();opening();}
 document.addEventListener('DOMContentLoaded',init,{once:true});if(document.readyState!=='loading')init();

@@ -16,7 +16,7 @@ function attachGestures(){
  const up=e=>{pointers.delete(e.pointerId);if(pointers.size===1){const a=[...pointers.values()][0];basePan={x:panX,y:panY};startMid={x:a.clientX,y:a.clientY};}else if(!pointers.size){startDist=0;}};
  view.addEventListener('pointerup',up);view.addEventListener('pointercancel',up);
 }
-function nativeDrawingMode(on){try{if(window.AndroidDownloads&&typeof window.AndroidDownloads.setDrawingFullscreen==='function')window.AndroidDownloads.setDrawingFullscreen(!!on);}catch(e){console.warn(e)}}
+function nativeDrawingMode(on){document.body.classList.toggle('b2224-landscape',!!on)}
 const oldOpen=window.openDrawing, oldClose=window.closeDrawing, oldReset=window.wtdDrawingReset;
 window.openDrawing=function(code,src){const r=oldOpen?oldOpen(code,src):false;nativeDrawingMode(true);resetGesture();setTimeout(()=>{attachGestures();const el=img();if(el){el.onload=()=>{resetGesture();};}},30);return r;};
 window.closeDrawing=function(){nativeDrawingMode(false);resetGesture();pointers.clear();return oldClose?oldClose():false;};
